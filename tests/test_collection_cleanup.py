@@ -56,14 +56,14 @@ class CollectionCleanupTests(unittest.TestCase):
         self.source = self.root / "collection ü #%.sqlite3"
         self.output = self.root / "pruned.sqlite3"
         self.source_payload = json.dumps({
-            "externalIds": {"DBLP": "conf/sp/Example26"},
+            "externalIds": {"DBLP": "conf/iclr/Example26"},
             "abstract": "Redundant source data. " * 10000,
         })
         self.roster_payload = json.dumps({
             "title": "Original title", "abstract": "Redundant abstract" * 1000,
             "roster_review": {"action": "include", "note": "Confirmed paper",
                               "evidence_urls": ["https://example.org/proceedings"]},
-            "roster_match": {"method": "dblp-key", "dblp_key": "conf/sp/Example26",
+            "roster_match": {"method": "dblp-key", "dblp_key": "conf/iclr/Example26",
                              "reason": "Exact key match"},
         })
         with closing(sqlite3.connect(self.source)) as connection:
@@ -78,13 +78,13 @@ class CollectionCleanupTests(unittest.TestCase):
             connection.execute("INSERT INTO source_records VALUES (?,?,?,?,?)",
                                ("semantic_scholar", "s2-id", 1, self.source_payload, "2026-10-11"))
             connection.executemany("INSERT INTO paper_venues VALUES (?,?,?,?)", [
-                (1, "sp", 2026, "semantic_scholar"), (1, "sp", 2026, "dblp"),
-                (2, "sp", 2025, "dblp"),
+                (1, "iclr", 2026, "semantic_scholar"), (1, "iclr", 2026, "dblp"),
+                (2, "iclr", 2025, "dblp"),
             ])
             connection.execute("INSERT INTO checkpoints VALUES (?,?,?,?,?,?)",
                                ('{"provider":"openalex"}', "resume-here", 0, 100, 2, "2026-10-11"))
             connection.execute("INSERT INTO roster_entries VALUES (?,?,?,?,?,?,?,?,?,?,?)",
-                               ("dblp", "conf/sp/Example26", "sp", 2026, 1, "Roster title", "10.1234/test",
+                               ("dblp", "conf/iclr/Example26", "iclr", 2026, 1, "Roster title", "10.1234/test",
                                 "https://example.org/paper", '["An Author"]', "Research papers",
                                 self.roster_payload))
             connection.commit()
@@ -105,15 +105,15 @@ class CollectionCleanupTests(unittest.TestCase):
             columns = self.rows(self.output, "PRAGMA table_info(" + table + ")")
             self.assertNotIn("raw_json", [row[1] for row in columns])
         self.assertEqual(self.rows(self.output, "SELECT * FROM source_records"), [
-            ("semantic_scholar", "s2-id", 1, "conf/sp/Example26", "2026-10-11")])
+            ("semantic_scholar", "s2-id", 1, "conf/iclr/Example26", "2026-10-11")])
         review = json.loads(self.rows(self.output, "SELECT review_json FROM roster_entries")[0][0])
         raw_review = json.loads(self.roster_payload)
         self.assertEqual(review, {key: raw_review[key] for key in ("roster_review", "roster_match")})
         self.assertEqual(result["papers"], 2)
         self.assertEqual(result["abstracts"], 1)
         self.assertEqual(result["coverage"], [
-            {"venue": "sp", "year": 2025, "papers": 1, "abstracts": 0},
-            {"venue": "sp", "year": 2026, "papers": 1, "abstracts": 1},
+            {"venue": "iclr", "year": 2025, "papers": 1, "abstracts": 0},
+            {"venue": "iclr", "year": 2026, "papers": 1, "abstracts": 1},
         ])
         self.assertEqual(result["removed_raw_json_bytes"],
                          len(self.source_payload.encode()) + len(self.roster_payload.encode()))
@@ -178,7 +178,7 @@ class CollectionCleanupTests(unittest.TestCase):
 
     def test_invalid_foreign_key_never_published(self):
         with closing(sqlite3.connect(self.source)) as connection:
-            connection.execute("INSERT INTO paper_venues VALUES (999,'sp',2026,'dblp')")
+            connection.execute("INSERT INTO paper_venues VALUES (999,'iclr',2026,'dblp')")
             connection.commit()
         before = self.source.read_bytes()
         with self.assertRaises((ValueError, sqlite3.IntegrityError)):

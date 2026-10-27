@@ -1,0 +1,31 @@
+[project]
+name = "reference-finder-aiml"
+version = "0.1.0"
+description = "Find related AI/ML papers across ICLR, ICML, NeurIPS, AAAI, and COLM"
+readme = "README.md"
+authors = [
+    { name = "Yuxuan Zhu", email = "yxx404@illinois.edu" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "accelerate==1.10.1",
+    "beautifulsoup4>=4.12,<5",
+    "huggingface-hub>=0.34,<1",
+    "numpy==1.26.4",
+    "python-dotenv>=1.0,<2",
+    "sentence-transformers==5.1.2",
+    "torch==2.7.1",
+    "transformers==4.57.6",
+    "urllib3>=1.26.20,<2 ; python_full_version == '3.9.*' and sys_platform == 'darwin'",
+]
+
+[project.optional-dependencies]
+openai = ["openai>=1.30,<3", "tiktoken>=0.7,<1"]
+
+[build-system]
+requires = ["uv_build>=0.12.3,<0.13.0"]
+build-backend = "uv_build"
+
+[tool.uv.build-backend]
+module-root = ""
+module-name = "reference_finder"

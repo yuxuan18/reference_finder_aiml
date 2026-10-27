@@ -31,10 +31,10 @@ def is_paper(provider, record):
         return False
     if types & {"Review", "Editorial", "Erratum"} and not types & {"Conference", "JournalArticle"}:
         return False
-    if re.match(r"^(?:proceedings\b|advances in cryptology\s*[-–—:]\s*(?:crypto|eurocrypt|asiacrypt)\s+\d{4}\b)", title, re.I):
+    if re.match(r"^proceedings\b", title, re.I):
         return False
-    # S2 also labels individual ACM papers as Book+Conference. Use an explicit
-    # event-volume title to reject e.g. "WPES '24: 23rd Workshop ..." instead.
+    # S2 can label individual papers as Book+Conference. Reject explicit
+    # event-volume titles rather than dropping every mixed-tag paper.
     if re.match(r"^[A-Z][A-Z0-9 &+.'’\-]{0,30}['’]?\d{2,4}\s*:\s*(?:proceedings\b|\d+(?:st|nd|rd|th)\s+(?:(?:annual|international|ACM|IEEE)\s+)*(?:workshop|conference|symposium)\b)", title, re.I):
         return False
     if re.fullmatch(r"(?:preface|foreword|front matter|back matter|table of contents|author index|organizing committee|program committee|copyright.*)", title, re.I):
@@ -61,7 +61,7 @@ class Importer:
 
     def discover_s2(self):
         for venue in self.venues:
-            for year in range(self.start, self.end + 1):
+            for year in range(max(self.start, venue.first_year), self.end + 1):
                 job = job_key("s2-discover", venue.key, year=year)
                 state = self.db.checkpoint(job)
                 if state and state["done"]:
@@ -123,7 +123,7 @@ class Importer:
             if not sources:
                 LOG.warning("OpenAlex: no specific source for %s; relying on S2 discovery and DOI enrichment", venue.key)
             for source in sources:
-                for year in range(self.start, self.end + 1):
+                for year in range(max(self.start, venue.first_year), self.end + 1):
                     job = job_key("oa-discover", venue.key, year=year, source=source["source_id"])
                     state = self.db.checkpoint(job)
                     if state and state["done"]:

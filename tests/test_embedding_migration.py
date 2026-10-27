@@ -78,8 +78,8 @@ class EmbeddingMigrationTests(unittest.TestCase):
                  "semantic_scholar" if abstract else None, "https://example.org/paper", "2026-01-01", "2026-10-11")
                 for paper_id, title, abstract in self.papers
             ])
-            connection.execute("INSERT INTO source_records VALUES ('dblp','conf/sp/Test26',1,NULL,'2026-10-11')")
-            connection.execute("INSERT INTO paper_venues VALUES (1,'sp',2026,'dblp')")
+            connection.execute("INSERT INTO source_records VALUES ('dblp','conf/iclr/Test26',1,NULL,'2026-10-11')")
+            connection.execute("INSERT INTO paper_venues VALUES (1,'iclr',2026,'dblp')")
             connection.execute("INSERT INTO checkpoints VALUES ('resume','cursor',0,50,4,'2026-10-11')")
             connection.commit()
         with closing(sqlite3.connect(self.index)) as connection:

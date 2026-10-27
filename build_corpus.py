@@ -12,23 +12,39 @@ from reference_finder.api import APIError, Budget, RequestLimit
 from reference_finder.corpus_report import export_corpus
 from reference_finder.roster import RosterStore
 from reference_finder.storage import Database
-from reference_finder.venues import VENUES
+from reference_finder.venues import DEFAULT_VENUES, VENUES
 from reference_finder.webfetch import WebFetcher
 
 
-def main(argv=None):
+SOURCES = {
+    "dblp": set(VENUES) - {"colm"},
+    "iclr": {"iclr"},
+    "colm": {"colm"},
+    "openreview": {"iclr", "colm"},
+    "pmlr": {"icml"},
+    "neurips": {"neurips"},
+    "aaai": {"aaai"},
+}
+
+
+def parser():
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     p.add_argument("--db", default="data/papers.sqlite3")
     p.add_argument("--start-year", type=int, default=date.today().year - 9)
     p.add_argument("--end-year", type=int, default=date.today().year)
-    p.add_argument("--venues", nargs="+", choices=list(VENUES), default=list(VENUES))
-    p.add_argument("--sources", nargs="+", choices=["dblp", "usenix", "iacr", "ccs"], default=["dblp", "usenix", "iacr", "ccs"])
+    p.add_argument("--venues", nargs="+", choices=list(VENUES), default=list(DEFAULT_VENUES))
+    p.add_argument("--sources", nargs="+", choices=list(SOURCES), default=list(SOURCES))
     p.add_argument("--output", default="data/corpus")
     p.add_argument("--cache-dir", default="data/page_cache")
     p.add_argument("--refresh", action="store_true", help="Refetch source lists and rebuild their roster membership")
     p.add_argument("--report-only", action="store_true", help="Regenerate CSV/HTML from SQLite, with no network")
     p.add_argument("--max-requests", type=int, help="Bound HTTP attempts; rerun without --refresh to resume")
     p.add_argument("--interval", type=float, default=1.0, help="Minimum seconds between requests to the same host")
+    return p
+
+
+def main(argv=None):
+    p = parser()
     args = p.parse_args(argv)
     if not 2017 <= args.start_year <= args.end_year <= date.today().year:
         p.error("use 2017 <= start-year <= end-year <= current year")
@@ -39,13 +55,20 @@ def main(argv=None):
     logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s", datefmt="%H:%M:%S")
     if not args.report_only:
         try:
+            from reference_finder.config import load_environment
+            load_environment()
             from reference_finder.dblp import collect_dblp
-            from reference_finder.usenix import collect_usenix
-            from reference_finder.iacr import collect_iacr
-            from reference_finder.ccs import collect_ccs
+            from reference_finder.openreview import collect_openreview
+            from reference_finder.pmlr import collect_pmlr
+            from reference_finder.neurips import collect_neurips
+            from reference_finder.aaai import collect_aaai
+            from reference_finder.iclr import collect_iclr
+            from reference_finder.colm import collect_colm
         except ImportError as exc:
             if exc.name == "bs4":
                 p.error("BeautifulSoup is required: python3 -m pip install -r requirements.txt (or use .venv/bin/python)")
+            if exc.name == "dotenv":
+                p.error("Install collection dependencies: uv add -r requirements-webscraping.txt (or python3 -m pip install -r requirements-webscraping.txt)")
             raise
     db_path = Path(args.db).expanduser()
     db = Database(str(db_path))
@@ -58,32 +81,41 @@ def main(argv=None):
         if not args.report_only:
             for provider in dict.fromkeys(args.sources):
                 for venue in venues:
-                    if provider == "usenix" and venue.key != "usenix-security":
+                    if venue.key not in SOURCES[provider]:
                         continue
-                    if provider == "iacr" and venue.key not in {"crypto", "eurocrypt", "asiacrypt"}:
-                        continue
-                    if provider == "ccs" and venue.key != "ccs":
-                        continue
-                    for year in range(args.start_year, args.end_year + 1):
-                        if provider == "ccs" and year != 2026:
-                            continue
+                    for year in range(max(args.start_year, venue.first_year), args.end_year + 1):
                         if not args.refresh and store.finished(provider, venue.key, year):
                             continue
                         try:
+                            logging.info("Collecting %s %s %s (%s)", provider, venue.key, year,
+                                         "roster only" if provider in {"dblp", "colm"} else "roster and available abstracts")
                             if provider == "dblp":
                                 result = collect_dblp(venue.key, year, fetch)
-                            elif provider == "usenix":
-                                result = collect_usenix(year, fetch)
-                            elif provider == "ccs":
-                                result = collect_ccs(year, fetch)
+                            elif provider == "openreview":
+                                result = collect_openreview(venue.key, year, fetch)
+                            elif provider == "iclr":
+                                result = collect_iclr(year, fetch)
+                            elif provider == "colm":
+                                result = collect_colm(year, fetch)
+                            elif provider == "pmlr":
+                                result = collect_pmlr(year, fetch)
+                            elif provider == "neurips":
+                                result = collect_neurips(year, fetch)
+                            elif provider == "aaai":
+                                result = collect_aaai(year, fetch)
                             else:
-                                result = collect_iacr(venue.key, year, fetch)
+                                raise ValueError("Unknown corpus source: " + provider)
+                        except RequestLimit as exc:
+                            if hasattr(exc, "partial_result"):
+                                store.save(provider, venue.key, year, exc.partial_result)
+                            raise
                         except APIError as exc:
                             result = {"records": [], "urls": [], "status": "incomplete", "note": str(exc)}
                         result = store.save(provider, venue.key, year, result)
                         abstracts = sum(bool(r.get("abstract")) for r in result["records"])
-                        logging.info("%s %-15s %s: %s papers, %s source abstracts [%s] %s", provider, venue.key, year,
-                                     len(result["records"]), abstracts, result["status"], result.get("note", ""))
+                        detail = "roster only; this source does not supply abstracts" if provider in {"dblp", "colm"} else f"{abstracts} source abstracts"
+                        logging.info("%s %-15s %s: %s papers, %s [%s] %s", provider, venue.key, year,
+                                     len(result["records"]), detail, result["status"], result.get("note", ""))
                         if result["status"] == "incomplete":
                             status = 1
     except RequestLimit as exc:

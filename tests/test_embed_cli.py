@@ -87,9 +87,9 @@ class EmbeddingCliTests(unittest.TestCase):
         self.assertEqual(config["document_prompt"], "")
         load.assert_called_once()
 
-    def test_new_default_does_not_resume_a_nemotron_index(self):
+    def test_new_default_does_not_resume_a_previous_model_index(self):
         encoder = SimpleNamespace(
-            model_id="nvidia/Nemotron-3-Embed-1B-BF16", revision="a" * 40,
+            model_id="example/previous-model", revision="a" * 40,
             dimension=2048, document_prompt="passage: ", query_prompt="query: ",
         )
         args = embed_papers.parser().parse_args(["build"])

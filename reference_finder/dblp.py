@@ -21,9 +21,7 @@ from .storage import normalize_doi
 
 
 STREAMS = {
-    "ccs": "ccs", "usenix-security": "uss", "sp": "sp",
-    "crypto": "crypto", "eurosp": "eurosp", "asiaccs": "asiaccs",
-    "eurocrypt": "eurocrypt", "asiacrypt": "asiacrypt",
+    "iclr": "iclr", "icml": "icml", "neurips": "nips", "aaai": "aaai",
 }
 SPARQL_ENDPOINT = "https://sparql.dblp.org/sparql"
 PAGE_SIZE = 500
@@ -38,9 +36,6 @@ def _scope(venue_key, year):
     if isinstance(year, bool) or not isinstance(year, int) or not 1900 <= year <= 2100:
         raise ValueError("year must be an integer between 1900 and 2100")
     stream = STREAMS[venue_key]
-    if venue_key == "asiaccs":
-        # Older AsiaCCS proceedings and paper keys lived under conf/ccs.
-        return stream, rf"^https://dblp[.]org/rec/conf/(asiaccs/{year}|ccs/{year}asia)(-[0-9]+)?$"
     # The terminal anchor excludes 2024w, 2024cset, companions and other events.
     return stream, rf"^https://dblp[.]org/rec/conf/{stream}/{year}(-[0-9]+)?$"
 
@@ -117,7 +112,7 @@ def collect_dblp(venue_key, year, fetch):
 
     ``fetch(url)`` returns response text and must raise on HTTP errors. It is
     supplied by the runner so caching, request pacing and retries are shared.
-    Publication years can differ from event years (e.g. ASIACRYPT 2024/2025),
+    Publication years can differ from event years,
     so membership is determined by proceedings keys and the requested event year.
     """
     stream, pattern = _scope(venue_key, year)
@@ -159,8 +154,6 @@ def collect_dblp(venue_key, year, fetch):
                 uri = _value(row, "paper")
                 title = _value(row, "title").strip()
                 prefixes = [_REC + "conf/" + stream + "/"]
-                if venue_key == "asiaccs":
-                    prefixes.append(_REC + "conf/ccs/")
                 if not any(uri.startswith(prefix) for prefix in prefixes) or not title:
                     raise ValueError("DBLP returned a paper without a valid key/title")
                 if uri in records:
@@ -233,8 +226,7 @@ def parse_dblp_index(venue_key, year, html, index_url=None):
         for link in entry.select("a[href]"):
             url = urljoin(base, link["href"])
             path = urlsplit(url).path
-            directory = "(?:asiaccs|ccs)" if venue_key == "asiaccs" else stream
-            if re.fullmatch(rf"/db/conf/{directory}/{stream}{year}(?:-[0-9]+)?[.]html", path):
+            if re.fullmatch(rf"/db/conf/{stream}/{stream}{year}(?:-[0-9]+)?[.]html", path):
                 urls.add(url.split("#", 1)[0])
     if not soup.select("li.entry"):
         raise ValueError("Saved DBLP index contains no proceedings entries")

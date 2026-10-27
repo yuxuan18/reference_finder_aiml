@@ -47,7 +47,7 @@ def same_database(left, right):
 
 
 def read_corpus(path):
-    """Read all papers from one SQLite snapshot, including API-only entries."""
+    """Read active papers from one snapshot, including API-only entries."""
     with closing(read_only(path)) as conn:
         conn.execute("BEGIN")
         columns = {r[1] for r in conn.execute("PRAGMA table_info(papers)")}
@@ -55,10 +55,13 @@ def read_corpus(path):
             raise ValueError("Corpus must contain a papers table with id, title and abstract")
         selected = [name if name in columns else "NULL AS " + name for name in PAPER_FIELDS]
         selected.append("venues_json" if "venues_json" in columns else "'[]' AS venues_json")
-        rows = [dict(r) for r in conn.execute("SELECT " + ", ".join(selected) + " FROM papers ORDER BY id")]
+        active_views = bool(conn.execute("SELECT 1 FROM sqlite_master WHERE name='active_corpus_papers' AND type='view'").fetchone())
+        source = "active_corpus_papers" if active_views else "papers"
+        rows = [dict(r) for r in conn.execute("SELECT " + ", ".join(selected) + " FROM " + source + " ORDER BY id")]
         venues = {}
         if conn.execute("SELECT 1 FROM sqlite_master WHERE type='table' AND name='paper_venues'").fetchone():
-            for r in conn.execute("SELECT DISTINCT paper_id, venue, year FROM paper_venues ORDER BY paper_id,venue,year"):
+            memberships = "active_paper_venues" if active_views else "paper_venues"
+            for r in conn.execute("SELECT DISTINCT paper_id, venue, year FROM " + memberships + " ORDER BY paper_id,venue,year"):
                 venues.setdefault(r[0], []).append({"venue": r[1], "year": r[2]})
         for row in rows:
             row["title"] = (row["title"] or "").strip()
@@ -151,6 +154,8 @@ def encoder_config(encoder, max_tokens, overlap, vector_format=DEFAULT_VECTOR_FO
                 vector_format=vector_format, aggregation="max-chunk")
     if format_version == FORMAT_VERSION:
         config["storage_layout"] = STORAGE_LAYOUT
+    if getattr(encoder, "provider", None) == "openai":
+        config.update(provider="openai", api="openai-v1-embeddings", tokenizer=encoder.tokenizer_name)
     return config
 
 

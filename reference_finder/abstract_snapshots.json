@@ -1,0 +1,27 @@
+[
+  {
+    "dblp_key": "conf/icml/Wei20",
+    "provider": "pmlr",
+    "external_id": "https://proceedings.mlr.press/v119/wei20a.html",
+    "url": "https://proceedings.mlr.press/v119/wei20a.html",
+    "evidence_url": "https://raw.githubusercontent.com/mlresearch/v119/c0b7ef6237086a7c7d4907cf58bd2f06c5c63786/_posts/2020-11-21-wei20a.md",
+    "abstract": "In this paper, we propose a semi-supervised neural system, named Position-wise Orthogonal Knowledge-Enhanced Disambiguator (PoKED), which effectively supports attention-driven, long-range dependency modeling for word sense disambiguation (WSD) tasks. The proposed PoKED system incorporates position-wise encoding into an orthogonal framework and applies a knowledge-based attentive neural model to solve the WSD problem. Our proposed unsupervised language model is trained over unlabeled corpora. Then the pre-trained language model is used to abstract the surrounding context of polysemous words in labeled corpora into context embeddings. We further use the semantic relations in the WordNet, by extracting semantic level inter-word connections from each document-sentence pair in the WSD dataset. Our experimental results from standard benchmarks show that our proposed system, PoKED, can achieve competitive performance compared with state-of-the-art knowledge-based WSD systems."
+  },
+  {
+    "dblp_key": "conf/icml/MajumdarSPTBS22",
+    "provider": "pmlr",
+    "external_id": "https://proceedings.mlr.press/v162/majumdar22b.html",
+    "url": "https://proceedings.mlr.press/v162/majumdar22b.html",
+    "evidence_url": "https://raw.githubusercontent.com/mlresearch/v162/fbaeac76e6463615433e0902627649b474c69f2a/_posts/2022-06-28-majumdar22b.md",
+    "abstract": "Visual navigation through novel environments is an essential skill for intelligent household robots. Reinforcement learning (RL) with dense reward shaping is the standard approach for such visual navigation problems. Dense rewards are used despite the fact that they penalize exploration—a key skill for navigating in new environments—because of the commonly held belief that sparse rewards do not work. In this paper, we present a surprising finding. We demonstrate that combining sparse rewards with self-supervised learning (SSL) not only makes them work, but also outperforms dense rewards, which is the first result of this kind. We apply our approach alongside data augmentation to train a general-purpose agent for image-goal navigation (ImageNav), in which the goal is presented as an image captured from the target location. These techniques improve navigation success from 64% to 72% (+8), path efficiency—measured by success weighted by path length (SPL)—from 0.50 to 0.62 (+0.12), and also lead to a +0.06 absolute improvement in SPL over the state-of-the-art."
+  },
+  {
+    "dblp_key": "conf/aaai/MandalGP20",
+    "provider": "aaai",
+    "external_id": "https://ojs.aaai.org/index.php/AAAI/article/view/5591",
+    "url": "https://ojs.aaai.org/index.php/AAAI/article/view/5591",
+    "evidence_url": "https://ojs.aaai.org/index.php/AAAI/article/download/5591/5447",
+    "abstract": "In human forecasting, proper scoring rules are used to elicit effort in providing accurate probability forecasts of future events. A challenge, though, is that users do not receive feedback about their forecasts until the outcomes are realized. Nor is it clear whether these schemes are effective in motivating continual attention, and updating forecasts on difficult or dynamically changing problems, for which there is a continuous inflow of new information over time. Through a large-scale experiment on Amazon Mechanical Turk (MTurk), we investigate whether peer prediction methods can be used to complement methods of proper scoring rules, and improve engagement of users and ultimately the quality of forecasts. Peer prediction provides immediate feedback, by comparing one forecaster’s prediction with that of another, this feedback provided as rank placement or through incentive payments. One of a very small number of experimental studies into peer prediction, ours is the first to test peer prediction in this hybrid role. We show that providing daily feedback through peer prediction has a significant effect in increasing engagement with the forecasting platform. Moreover, a hybrid scheme that combines scoring rules with peer prediction feedback (via rank feedback) is, together with the basic scoring rule method, generally the best for accuracy. Since the hybrid scheme also improves user engagement, this suggests that the hybrid scheme would provide the best accuracy for longer term forecasting events.",
+    "source_sha256": "d45602c0538e5002a4b2c482e90f5c89ab8ee2240458f0fbf500e13a234a8454"
+  }
+]

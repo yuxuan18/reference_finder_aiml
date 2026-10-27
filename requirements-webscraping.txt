@@ -1,3 +1,4 @@
 # Paper collection and HTML parsing; Python 3.9+.
 # OpenAlex/Semantic Scholar requests and SQLite storage use the standard library.
 beautifulsoup4>=4.12,<5
+python-dotenv>=1.0,<2

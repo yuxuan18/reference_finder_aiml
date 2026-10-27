@@ -76,9 +76,9 @@ class EmbeddingTests(unittest.TestCase):
                 (3, "Paper three", "Third abstract", 2022, "10.1/three", None, "[]"),
             ])
             conn.executemany("INSERT INTO paper_venues VALUES (?,?,?,?)", [
-                (1, "crypto", 2020, "openalex"),
-                (1, "crypto", 2020, "semantic_scholar"),
-                (2, "ccs", 2021, "openalex"),
+                (1, "icml", 2020, "openalex"),
+                (1, "icml", 2020, "semantic_scholar"),
+                (2, "icml", 2021, "openalex"),
             ])
             conn.execute("INSERT INTO private_provider_payload VALUES ('omit this')")
             conn.commit()
@@ -107,7 +107,7 @@ class EmbeddingTests(unittest.TestCase):
         self.assertEqual(rows, read_corpus(self.source))
         self.assertIsNone(rows[1]["abstract"])
         self.assertEqual(json.loads(rows[0]["authors_json"]), ["Alice", "Bob"])
-        self.assertEqual(json.loads(rows[0]["venues_json"]), [{"venue": "crypto", "year": 2020}])
+        self.assertEqual(json.loads(rows[0]["venues_json"]), [{"venue": "icml", "year": 2020}])
         # Paper three has no venue evidence but remains in the exported corpus.
         self.assertEqual(json.loads(rows[2]["venues_json"]), [])
         with closing(sqlite3.connect(destination)) as conn:
@@ -404,7 +404,7 @@ class LinkedEmbeddingTests(unittest.TestCase):
                 (3, "Third paper", "Another abstract", 2024, None, None, "[]"),
             ])
             conn.execute("CREATE TABLE paper_venues (paper_id INTEGER,venue TEXT,year INTEGER)")
-            conn.execute("INSERT INTO paper_venues VALUES (1,'ccs',2024)")
+            conn.execute("INSERT INTO paper_venues VALUES (1,'icml',2024)")
             conn.commit()
         self.original_hash = hashlib.sha256(self.papers.read_bytes()).hexdigest()
         self.encoder = FakeEncoder(vectors=lambda text: [1, 0] if text == "strong" else [0, 1])
@@ -448,7 +448,7 @@ class LinkedEmbeddingTests(unittest.TestCase):
             self.assertEqual(matches[0]["chunk_index"], 1)
             self.assertEqual(matches[0]["abstract"], "weak||strong")
             self.assertAlmostEqual(matches[0]["score"], 1)
-            self.assertEqual(matches[0]["venues"], [{"venue": "ccs", "year": 2024}])
+            self.assertEqual(matches[0]["venues"], [{"venue": "icml", "year": 2024}])
             self.assertNotIn("matching_text", matches[0])
 
     def test_resume_and_changed_text_reembed_only_pending(self):

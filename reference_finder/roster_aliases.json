@@ -1,1234 +1,925 @@
 [
   {
-    "provider": "usenix",
-    "external_id": "https://www.usenix.org/conference/usenixsecurity25/presentation/ghosh",
-    "venue": "usenix-security",
-    "year": 2025,
-    "dblp_key": "conf/uss/0005DM25",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. Titles are identical except the final period."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "28290",
-    "venue": "asiacrypt",
-    "year": 2017,
-    "dblp_key": "conf/asiacrypt/AlbrechtD17",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. The HTML numeric entity for the greater-than-or-equal sign is the same mathematical symbol."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "28299",
-    "venue": "asiacrypt",
-    "year": 2017,
-    "dblp_key": "conf/asiacrypt/Prest17",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. The HTML entity for the accented name Rényi is a formatting difference."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "29183",
-    "venue": "asiacrypt",
-    "year": 2018,
-    "dblp_key": "conf/asiacrypt/Kolesnikov18",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. The Free IF and S notation differs only in LaTeX rendering."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "30668",
-    "venue": "asiacrypt",
-    "year": 2020,
-    "dblp_key": "conf/asiacrypt/LahrNPS20",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. DBLP appends the explanatory Classic McEliece hardware-reference-implementation subtitle to the same distinctive title."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "30704",
-    "venue": "asiacrypt",
-    "year": 2020,
-    "dblp_key": "conf/asiacrypt/AbspoelCD0RX020",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. The Galois-ring Z/p^k Z expression differs only in mathematical typesetting."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "30724",
-    "venue": "asiacrypt",
-    "year": 2020,
-    "dblp_key": "conf/asiacrypt/DalskovLS20",
-    "reason": "The authors match, with Anders Dalskov expanded to Anders P. K. Dalskov. The same title has a missing space in DBLP (Encodingsand)."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "30729",
-    "venue": "asiacrypt",
-    "year": 2020,
-    "dblp_key": "conf/asiacrypt/Lin020",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. Arithmetic Branching Programs is abbreviated ABP in DBLP."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "31353",
-    "venue": "asiacrypt",
-    "year": 2021,
-    "dblp_key": "conf/asiacrypt/HeathK21",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. The distinctive PrORAM title matches; the complexity expression is inconsistently rendered in DBLP."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "31393",
-    "venue": "asiacrypt",
-    "year": 2021,
-    "dblp_key": "conf/asiacrypt/AttemaCR21",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. Sigma and the rendered Greek varSigma denote the same protocol family in the title."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "31483",
-    "venue": "asiacrypt",
-    "year": 2021,
-    "dblp_key": "conf/asiacrypt/ChenTW21",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. DBLP adds the key-separation/key-reuse explanatory subtitle to the same distinctive title."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "31487",
-    "venue": "asiacrypt",
-    "year": 2021,
-    "dblp_key": "conf/asiacrypt/DengMZWSX21",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. Sigma and varSigma are typesetting variants in the same Promise protocol title."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "32351",
-    "venue": "asiacrypt",
-    "year": 2022,
-    "dblp_key": "conf/asiacrypt/CastagnosLT22",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. Z/2^k Z has corrupted bold-font markup in DBLP; the remaining title matches."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "32504",
-    "venue": "asiacrypt",
-    "year": 2022,
-    "dblp_key": "conf/asiacrypt/ZengLHWZ22",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. Sigma is rendered as a Greek symbol in DBLP."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "32512",
-    "venue": "asiacrypt",
-    "year": 2022,
-    "dblp_key": "conf/asiacrypt/BernardLNR22",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. The calligraphic S in Log-S-unit is a mathematical font difference."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "32648",
-    "venue": "asiacrypt",
-    "year": 2022,
-    "dblp_key": "conf/asiacrypt/Chavez-SaabRT22",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. DBLP adds the faster-indifferentiable-hashing subtitle to the same SwiftEC title."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "33363",
-    "venue": "asiacrypt",
-    "year": 2023,
-    "dblp_key": "conf/asiacrypt/ZhouLHZ23",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. The title uses an ampersand versus the word and."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "33472",
-    "venue": "asiacrypt",
-    "year": 2023,
-    "dblp_key": "conf/asiacrypt/LiuW23",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. The soft-O expression and 7 ms spacing differ only in mathematical formatting."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "33517",
-    "venue": "asiacrypt",
-    "year": 2023,
-    "dblp_key": "conf/asiacrypt/Plancon23",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. The only title wording change is Structure versus Structures."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "33518",
-    "venue": "asiacrypt",
-    "year": 2023,
-    "dblp_key": "conf/asiacrypt/EspitauNSTW23",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. DBLP adds the Making Mitaka as Secure as Falcon subtitle to the same Antrag title."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "34593",
-    "venue": "asiacrypt",
-    "year": 2024,
-    "dblp_key": "conf/asiacrypt/ElsheimyLP24",
-    "reason": "The authors match; the official spelling Pamanthou is a typo for Papamanthou. The (1+epsilon) times f expression differs only in mathematical rendering."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "34624",
-    "venue": "asiacrypt",
-    "year": 2024,
-    "dblp_key": "conf/asiacrypt/HazayHKVY24",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. DBLP leaks the sf font marker into the same LogRobin++ title."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "34641",
-    "venue": "asiacrypt",
-    "year": 2024,
-    "dblp_key": "conf/asiacrypt/CojocaruGS24",
-    "reason": "The authors match, with Juan Garay expanded to Juan A. Garay. The only title wording change is Blockchain versus Blockchains."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "34671",
-    "venue": "asiacrypt",
-    "year": 2024,
-    "dblp_key": "conf/asiacrypt/KloossLNO24",
-    "reason": "The authors match, allowing Michał/Michal transliteration. DBLP adds the Extended Abstract descriptor to the same distinctive RoK, Paper, SISsors title."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "34862",
-    "venue": "asiacrypt",
-    "year": 2024,
-    "dblp_key": "conf/asiacrypt/BombarBCCDS24",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. F4 is rendered as a finite-field mathematical expression in the same FOLEAGE title."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "35919",
-    "venue": "asiacrypt",
-    "year": 2025,
-    "dblp_key": "conf/asiacrypt/XuLZO25",
-    "reason": "The authors match, allowing Chang-An/Changan spelling. The SQIsign2D squared superscript is rendered differently; the remaining title matches."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "35922",
-    "venue": "asiacrypt",
-    "year": 2025,
-    "dblp_key": "conf/asiacrypt/MadathilS25",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. DBLP leaks font commands into the same PriFHEte name."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "35933",
-    "venue": "asiacrypt",
-    "year": 2025,
-    "dblp_key": "conf/asiacrypt/LiXYYZ25",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. DBLP inserts the word Arguments after Zero-Knowledge in the same distinctive title."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "35937",
-    "venue": "asiacrypt",
-    "year": 2025,
-    "dblp_key": "conf/asiacrypt/SridharZ25",
-    "reason": "The authors match, allowing Yinuo/Yi-Nuo spelling. DBLP leaks an sf font marker into the same FREPack title."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "36003",
-    "venue": "asiacrypt",
-    "year": 2025,
-    "dblp_key": "conf/asiacrypt/BorinSEIMSV25",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. DBLP leaks an sf font marker into the same Qlapoti title."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "36020",
-    "venue": "asiacrypt",
-    "year": 2025,
-    "dblp_key": "conf/asiacrypt/HanzlikLMPST25",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. The only wording difference is Group versus Groups Actions."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "36044",
-    "venue": "asiacrypt",
-    "year": 2025,
-    "dblp_key": "conf/asiacrypt/TangGGDZ25",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. ASASA is wrapped in a LaTeX font command in the official title."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "36066",
-    "venue": "asiacrypt",
-    "year": 2025,
-    "dblp_key": "conf/asiacrypt/YangZY25",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. Rain is wrapped in a LaTeX font command; DBLP adds subtitle punctuation."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "36097",
-    "venue": "asiacrypt",
-    "year": 2025,
-    "dblp_key": "conf/asiacrypt/KloossLNO25",
-    "reason": "The authors match, allowing Klooss/Klooß and Michał/Michal transliteration. The soft-O(lambda) expression has different typesetting and DBLP adds Extended Abstract."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "36111",
-    "venue": "asiacrypt",
-    "year": 2025,
-    "dblp_key": "conf/asiacrypt/ZhouHLH25",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. The only wording difference is Re-Encryption versus Re-encryptions."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "28803",
-    "venue": "crypto",
-    "year": 2018,
-    "dblp_key": "conf/crypto/BermanDRV18",
-    "reason": "The authors match, allowing Ron D. Rothblum/Ron Rothblum. DBLP adds the Extended Abstract descriptor to the same title."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "28814",
-    "venue": "crypto",
-    "year": 2018,
-    "dblp_key": "conf/crypto/RogawayZ18",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. DBLP adds the indistinguishability-up-to-correctness and stateful-AE subtitle to Simplifying Game-Based Definitions."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "28824",
-    "venue": "crypto",
-    "year": 2018,
-    "dblp_key": "conf/crypto/Attrapadung0N0Y18",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. The NC1 expression differs only in LaTeX formatting."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "28832",
-    "venue": "crypto",
-    "year": 2018,
-    "dblp_key": "conf/crypto/CramerDESX18",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. The SPDZ2k name and modulus differ only in mathematical typesetting."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "28836",
-    "venue": "crypto",
-    "year": 2018,
-    "dblp_key": "conf/crypto/TodoIMAZ18",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. DBLP adds the Full Grain cryptanalysis subtitle to Fast Correlation Attack Revisited."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "28839",
-    "venue": "crypto",
-    "year": 2018,
-    "dblp_key": "conf/crypto/Nandi18",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. DBLP adds the Repairing Luykx-Preneel Optimal Forgeries subtitle to Bernstein Bound on WCS is Tight."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "29913",
-    "venue": "crypto",
-    "year": 2019,
-    "dblp_key": "conf/crypto/ParkS19",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. DBLP adds the Repudiability and Claimability of Ring Signatures subtitle to the distinctive It Wasn’t Me title."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "29934",
-    "venue": "crypto",
-    "year": 2019,
-    "dblp_key": "conf/crypto/GoyalQWW19",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. N to the epsilon power is the same expression rendered differently."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "30367",
-    "venue": "crypto",
-    "year": 2020,
-    "dblp_key": "conf/crypto/AlbrechtBFKSW20",
-    "reason": "The authors match, allowing Martin Albrecht/Martin R. Albrecht. The root-Hermite-factor and runtime expressions are flattened by DBLP; the distinctive title otherwise matches."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "30423",
-    "venue": "crypto",
-    "year": 2020,
-    "dblp_key": "conf/crypto/BrakerskiKM20",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. The same NIZK/LPN/trapdoor-hash work calls the condition Approximate-Correlation Intractability versus Correlation Intractability for Approximable Relations."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "30464",
-    "venue": "crypto",
-    "year": 2020,
-    "dblp_key": "conf/crypto/AttemaC20",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. Sigma is rendered through a LaTeX varSigma command in DBLP."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "30467",
-    "venue": "crypto",
-    "year": 2020,
-    "dblp_key": "conf/crypto/Zhandry20",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. The N^(1/3) expression is flattened in DBLP."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "31128",
-    "venue": "crypto",
-    "year": 2021,
-    "dblp_key": "conf/crypto/ApplebaumN21",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. The 1.5^n expression is flattened in DBLP."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "31140",
-    "venue": "crypto",
-    "year": 2021,
-    "dblp_key": "conf/crypto/RotemS21",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. Sigma and varSigma are typesetting variants."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "31158",
-    "venue": "crypto",
-    "year": 2021,
-    "dblp_key": "conf/crypto/AttemaCK21",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. Sigma is rendered through a LaTeX varSigma command in DBLP."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "31170",
-    "venue": "crypto",
-    "year": 2021,
-    "dblp_key": "conf/crypto/LiuP21",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. EXP not-equal BPP differs only in mathematical rendering."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "31253",
-    "venue": "crypto",
-    "year": 2021,
-    "dblp_key": "conf/crypto/BoyleCGIKS21",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. AC0[MOD2] differs only in mathematical font markup."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "31257",
-    "venue": "crypto",
-    "year": 2021,
-    "dblp_key": "conf/crypto/CramerRX21",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. The Z/p^ell Z expression differs only in mathematical font markup."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "31261",
-    "venue": "crypto",
-    "year": 2021,
-    "dblp_key": "conf/crypto/Wee21",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. The N^(1/3) expression is flattened in DBLP."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "31264",
-    "venue": "crypto",
-    "year": 2021,
-    "dblp_key": "conf/crypto/GentryHKMNRY21",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. DBLP prepends the YOSO acronym to You Only Speak Once."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "32077",
-    "venue": "crypto",
-    "year": 2022,
-    "dblp_key": "conf/crypto/WatersW22",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. DBLP leaks the sf font marker before NP."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "32098",
-    "venue": "crypto",
-    "year": 2022,
-    "dblp_key": "conf/crypto/BoudgoustGP22",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. The only wording difference is Implications to versus Implications on."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "32128",
-    "venue": "crypto",
-    "year": 2022,
-    "dblp_key": "conf/crypto/BaoGST22",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. The distinctive Superposition Meet-in-the-Middle Attacks title and all four authors match; the final phrase was renamed AES-like Ciphers to AES-like Hashing."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "32139",
-    "venue": "crypto",
-    "year": 2022,
-    "dblp_key": "conf/crypto/ApplebaumKP22",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. DBLP adds the Extended Abstract descriptor to the same title."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "32154",
-    "venue": "crypto",
-    "year": 2022,
-    "dblp_key": "conf/crypto/AttemaF22",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. The special-soundness parameter tuple has corrupted mathematical rendering in DBLP."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "32155",
-    "venue": "crypto",
-    "year": 2022,
-    "dblp_key": "conf/crypto/BaenaBCPSV22",
-    "reason": "The authors match, allowing middle initials for Javier Verbel and Ray Perlner plus Smith--Tone hyphenation. The GeMSS name has corrupted displaystyle markup in DBLP; the distinctive Support-Minors/GeMSS/Rainbow title matches."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "32176",
-    "venue": "crypto",
-    "year": 2022,
-    "dblp_key": "conf/crypto/HolmgrenR22",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. DBLP leaks the sf font marker before IOPs."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "32183",
-    "venue": "crypto",
-    "year": 2022,
-    "dblp_key": "conf/crypto/FitziKPR22",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. DBLP adds the A Provably Secure Blockchain Protocol subtitle to the same Ofelimos title."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "32187",
-    "venue": "crypto",
-    "year": 2022,
-    "dblp_key": "conf/crypto/BaumBMS22",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. The MozZ2kzarella name differs in stylized mathematical spelling; the rest of the title matches."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "32191",
-    "venue": "crypto",
-    "year": 2022,
-    "dblp_key": "conf/crypto/AlbrechtCLMT22",
-    "reason": "The authors match, allowing spacing in Sri Aravinda Krishnan Thyagarajan. DBLP adds the Extended Abstract descriptor to the same title."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "32263",
-    "venue": "crypto",
-    "year": 2022,
-    "dblp_key": "conf/crypto/AkshimaGL22",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. The only difference is the diacritic in Merkle-Damgård."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "33096",
-    "venue": "crypto",
-    "year": 2023,
-    "dblp_key": "conf/crypto/BouvierBCPSVW23",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. DBLP leaks tt font markers into the Anemoi and Jive names."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "33130",
-    "venue": "crypto",
-    "year": 2023,
-    "dblp_key": "conf/crypto/HirchDRM23",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. DBLP adds the A New Mixing Layer and Permutation subtitle to the same Twin Column Parity Mixers and Gaston title."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "33143",
-    "venue": "crypto",
-    "year": 2023,
-    "dblp_key": "conf/crypto/HeathKO23",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. The same distinctive Tri-State Circuits work changes its explanatory subtitle from A Better Model of Computation for Garbling to A Circuit Model that Captures RAM."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "33162",
-    "venue": "crypto",
-    "year": 2023,
-    "dblp_key": "conf/crypto/CiniLM23",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. DBLP adds the Extended Abstract descriptor to the same title."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "33215",
-    "venue": "crypto",
-    "year": 2023,
-    "dblp_key": "conf/crypto/Chen22",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. DBLP leaks the sf font marker into the DualMS name."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "33225",
-    "venue": "crypto",
-    "year": 2023,
-    "dblp_key": "conf/crypto/BarbosaDGHMS22",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. The XMSS and SPHINCS+ names have mathematical/font markup differences."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "33254",
-    "venue": "crypto",
-    "year": 2023,
-    "dblp_key": "conf/crypto/MasureS23",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. The ampersand, ligature, apostrophe and subtitle punctuation are typographic differences."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "34133",
-    "venue": "crypto",
-    "year": 2024,
-    "dblp_key": "conf/crypto/Wee24",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. DBLP leaks an sf font marker into the polynomial-size expression."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "34142",
-    "venue": "crypto",
-    "year": 2024,
-    "dblp_key": "conf/crypto/Kiyoshima24",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. NP is wrapped in LaTeX font commands in DBLP."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "34145",
-    "venue": "crypto",
-    "year": 2024,
-    "dblp_key": "conf/crypto/KriepkeK24",
-    "reason": "The authors match, allowing Gohar Kyureghyan/Gohar M. Kyureghyan. The chi variable is rendered as a Greek symbol rather than LaTeX."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "34214",
-    "venue": "crypto",
-    "year": 2024,
-    "dblp_key": "conf/crypto/BonehPR24a",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. DBLP adds for Misbehavior and changes in to for in the same accountability/threshold-traitor-tracing title."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "34247",
-    "venue": "crypto",
-    "year": 2024,
-    "dblp_key": "conf/crypto/Decru24",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. The distinctive Radical Vélu Isogeny Formulae title has corrupted mathematical markup in DBLP."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "34349",
-    "venue": "crypto",
-    "year": 2024,
-    "dblp_key": "conf/crypto/CohenDKS24",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. The only wording difference is from versus via Vindicating Release."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "35577",
-    "venue": "crypto",
-    "year": 2025,
-    "dblp_key": "conf/crypto/Wang25",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. DBLP leaks the sf font marker before NC1."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "35582",
-    "venue": "crypto",
-    "year": 2025,
-    "dblp_key": "conf/crypto/WatersW25",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. DBLP leaks the sf font marker before NP."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "35600",
-    "venue": "crypto",
-    "year": 2025,
-    "dblp_key": "conf/crypto/XuSH25",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. The phi variable is rendered as a Greek symbol rather than LaTeX."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "35632",
-    "venue": "crypto",
-    "year": 2025,
-    "dblp_key": "conf/crypto/XuHX25",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. DBLP embeds an entire LaTeX preamble in the same Bitwise Garbling Schemes subtitle; kappa/lambda names denote the security parameter in the displayed bound."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "35654",
-    "venue": "crypto",
-    "year": 2025,
-    "dblp_key": "conf/crypto/HermelinkNP25",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. DBLP embeds an entire LaTeX preamble around the y variable in the same Masked ML-DSA title."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "35661",
-    "venue": "crypto",
-    "year": 2025,
-    "dblp_key": "conf/crypto/DucasEL25",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. The SIS infinity notation differs only in mathematical/font rendering."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "35679",
-    "venue": "crypto",
-    "year": 2025,
-    "dblp_key": "conf/crypto/BonneauCCK25",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. The same Merkle Mountain Ranges title changes the prepositions in its witness-update-frequency subtitle."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "35681",
-    "venue": "crypto",
-    "year": 2025,
-    "dblp_key": "conf/crypto/GargGJRS25",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. The only title difference is zkSNARKs versus zk-SNARKs."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "35694",
-    "venue": "crypto",
-    "year": 2025,
-    "dblp_key": "conf/crypto/GarretaWVHDCK25",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. DBLP leaks the sf font marker into the Zinc name."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "35727",
-    "venue": "crypto",
-    "year": 2025,
-    "dblp_key": "conf/crypto/CouteauHHK25",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. DBLP corrupts omega into ømega in the same garbling-rate expression."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "35752",
-    "venue": "crypto",
-    "year": 2025,
-    "dblp_key": "conf/crypto/DottlingJMMV25",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. The only wording difference is counterexamples to versus counterexamples for."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "35767",
-    "venue": "crypto",
-    "year": 2025,
-    "dblp_key": "conf/crypto/FiedlerGPZ25",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. DBLP leaks the sf font marker into the XHMQV name."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "35804",
-    "venue": "crypto",
-    "year": 2025,
-    "dblp_key": "conf/crypto/AggarwalDMNO25",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. DBLP inserts Randomized into the same distinctive strong two-source non-malleable extractor title."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "35822",
-    "venue": "crypto",
-    "year": 2025,
-    "dblp_key": "conf/crypto/KarthikeyanP25",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. DBLP leaks the sf font marker into the OPA name."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "35847",
-    "venue": "crypto",
-    "year": 2025,
-    "dblp_key": "conf/crypto/GoyalJB25",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. DBLP leaks sf font markers into the BatchQMA expression."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "37319",
-    "venue": "crypto",
+    "provider": "openreview",
+    "external_id": "IxMryAz2p3",
+    "venue": "iclr",
     "year": 2026,
-    "dblp_key": "conf/crypto/JiS26",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. The O(n^5) expression differs only in mathematical rendering."
+    "dblp_key": "conf/iclr/Aarab26",
+    "reason": "The independently retrieved official proceedings abstract is identical to the accepted OpenReview abstract after whitespace/HTML normalization. The distinctive paper title and author metadata were reviewed, including title revisions, mathematical typesetting, and middle-name variants.",
+    "evidence_urls": [
+      "https://proceedings.iclr.cc/paper_files/paper/2026/hash/417e1c15b3d49852fceded8aa104107d-Abstract-Conference.html",
+      "https://openreview.net/forum?id=IxMryAz2p3"
+    ],
+    "proceedings_abstract_sha256": "930002d90599a4e109ed4af438ab69d54fdc726f3144f30c7e8213d23800a689"
   },
   {
-    "provider": "iacr",
-    "external_id": "37341",
-    "venue": "crypto",
+    "provider": "openreview",
+    "external_id": "RPQKJxrEPs",
+    "venue": "iclr",
     "year": 2026,
-    "dblp_key": "conf/crypto/JiangL26",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. The only title wording change is omission of the before Lattice Isomorphism Problem."
+    "dblp_key": "conf/iclr/AgarwalCRY26",
+    "reason": "The independently retrieved official proceedings abstract is identical to the accepted OpenReview abstract after whitespace/HTML normalization. The distinctive paper title and author metadata were reviewed, including title revisions, mathematical typesetting, and middle-name variants.",
+    "evidence_urls": [
+      "https://proceedings.iclr.cc/paper_files/paper/2026/hash/55a117a6df437f29b286ff8e8094e145-Abstract-Conference.html",
+      "https://openreview.net/forum?id=RPQKJxrEPs"
+    ],
+    "proceedings_abstract_sha256": "fb45736b9dcfbbe08444e36507efab32cc950393012c3782ff4c025f19f6b667"
   },
   {
-    "provider": "iacr",
-    "external_id": "37381",
-    "venue": "crypto",
+    "provider": "openreview",
+    "external_id": "CwoM9T55lG",
+    "venue": "iclr",
     "year": 2026,
-    "dblp_key": "conf/crypto/Hosoyamada26",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. The only title differences are hyphen typography and the diacritic in Merkle-Damgård."
+    "dblp_key": "conf/iclr/BallGGKRR26",
+    "reason": "The independently retrieved official proceedings abstract is identical to the accepted OpenReview abstract after whitespace/HTML normalization. The distinctive paper title and author metadata were reviewed, including title revisions, mathematical typesetting, and middle-name variants.",
+    "evidence_urls": [
+      "https://proceedings.iclr.cc/paper_files/paper/2026/hash/6b41e04c41726e2a60e456d0a2b961ab-Abstract-Conference.html",
+      "https://openreview.net/forum?id=CwoM9T55lG"
+    ],
+    "proceedings_abstract_sha256": "6d7d1e5b5124882ad905f2c50c312da0e48fed9e025f5253987649cd855abce1"
   },
   {
-    "provider": "iacr",
-    "external_id": "37408",
-    "venue": "crypto",
+    "provider": "openreview",
+    "external_id": "quxeCxJwKm",
+    "venue": "iclr",
     "year": 2026,
-    "dblp_key": "conf/crypto/LiLWS26",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. The official title is a filename version of the DBLP title, with underscores and a .pdf suffix."
+    "dblp_key": "conf/iclr/BaronAWdMW26",
+    "reason": "The independently retrieved official proceedings abstract is identical to the accepted OpenReview abstract after whitespace/HTML normalization. The distinctive paper title and author metadata were reviewed, including title revisions, mathematical typesetting, and middle-name variants.",
+    "evidence_urls": [
+      "https://proceedings.iclr.cc/paper_files/paper/2026/hash/9a8d0cfe093fce4e90475202e56cb8f4-Abstract-Conference.html",
+      "https://openreview.net/forum?id=quxeCxJwKm"
+    ],
+    "proceedings_abstract_sha256": "99e7f763e3dd11f8cee661b64157ea2d27db8c027a36f1ff07766950ab841a09"
   },
   {
-    "provider": "iacr",
-    "external_id": "37415",
-    "venue": "crypto",
+    "provider": "openreview",
+    "external_id": "WjEAMyLDoh",
+    "venue": "iclr",
     "year": 2026,
-    "dblp_key": "conf/crypto/LysyanskayaN26",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. The SMA2RT acronym differs only in mathematical font rendering."
+    "dblp_key": "conf/iclr/BonnerjeeLW26",
+    "reason": "The independently retrieved official proceedings abstract is identical to the accepted OpenReview abstract after whitespace/HTML normalization. The distinctive paper title and author metadata were reviewed, including title revisions, mathematical typesetting, and middle-name variants.",
+    "evidence_urls": [
+      "https://proceedings.iclr.cc/paper_files/paper/2026/hash/b3b52663b1c01ae961895e419a55fb28-Abstract-Conference.html",
+      "https://openreview.net/forum?id=WjEAMyLDoh"
+    ],
+    "proceedings_abstract_sha256": "93736ecc8fd7dfec564ef414ae92a6a4847b6e15ac2a6123826b48374faaf8f1"
   },
   {
-    "provider": "iacr",
-    "external_id": "37417",
-    "venue": "crypto",
+    "provider": "openreview",
+    "external_id": "3kvV1nfWVq",
+    "venue": "iclr",
     "year": 2026,
-    "dblp_key": "conf/crypto/KirschmerLS26",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. The only title wording change is insertion of to before DEFI."
+    "dblp_key": "conf/iclr/ChenCZQLZSZLLZY26",
+    "reason": "The independently retrieved official proceedings abstract is identical to the accepted OpenReview abstract after whitespace/HTML normalization. The distinctive paper title and author metadata were reviewed, including title revisions, mathematical typesetting, and middle-name variants.",
+    "evidence_urls": [
+      "https://proceedings.iclr.cc/paper_files/paper/2026/hash/d83fd70a31c64e020844ec80705ba87f-Abstract-Conference.html",
+      "https://openreview.net/forum?id=3kvV1nfWVq"
+    ],
+    "proceedings_abstract_sha256": "ad6e2b29ca5fc5b780f41a134cdf25dcb5071a0805f1af009f5f0cf0ca15b1f3"
   },
   {
-    "provider": "iacr",
-    "external_id": "37464",
-    "venue": "crypto",
+    "provider": "openreview",
+    "external_id": "9zUJbyR62q",
+    "venue": "iclr",
     "year": 2026,
-    "dblp_key": "conf/crypto/FurueI26",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. The p^ell expression differs only in mathematical rendering."
+    "dblp_key": "conf/iclr/ChenTH26",
+    "reason": "The independently retrieved official proceedings abstract is identical to the accepted OpenReview abstract after whitespace/HTML normalization. The distinctive paper title and author metadata were reviewed, including title revisions, mathematical typesetting, and middle-name variants.",
+    "evidence_urls": [
+      "https://proceedings.iclr.cc/paper_files/paper/2026/hash/7cdf000d22c6cda21f3cbd7467aaf26f-Abstract-Conference.html",
+      "https://openreview.net/forum?id=9zUJbyR62q"
+    ],
+    "proceedings_abstract_sha256": "0022782ccaa4aca5659c5819e87bf7728a205834026de3ab2d0686d093fafb44"
   },
   {
-    "provider": "iacr",
-    "external_id": "37470",
-    "venue": "crypto",
+    "provider": "openreview",
+    "external_id": "9cLPurIZMj",
+    "venue": "iclr",
     "year": 2026,
-    "dblp_key": "conf/crypto/DietzG26",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. The only title wording change is Bulletproof is versus Bulletproofs are."
+    "dblp_key": "conf/iclr/CherepanovKKP26",
+    "reason": "The independently retrieved official proceedings abstract is identical to the accepted OpenReview abstract after whitespace/HTML normalization. The distinctive paper title and author metadata were reviewed, including title revisions, mathematical typesetting, and middle-name variants.",
+    "evidence_urls": [
+      "https://proceedings.iclr.cc/paper_files/paper/2026/hash/1088fffae5f2aa8c8324e4f45f62248d-Abstract-Conference.html",
+      "https://openreview.net/forum?id=9cLPurIZMj"
+    ],
+    "proceedings_abstract_sha256": "01c6eabcaaa9802d4ab420d2eb5f3831c3092cdac842210d362c00df417619f4"
   },
   {
-    "provider": "iacr",
-    "external_id": "37494",
-    "venue": "crypto",
+    "provider": "openreview",
+    "external_id": "FtL9eEmU6v",
+    "venue": "iclr",
     "year": 2026,
-    "dblp_key": "conf/crypto/FengLT26",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. The soft-O prefix in Optimal differs only in mathematical font rendering."
+    "dblp_key": "conf/iclr/ChiCSMLCASNTD26",
+    "reason": "The independently retrieved official proceedings abstract is identical to the accepted OpenReview abstract after whitespace/HTML normalization. The distinctive paper title and author metadata were reviewed, including title revisions, mathematical typesetting, and middle-name variants.",
+    "evidence_urls": [
+      "https://proceedings.iclr.cc/paper_files/paper/2026/hash/98ddf59eb1c622132a1cf04cb5f59ac7-Abstract-Conference.html",
+      "https://openreview.net/forum?id=FtL9eEmU6v"
+    ],
+    "proceedings_abstract_sha256": "db1bf5bccd8df398050e6e80347f10bc37064529c15f21d59cbbf8c359d7458b"
   },
   {
-    "provider": "iacr",
-    "external_id": "37540",
-    "venue": "crypto",
+    "provider": "openreview",
+    "external_id": "jC7FK8Rf4s",
+    "venue": "iclr",
     "year": 2026,
-    "dblp_key": "conf/crypto/AfsharG26",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. The official title uses an escaped ampersand instead of and."
+    "dblp_key": "conf/iclr/ChoiJEJ26",
+    "reason": "The independently retrieved official proceedings abstract is identical to the accepted OpenReview abstract after whitespace/HTML normalization. The distinctive paper title and author metadata were reviewed, including title revisions, mathematical typesetting, and middle-name variants.",
+    "evidence_urls": [
+      "https://proceedings.iclr.cc/paper_files/paper/2026/hash/883cf7782b794759b98dd604c4adb5a1-Abstract-Conference.html",
+      "https://openreview.net/forum?id=jC7FK8Rf4s"
+    ],
+    "proceedings_abstract_sha256": "972c5f4045916e9fb77da613e18b3168e3a3de6b5751a801368de9cd51bb5745"
   },
   {
-    "provider": "iacr",
-    "external_id": "37544",
-    "venue": "crypto",
+    "provider": "openreview",
+    "external_id": "RSIoYWIzaP",
+    "venue": "iclr",
     "year": 2026,
-    "dblp_key": "conf/crypto/MaS26",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. DBLP leaks the sf font marker before AC0."
+    "dblp_key": "conf/iclr/DeschenauxGS26",
+    "reason": "The independently retrieved official proceedings abstract and accepted OpenReview abstract agree apart from formatting or small revisions (similarity 0.9841). The distinctive paper title and author metadata were reviewed, including title revisions, mathematical typesetting, and middle-name variants.",
+    "evidence_urls": [
+      "https://proceedings.iclr.cc/paper_files/paper/2026/hash/9adf58ca1ed848228377d61692d66541-Abstract-Conference.html",
+      "https://openreview.net/forum?id=RSIoYWIzaP"
+    ],
+    "proceedings_abstract_sha256": "08d123a2ff1ac5e891c1e3c13490156ee0eaf0f255a640b64482bebcbb37cd1b"
   },
   {
-    "provider": "iacr",
-    "external_id": "37588",
-    "venue": "crypto",
+    "provider": "openreview",
+    "external_id": "AH7hbA7Zkk",
+    "venue": "iclr",
     "year": 2026,
-    "dblp_key": "conf/crypto/CiampiMV26",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. DBLP duplicates the From Minimal Computational and Setup Assumptions subtitle."
+    "dblp_key": "conf/iclr/DingLQC26",
+    "reason": "The independently retrieved official proceedings abstract is identical to the accepted OpenReview abstract after whitespace/HTML normalization. The distinctive paper title and author metadata were reviewed, including title revisions, mathematical typesetting, and middle-name variants.",
+    "evidence_urls": [
+      "https://proceedings.iclr.cc/paper_files/paper/2026/hash/999fcab97007ebef0cda9949550b4a9e-Abstract-Conference.html",
+      "https://openreview.net/forum?id=AH7hbA7Zkk"
+    ],
+    "proceedings_abstract_sha256": "4a10712a4943e8a481c56b1a3292c2d8eb31c08791dbca9cd78d774404c84f45"
   },
   {
-    "provider": "iacr",
-    "external_id": "37592",
-    "venue": "crypto",
+    "provider": "openreview",
+    "external_id": "l5zZ2EEijD",
+    "venue": "iclr",
     "year": 2026,
-    "dblp_key": "conf/crypto/LiS26a",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. Omega and varOmega are mathematical typesetting variants."
+    "dblp_key": "conf/iclr/EneNV26",
+    "reason": "The independently retrieved official proceedings abstract is identical to the accepted OpenReview abstract after whitespace/HTML normalization. The distinctive paper title and author metadata were reviewed, including title revisions, mathematical typesetting, and middle-name variants.",
+    "evidence_urls": [
+      "https://proceedings.iclr.cc/paper_files/paper/2026/hash/dfd46f1154daa4d123e35465b402d8a6-Abstract-Conference.html",
+      "https://openreview.net/forum?id=l5zZ2EEijD"
+    ],
+    "proceedings_abstract_sha256": "1cb50bb32346d6fe2b84c7370249fafab611031a48d6498798b870cc0a2da115"
   },
   {
-    "provider": "iacr",
-    "external_id": "37614",
-    "venue": "crypto",
+    "provider": "openreview",
+    "external_id": "cPzgZnpVbN",
+    "venue": "iclr",
     "year": 2026,
-    "dblp_key": "conf/crypto/BhaumikDD26",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. The #Pencil name differs only in mathematical font rendering."
+    "dblp_key": "conf/iclr/FangYDHBCWLLL26",
+    "reason": "The independently retrieved official proceedings abstract is identical to the accepted OpenReview abstract after whitespace/HTML normalization. The distinctive paper title and author metadata were reviewed, including title revisions, mathematical typesetting, and middle-name variants.",
+    "evidence_urls": [
+      "https://proceedings.iclr.cc/paper_files/paper/2026/hash/6724eae98f3917968d54c193ac0b45f1-Abstract-Conference.html",
+      "https://openreview.net/forum?id=cPzgZnpVbN"
+    ],
+    "proceedings_abstract_sha256": "53797cef1847605fdf41c6985ad0922bf9f8f03c6f49235ec8abfd7192dceebb"
   },
   {
-    "provider": "iacr",
-    "external_id": "37626",
-    "venue": "crypto",
+    "provider": "openreview",
+    "external_id": "qrCAGOE483",
+    "venue": "iclr",
     "year": 2026,
-    "dblp_key": "conf/crypto/BellareRSA26",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. DBLP prepends UCX is All You Need to the same Universal Transform title."
+    "dblp_key": "conf/iclr/FeiYWZ26",
+    "reason": "The independently retrieved official proceedings abstract is identical to the accepted OpenReview abstract after whitespace/HTML normalization. The distinctive paper title and author metadata were reviewed, including title revisions, mathematical typesetting, and middle-name variants.",
+    "evidence_urls": [
+      "https://proceedings.iclr.cc/paper_files/paper/2026/hash/8ac80f6cdd1fffc43a4ba4ba49f40186-Abstract-Conference.html",
+      "https://openreview.net/forum?id=qrCAGOE483"
+    ],
+    "proceedings_abstract_sha256": "47e94388496aaa0cc6634859581c357ddcef006b70f57638c7ea0566df680d13"
   },
   {
-    "provider": "iacr",
-    "external_id": "27988",
-    "venue": "eurocrypt",
-    "year": 2017,
-    "dblp_key": "conf/eurocrypt/AnanthJS17a",
-    "reason": "The authors match, allowing Prabhanjan Ananth/Prabhanjan Vijendra Ananth. The iO term contains embedded italic HTML in the official title."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "28008",
-    "venue": "eurocrypt",
-    "year": 2017,
-    "dblp_key": "conf/eurocrypt/FehrS17",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. The ampersand is HTML-escaped in the official title."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "28025",
-    "venue": "eurocrypt",
-    "year": 2017,
-    "dblp_key": "conf/eurocrypt/Kohel17",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. The mu4 expression uses HTML entities/subscripts versus a rendered mathematical symbol."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "28027",
-    "venue": "eurocrypt",
-    "year": 2017,
-    "dblp_key": "conf/eurocrypt/CanettiC17",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. NC1 uses an HTML superscript in the official title."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "28037",
-    "venue": "eurocrypt",
-    "year": 2017,
-    "dblp_key": "conf/eurocrypt/BiasseEFGK17",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. The principal-ideal-problem complexity expression uses HTML entities/subscripts versus rendered mathematical symbols."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "29337",
-    "venue": "eurocrypt",
-    "year": 2019,
-    "dblp_key": "conf/eurocrypt/JainL0S19",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. The R and iO expressions differ only in mathematical markup/rendering."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "29368",
-    "venue": "eurocrypt",
-    "year": 2019,
-    "dblp_key": "conf/eurocrypt/AggarwalCLV19",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. DBLP adds the privacy-amplification-against-active-quantum-adversaries subtitle to the same quantum-proof non-malleable extractor title."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "30178",
-    "venue": "eurocrypt",
-    "year": 2020,
-    "dblp_key": "conf/eurocrypt/Esser020",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. The discrete-logarithm pluralization and exponential runtime rendering differ."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "30188",
-    "venue": "eurocrypt",
-    "year": 2020,
-    "dblp_key": "conf/eurocrypt/Naya-PlasenciaS20",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. The same Optimal Merging in Quantum title changes the final k-sum wording to k-xor-sum."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "30788",
-    "venue": "eurocrypt",
-    "year": 2021,
-    "dblp_key": "conf/eurocrypt/0008X21",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. The tau variable is rendered as a Greek symbol rather than LaTeX."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "30789",
-    "venue": "eurocrypt",
-    "year": 2021,
-    "dblp_key": "conf/eurocrypt/AggarwalLS21",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. The exponential runtime and square-root approximation factors differ only in mathematical rendering."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "30853",
-    "venue": "eurocrypt",
-    "year": 2021,
-    "dblp_key": "conf/eurocrypt/HeathK21",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. DBLP leaks the sf font marker into the LogStack name."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "30887",
-    "venue": "eurocrypt",
-    "year": 2021,
-    "dblp_key": "conf/eurocrypt/LibertNPY21",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. The same four-author Bifurcated Cryptography/Signatures work rephrases the distinctive accountability-versus-anonymity and single-private-signing-scheme subtitle."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "30897",
-    "venue": "eurocrypt",
-    "year": 2021,
-    "dblp_key": "conf/eurocrypt/Benhamouda0KL21",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. The only title difference is Multi-Party versus Multiparty."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "31832",
-    "venue": "eurocrypt",
-    "year": 2022,
-    "dblp_key": "conf/eurocrypt/BeullensDKLP22",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. The only title wording change is Group Signature versus Group Signatures."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "31932",
-    "venue": "eurocrypt",
-    "year": 2022,
-    "dblp_key": "conf/eurocrypt/GoelGHK22",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. Sigma is rendered through a LaTeX varSigma command in DBLP."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "31938",
-    "venue": "eurocrypt",
-    "year": 2022,
-    "dblp_key": "conf/eurocrypt/JainLS22",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. The finite field F_p and NC0 expressions differ only in mathematical rendering."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "32871",
-    "venue": "eurocrypt",
-    "year": 2023,
-    "dblp_key": "conf/eurocrypt/GeelenIKV23",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. The p^e expression is flattened in DBLP."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "32901",
-    "venue": "eurocrypt",
-    "year": 2023,
-    "dblp_key": "conf/eurocrypt/BennettGPS23",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. The integer lattice Z^n differs only in mathematical font markup."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "32909",
-    "venue": "eurocrypt",
-    "year": 2023,
-    "dblp_key": "conf/eurocrypt/LiuW23a",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. The soft-O(1) expression and subtitle punctuation differ only in formatting."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "32917",
-    "venue": "eurocrypt",
-    "year": 2023,
-    "dblp_key": "conf/eurocrypt/CogliatiDNPS23",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. The xi_max expression differs only in LaTeX spacing."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "32918",
-    "venue": "eurocrypt",
-    "year": 2023,
-    "dblp_key": "conf/eurocrypt/GongLW23",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. The N^(1/3) expression and Ciphertext pluralization differ."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "32922",
-    "venue": "eurocrypt",
-    "year": 2023,
-    "dblp_key": "conf/eurocrypt/ChungLM23",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. DBLP inserts Classical in the same distinctive non-interactive-commitments-in-a-quantum-world title."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "32923",
-    "venue": "eurocrypt",
-    "year": 2023,
-    "dblp_key": "conf/eurocrypt/JainLLS23",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. The iO term differs only in mathematical rendering."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "32936",
-    "venue": "eurocrypt",
-    "year": 2023,
-    "dblp_key": "conf/eurocrypt/LaiZHYMW23",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. The title uses an ampersand versus the word and."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "32947",
-    "venue": "eurocrypt",
-    "year": 2023,
-    "dblp_key": "conf/eurocrypt/AssoulineM23",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. ORAM is expanded to Oblivious RAM in DBLP."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "32965",
-    "venue": "eurocrypt",
-    "year": 2023,
-    "dblp_key": "conf/eurocrypt/ShiSSHY23",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. Selçuk is written with a LaTeX cedilla command in the official title."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "33868",
-    "venue": "eurocrypt",
-    "year": 2024,
-    "dblp_key": "conf/eurocrypt/WeeW24",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. DBLP leaks the sf font marker into the k-Lin expression."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "33919",
-    "venue": "eurocrypt",
-    "year": 2024,
-    "dblp_key": "conf/eurocrypt/FlorezGutierrezT24",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. The same distinctive Walsh Spectrum Puncturing title reorders Key Recovery/Linear and changes with to Using."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "33993",
-    "venue": "eurocrypt",
-    "year": 2024,
-    "dblp_key": "conf/eurocrypt/JaegerKS24",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. DBLP inserts Group before Messaging in the same distinctive Keybase title."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "35025",
-    "venue": "eurocrypt",
-    "year": 2025,
-    "dblp_key": "conf/eurocrypt/HaHLPS25",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. DBLP leaks the sf font marker into the Polocolo name."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "35094",
-    "venue": "eurocrypt",
-    "year": 2025,
-    "dblp_key": "conf/eurocrypt/SongY25",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. The soft-O(|C|) expression differs only in mathematical rendering."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "35113",
-    "venue": "eurocrypt",
-    "year": 2025,
-    "dblp_key": "conf/eurocrypt/IshaiKNOS25",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. The same five-author work changes On Reusable Proof Systems to Query-Reusable Proof Systems."
-  },
-  {
-    "provider": "iacr",
-    "external_id": "36398",
-    "venue": "eurocrypt",
+    "provider": "openreview",
+    "external_id": "aUnheo6zFD",
+    "venue": "iclr",
     "year": 2026,
-    "dblp_key": "conf/eurocrypt/GaoTJLLLWY26",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. DBLP leaks the sf font marker into the TalonG name."
+    "dblp_key": "conf/iclr/FengDLPL26",
+    "reason": "The independently retrieved official proceedings abstract and accepted OpenReview abstract agree apart from formatting or small revisions (similarity 0.9834). The distinctive paper title and author metadata were reviewed, including title revisions, mathematical typesetting, and middle-name variants.",
+    "evidence_urls": [
+      "https://proceedings.iclr.cc/paper_files/paper/2026/hash/a882dab38011264d2ca8dba3cca9faf1-Abstract-Conference.html",
+      "https://openreview.net/forum?id=aUnheo6zFD"
+    ],
+    "proceedings_abstract_sha256": "d036061fcdc3f9a7446a984b4e04026eff1df7149653be4b81426e64a3039edb"
   },
   {
-    "provider": "iacr",
-    "external_id": "36433",
-    "venue": "eurocrypt",
+    "provider": "openreview",
+    "external_id": "qEmKKvYr07",
+    "venue": "iclr",
     "year": 2026,
-    "dblp_key": "conf/eurocrypt/FadaviAKJ26",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. DBLP leaks the rm font marker before SPHINCS+."
+    "dblp_key": "conf/iclr/FreenorA26",
+    "reason": "The independently retrieved official proceedings abstract is identical to the accepted OpenReview abstract after whitespace/HTML normalization. The distinctive paper title and author metadata were reviewed, including title revisions, mathematical typesetting, and middle-name variants.",
+    "evidence_urls": [
+      "https://proceedings.iclr.cc/paper_files/paper/2026/hash/b7a55b1fa8f2500299e1af3562a1191d-Abstract-Conference.html",
+      "https://openreview.net/forum?id=qEmKKvYr07"
+    ],
+    "proceedings_abstract_sha256": "8663ce0b76f3de48509ab736f6b8336d6e16619ffad803f7409ac63692c65fa5"
   },
   {
-    "provider": "iacr",
-    "external_id": "36485",
-    "venue": "eurocrypt",
+    "provider": "openreview",
+    "external_id": "qF9WJxvHX8",
+    "venue": "iclr",
     "year": 2026,
-    "dblp_key": "conf/eurocrypt/AnanthBHKY26",
-    "reason": "The authors match, allowing Prabhanjan Ananth/Prabhanjan Vijendra Ananth. UPO is expanded to Unclonable Puncturable Obfuscation in DBLP."
+    "dblp_key": "conf/iclr/HanCGLS26",
+    "reason": "The independently retrieved official proceedings abstract is identical to the accepted OpenReview abstract after whitespace/HTML normalization. The distinctive paper title and author metadata were reviewed, including title revisions, mathematical typesetting, and middle-name variants.",
+    "evidence_urls": [
+      "https://proceedings.iclr.cc/paper_files/paper/2026/hash/3f7f788b479a26348605a9f97c465d22-Abstract-Conference.html",
+      "https://openreview.net/forum?id=qF9WJxvHX8"
+    ],
+    "proceedings_abstract_sha256": "9d2292e78f6ac3f516132a806b0c5f05111a3b0d352c7146af297226d1c1cf08"
   },
   {
-    "provider": "iacr",
-    "external_id": "36520",
-    "venue": "eurocrypt",
+    "provider": "openreview",
+    "external_id": "0eM74HjPQA",
+    "venue": "iclr",
     "year": 2026,
-    "dblp_key": "conf/eurocrypt/HanzlikLPP26",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. The official title prepends the WOMBAT acronym to the same post-quantum blind-signature title."
+    "dblp_key": "conf/iclr/HanzelyAT26",
+    "reason": "The independently retrieved official proceedings abstract is identical to the accepted OpenReview abstract after whitespace/HTML normalization. The distinctive paper title and author metadata were reviewed, including title revisions, mathematical typesetting, and middle-name variants.",
+    "evidence_urls": [
+      "https://proceedings.iclr.cc/paper_files/paper/2026/hash/4fca3029c9ead4551937ed6987502e5f-Abstract-Conference.html",
+      "https://openreview.net/forum?id=0eM74HjPQA"
+    ],
+    "proceedings_abstract_sha256": "2f86603079f10245a8e7c146eb1004b41f913a1238ffae5dd4aea79737f903cf"
   },
   {
-    "provider": "iacr",
-    "external_id": "36547",
-    "venue": "eurocrypt",
+    "provider": "openreview",
+    "external_id": "v3SzGCfAXN",
+    "venue": "iclr",
     "year": 2026,
-    "dblp_key": "conf/eurocrypt/DartoisEIV26",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. DBLP leaks sf font markers into the qt-Pegasis name."
+    "dblp_key": "conf/iclr/HeCZBJZXZZL26",
+    "reason": "The independently retrieved official proceedings abstract is identical to the accepted OpenReview abstract after whitespace/HTML normalization. The distinctive paper title and author metadata were reviewed, including title revisions, mathematical typesetting, and middle-name variants.",
+    "evidence_urls": [
+      "https://proceedings.iclr.cc/paper_files/paper/2026/hash/3c11cea35aa2e4797b2f239da378927b-Abstract-Conference.html",
+      "https://openreview.net/forum?id=v3SzGCfAXN"
+    ],
+    "proceedings_abstract_sha256": "98a3aabc696e6ff8c4b46fd552ba3928dc96efa87bd4eebb025d8b5555a8b543"
   },
   {
-    "provider": "iacr",
-    "external_id": "36576",
-    "venue": "eurocrypt",
+    "provider": "openreview",
+    "external_id": "OutljIofvS",
+    "venue": "iclr",
     "year": 2026,
-    "dblp_key": "conf/eurocrypt/GaoWQWDW26",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. DBLP leaks the sf font marker into the Spectra name."
+    "dblp_key": "conf/iclr/JangirZYZTKKBF26",
+    "reason": "The independently retrieved official proceedings abstract is identical to the accepted OpenReview abstract after whitespace/HTML normalization. The distinctive paper title and author metadata were reviewed, including title revisions, mathematical typesetting, and middle-name variants.",
+    "evidence_urls": [
+      "https://proceedings.iclr.cc/paper_files/paper/2026/hash/2aa3da3c1463ee2cdaaee94be4f8ba3f-Abstract-Conference.html",
+      "https://openreview.net/forum?id=OutljIofvS"
+    ],
+    "proceedings_abstract_sha256": "2ef2a912500aa84a0326d7c94c054bbb7f92802b00261fc9a87220e3417b13d8"
   },
   {
-    "provider": "iacr",
-    "external_id": "36616",
-    "venue": "eurocrypt",
+    "provider": "openreview",
+    "external_id": "SjInfpK5RM",
+    "venue": "iclr",
     "year": 2026,
-    "dblp_key": "conf/eurocrypt/PoulyS26",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. The exponential runtime expression is flattened in DBLP."
+    "dblp_key": "conf/iclr/JiangCLFWLY26",
+    "reason": "The independently retrieved official proceedings abstract is identical to the accepted OpenReview abstract after whitespace/HTML normalization. The distinctive paper title and author metadata were reviewed, including title revisions, mathematical typesetting, and middle-name variants.",
+    "evidence_urls": [
+      "https://proceedings.iclr.cc/paper_files/paper/2026/hash/de4f2e3b8263aff39f0dd7571a8dc4b1-Abstract-Conference.html",
+      "https://openreview.net/forum?id=SjInfpK5RM"
+    ],
+    "proceedings_abstract_sha256": "04063464b7f08c1ba3bfec9f6448af796a2012f5a5af2390edd9c5b3fcab3cde"
   },
   {
-    "provider": "iacr",
-    "external_id": "36636",
-    "venue": "eurocrypt",
+    "provider": "openreview",
+    "external_id": "pFh5ygjN3V",
+    "venue": "iclr",
     "year": 2026,
-    "dblp_key": "conf/eurocrypt/DegabrieleMMS26",
-    "reason": "Same author identities, allowing only punctuation, capitalization or diacritic differences. DBLP adds the CGO abbreviation with a leaked font marker to the Counter Galois Onion title."
+    "dblp_key": "conf/iclr/JiangZLH26",
+    "reason": "The independently retrieved official proceedings abstract is identical to the accepted OpenReview abstract after whitespace/HTML normalization. The distinctive paper title and author metadata were reviewed, including title revisions, mathematical typesetting, and middle-name variants.",
+    "evidence_urls": [
+      "https://proceedings.iclr.cc/paper_files/paper/2026/hash/a92e9165b22d4456fc6d87236e04c266-Abstract-Conference.html",
+      "https://openreview.net/forum?id=pFh5ygjN3V"
+    ],
+    "proceedings_abstract_sha256": "f6a5b8b3e484b0c299d3a63e515f7615f4db2f6c8fbeffd133cdcd4ccb003152"
   },
   {
-    "provider": "usenix",
-    "external_id": "https://www.usenix.org/conference/usenixsecurity18/presentation/feng",
-    "venue": "usenix-security",
-    "year": 2018,
-    "dblp_key": "conf/uss/Feng0WS18",
-    "reason": "Same individual USENIX paper URL and full author set. DBLP uses Internet-of-Thing while the official title uses Internet-of-Things."
+    "provider": "openreview",
+    "external_id": "RR8Lh8RHgA",
+    "venue": "iclr",
+    "year": 2026,
+    "dblp_key": "conf/iclr/JoshiCKSTS26",
+    "reason": "The independently retrieved official proceedings abstract is identical to the accepted OpenReview abstract after whitespace/HTML normalization. The distinctive paper title and author metadata were reviewed, including title revisions, mathematical typesetting, and middle-name variants.",
+    "evidence_urls": [
+      "https://proceedings.iclr.cc/paper_files/paper/2026/hash/25c33e5a972c885a50d777df18a7cdfc-Abstract-Conference.html",
+      "https://openreview.net/forum?id=RR8Lh8RHgA"
+    ],
+    "proceedings_abstract_sha256": "7deccfc7caffb5bc3cb82f741afddfce758598d47951ed0471fb2b36e0a68389"
   },
   {
-    "provider": "usenix",
-    "external_id": "https://www.usenix.org/conference/usenixsecurity23/presentation/park",
-    "venue": "usenix-security",
-    "year": 2023,
-    "dblp_key": "conf/uss/0001BK23",
-    "reason": "Same individual USENIX paper URL and full author set. ACon2 and ACon^2 are alternative renderings of the same title notation."
+    "provider": "openreview",
+    "external_id": "7G0L4cj452",
+    "venue": "iclr",
+    "year": 2026,
+    "dblp_key": "conf/iclr/KairandaNHSTG26",
+    "reason": "The independently retrieved official proceedings abstract is identical to the accepted OpenReview abstract after whitespace/HTML normalization. The distinctive paper title and author metadata were reviewed, including title revisions, mathematical typesetting, and middle-name variants.",
+    "evidence_urls": [
+      "https://proceedings.iclr.cc/paper_files/paper/2026/hash/ca74a01977eff41ac10f14b74a6f41c4-Abstract-Conference.html",
+      "https://openreview.net/forum?id=7G0L4cj452"
+    ],
+    "proceedings_abstract_sha256": "8546bb50b2bb1b754d9cd1fc524f937b5bbb1c2e903cbf20318e6e1ef5d46061"
   },
   {
-    "provider": "usenix",
-    "external_id": "https://www.usenix.org/conference/usenixsecurity24/presentation/cherubin",
-    "venue": "usenix-security",
-    "year": 2024,
-    "dblp_key": "conf/uss/CherubinKPTWB24",
-    "reason": "Same individual USENIX paper URL and full author set. The official title appends Attacks after Record-level Inference."
+    "provider": "openreview",
+    "external_id": "kW0SudrQEQ",
+    "venue": "iclr",
+    "year": 2026,
+    "dblp_key": "conf/iclr/KeZW26",
+    "reason": "The independently retrieved official proceedings abstract is identical to the accepted OpenReview abstract after whitespace/HTML normalization. The distinctive paper title and author metadata were reviewed, including title revisions, mathematical typesetting, and middle-name variants.",
+    "evidence_urls": [
+      "https://proceedings.iclr.cc/paper_files/paper/2026/hash/1fd79230a683f2c70b07cac5ad704f21-Abstract-Conference.html",
+      "https://openreview.net/forum?id=kW0SudrQEQ"
+    ],
+    "proceedings_abstract_sha256": "6a438b78ffc982d14aea56e6331a28808d85fa3676d28894e02e459f15701567"
   },
   {
-    "provider": "usenix",
-    "external_id": "https://www.usenix.org/conference/usenixsecurity24/presentation/zheng",
-    "venue": "usenix-security",
-    "year": 2024,
-    "dblp_key": "conf/uss/ZhengHTZ0024",
-    "reason": "Same individual USENIX paper URL and full author set. pi-Jack and Greek π-Jack are alternate renderings of the same title."
+    "provider": "openreview",
+    "external_id": "W6gbWvvovB",
+    "venue": "iclr",
+    "year": 2026,
+    "dblp_key": "conf/iclr/KhatibESS26",
+    "reason": "The independently retrieved official proceedings abstract is identical to the accepted OpenReview abstract after whitespace/HTML normalization. The distinctive paper title and author metadata were reviewed, including title revisions, mathematical typesetting, and middle-name variants.",
+    "evidence_urls": [
+      "https://proceedings.iclr.cc/paper_files/paper/2026/hash/aa4bee5e2720d7e8f073d762ee8c7fd4-Abstract-Conference.html",
+      "https://openreview.net/forum?id=W6gbWvvovB"
+    ],
+    "proceedings_abstract_sha256": "56da75b9acdc04a331cb8b88a02599d17b7c1514178543fd84c19763c779910f"
+  },
+  {
+    "provider": "openreview",
+    "external_id": "38fGCBhFF5",
+    "venue": "iclr",
+    "year": 2026,
+    "dblp_key": "conf/iclr/KholkinKLKGSKBK26",
+    "reason": "The independently retrieved official proceedings abstract is identical to the accepted OpenReview abstract after whitespace/HTML normalization. The distinctive paper title and author metadata were reviewed, including title revisions, mathematical typesetting, and middle-name variants.",
+    "evidence_urls": [
+      "https://proceedings.iclr.cc/paper_files/paper/2026/hash/20a09e5064bb3ae013c6510a2244686f-Abstract-Conference.html",
+      "https://openreview.net/forum?id=38fGCBhFF5"
+    ],
+    "proceedings_abstract_sha256": "5ed349580c8297f13ae0e0631ec74805659fa5a051534bd8a6d59b6dafe47a34"
+  },
+  {
+    "provider": "openreview",
+    "external_id": "3a2QuEzveq",
+    "venue": "iclr",
+    "year": 2026,
+    "dblp_key": "conf/iclr/Kim26",
+    "reason": "The independently retrieved official proceedings abstract is identical to the accepted OpenReview abstract after whitespace/HTML normalization. The distinctive paper title and author metadata were reviewed, including title revisions, mathematical typesetting, and middle-name variants.",
+    "evidence_urls": [
+      "https://proceedings.iclr.cc/paper_files/paper/2026/hash/a344cef5eceea9c55baad6fdc49bcaed-Abstract-Conference.html",
+      "https://openreview.net/forum?id=3a2QuEzveq"
+    ],
+    "proceedings_abstract_sha256": "18581b58b63dbb8920dc8a5f664c7be70cb76de73266a8450ddd680fd63f8bc7"
+  },
+  {
+    "provider": "openreview",
+    "external_id": "Ml4AtrrfQT",
+    "venue": "iclr",
+    "year": 2026,
+    "dblp_key": "conf/iclr/KimO26",
+    "reason": "The independently retrieved official proceedings abstract and accepted OpenReview abstract agree apart from formatting or small revisions (similarity 0.9950). The distinctive paper title and author metadata were reviewed, including title revisions, mathematical typesetting, and middle-name variants.",
+    "evidence_urls": [
+      "https://proceedings.iclr.cc/paper_files/paper/2026/hash/14c1c1c1dabd8179f77895de25391ce9-Abstract-Conference.html",
+      "https://openreview.net/forum?id=Ml4AtrrfQT"
+    ],
+    "proceedings_abstract_sha256": "449d87032c46fa20448d8f1f5f8b1ca7428ec0582ce7a35e30d5d6c0e5456adc"
+  },
+  {
+    "provider": "openreview",
+    "external_id": "CQ0U1wZYoy",
+    "venue": "iclr",
+    "year": 2026,
+    "dblp_key": "conf/iclr/Kurinchi-Vendhan26",
+    "reason": "The independently retrieved official proceedings abstract is identical to the accepted OpenReview abstract after whitespace/HTML normalization. The distinctive paper title and author metadata were reviewed, including title revisions, mathematical typesetting, and middle-name variants.",
+    "evidence_urls": [
+      "https://proceedings.iclr.cc/paper_files/paper/2026/hash/0e29b70a7836581919add7f8f622dd2c-Abstract-Conference.html",
+      "https://openreview.net/forum?id=CQ0U1wZYoy"
+    ],
+    "proceedings_abstract_sha256": "858ebb9b699da3592d8714ce77573d721e436a8a8f4e981f3b61cfb080c8780b"
+  },
+  {
+    "provider": "openreview",
+    "external_id": "O93c9H4SXc",
+    "venue": "iclr",
+    "year": 2026,
+    "dblp_key": "conf/iclr/LabbiTMM26",
+    "reason": "The independently retrieved official proceedings abstract is identical to the accepted OpenReview abstract after whitespace/HTML normalization. The distinctive paper title and author metadata were reviewed, including title revisions, mathematical typesetting, and middle-name variants.",
+    "evidence_urls": [
+      "https://proceedings.iclr.cc/paper_files/paper/2026/hash/17a5dab745d625415c119f127b9fd121-Abstract-Conference.html",
+      "https://openreview.net/forum?id=O93c9H4SXc"
+    ],
+    "proceedings_abstract_sha256": "7ed44772da39eb5772d8a56a160fbeac5b27b367690173ae3153e11cb917bd7c"
+  },
+  {
+    "provider": "openreview",
+    "external_id": "pW1Kg9CYyw",
+    "venue": "iclr",
+    "year": 2026,
+    "dblp_key": "conf/iclr/LaiZFZC26",
+    "reason": "The independently retrieved official proceedings abstract is identical to the accepted OpenReview abstract after whitespace/HTML normalization. The distinctive paper title and author metadata were reviewed, including title revisions, mathematical typesetting, and middle-name variants.",
+    "evidence_urls": [
+      "https://proceedings.iclr.cc/paper_files/paper/2026/hash/4fa8c1f39d3872d3a38d910e2c37f4c0-Abstract-Conference.html",
+      "https://openreview.net/forum?id=pW1Kg9CYyw"
+    ],
+    "proceedings_abstract_sha256": "f1f85d389d1d279541779696a033e83080a2514a2aaae7e933bea77c82a1f7a5"
+  },
+  {
+    "provider": "openreview",
+    "external_id": "2A3Q2EtGTF",
+    "venue": "iclr",
+    "year": 2026,
+    "dblp_key": "conf/iclr/LeeMLKP26",
+    "reason": "The independently retrieved official proceedings abstract is identical to the accepted OpenReview abstract after whitespace/HTML normalization. The distinctive paper title and author metadata were reviewed, including title revisions, mathematical typesetting, and middle-name variants.",
+    "evidence_urls": [
+      "https://proceedings.iclr.cc/paper_files/paper/2026/hash/25fbef973f6ec82568de945ae058134a-Abstract-Conference.html",
+      "https://openreview.net/forum?id=2A3Q2EtGTF"
+    ],
+    "proceedings_abstract_sha256": "9f9acc69820db8067e232f8af6b209847283bde92b7e4dc16f66eabd7b5af825"
+  },
+  {
+    "provider": "openreview",
+    "external_id": "2FFhwssQda",
+    "venue": "iclr",
+    "year": 2026,
+    "dblp_key": "conf/iclr/LeePHJ26",
+    "reason": "The independently retrieved official proceedings abstract is identical to the accepted OpenReview abstract after whitespace/HTML normalization. The distinctive paper title and author metadata were reviewed, including title revisions, mathematical typesetting, and middle-name variants.",
+    "evidence_urls": [
+      "https://proceedings.iclr.cc/paper_files/paper/2026/hash/d6f1710becf448dc79516dbbf33c4a79-Abstract-Conference.html",
+      "https://openreview.net/forum?id=2FFhwssQda"
+    ],
+    "proceedings_abstract_sha256": "70aeb351a51a9edd919d94222d72d8c62f383f9e19f1e0055579aa6093ba8110"
+  },
+  {
+    "provider": "openreview",
+    "external_id": "wqbnA6PcKr",
+    "venue": "iclr",
+    "year": 2026,
+    "dblp_key": "conf/iclr/LiYWHD26",
+    "reason": "The independently retrieved official proceedings abstract is identical to the accepted OpenReview abstract after whitespace/HTML normalization. The distinctive paper title and author metadata were reviewed, including title revisions, mathematical typesetting, and middle-name variants.",
+    "evidence_urls": [
+      "https://proceedings.iclr.cc/paper_files/paper/2026/hash/a4c17d9b88eaefc9bdf7c656ffc8ce55-Abstract-Conference.html",
+      "https://openreview.net/forum?id=wqbnA6PcKr"
+    ],
+    "proceedings_abstract_sha256": "8faa9e80743b0d37ef19187e3056a430c5396d014267719b489aa037db0ae590"
+  },
+  {
+    "provider": "openreview",
+    "external_id": "LV01JdxARe",
+    "venue": "iclr",
+    "year": 2026,
+    "dblp_key": "conf/iclr/LiZGQXQLFFLLY26",
+    "reason": "The independently retrieved official proceedings abstract is identical to the accepted OpenReview abstract after whitespace/HTML normalization. The distinctive paper title and author metadata were reviewed, including title revisions, mathematical typesetting, and middle-name variants.",
+    "evidence_urls": [
+      "https://proceedings.iclr.cc/paper_files/paper/2026/hash/e90b00adc3ba130eb2510d93ba3ff250-Abstract-Conference.html",
+      "https://openreview.net/forum?id=LV01JdxARe"
+    ],
+    "proceedings_abstract_sha256": "0602fa0bef74dfd9a58ae1c1b28e2e74b25898c0706464ec3b3394425f2f5f5c"
+  },
+  {
+    "provider": "openreview",
+    "external_id": "323ximYcsk",
+    "venue": "iclr",
+    "year": 2026,
+    "dblp_key": "conf/iclr/LiZHLLYCG26",
+    "reason": "The independently retrieved official proceedings abstract is identical to the accepted OpenReview abstract after whitespace/HTML normalization. The distinctive paper title and author metadata were reviewed, including title revisions, mathematical typesetting, and middle-name variants.",
+    "evidence_urls": [
+      "https://proceedings.iclr.cc/paper_files/paper/2026/hash/786e39208b37bfcb0ad89413f155df99-Abstract-Conference.html",
+      "https://openreview.net/forum?id=323ximYcsk"
+    ],
+    "proceedings_abstract_sha256": "0f06446a9c8a1d6f7cef6d0e2adc93730551119e45d97d63f1c21bc296969f0b"
+  },
+  {
+    "provider": "openreview",
+    "external_id": "ql30VWGyda",
+    "venue": "iclr",
+    "year": 2026,
+    "dblp_key": "conf/iclr/LiZZZXLHB26",
+    "reason": "The same eight authors and the same distinctive full title identify this paper; only capitalization and PDF line-wrap hyphenation differ. The proceedings and OpenReview carry different revisions of the abstract.",
+    "evidence_urls": [
+      "https://proceedings.iclr.cc/paper_files/paper/2026/hash/b20260e3e1bd7ea108831925d65ce0a6-Abstract-Conference.html",
+      "https://openreview.net/forum?id=ql30VWGyda"
+    ],
+    "proceedings_abstract_sha256": "5e013208d56c0d960a22360f9789050957c532ff1a0144e26536dda7d066a588"
+  },
+  {
+    "provider": "openreview",
+    "external_id": "ta8BKRa1bl",
+    "venue": "iclr",
+    "year": 2026,
+    "dblp_key": "conf/iclr/Montagna26",
+    "reason": "The independently retrieved official proceedings abstract and accepted OpenReview abstract agree apart from formatting or small revisions (similarity 0.9990). The distinctive paper title and author metadata were reviewed, including title revisions, mathematical typesetting, and middle-name variants.",
+    "evidence_urls": [
+      "https://proceedings.iclr.cc/paper_files/paper/2026/hash/171ffe2c4231b96db4d203ffdce49cde-Abstract-Conference.html",
+      "https://openreview.net/forum?id=ta8BKRa1bl"
+    ],
+    "proceedings_abstract_sha256": "7f8502f80b0e9222a30dbe2916eb49c0098e9bfd99441da19df3ea66e914e988"
+  },
+  {
+    "provider": "openreview",
+    "external_id": "T6T0JUgGFQ",
+    "venue": "iclr",
+    "year": 2026,
+    "dblp_key": "conf/iclr/RuanZQHXWCS26",
+    "reason": "The independently retrieved official proceedings abstract and accepted OpenReview abstract agree apart from formatting or small revisions (similarity 0.9965). The distinctive paper title and author metadata were reviewed, including title revisions, mathematical typesetting, and middle-name variants.",
+    "evidence_urls": [
+      "https://proceedings.iclr.cc/paper_files/paper/2026/hash/43ceeddbdf18a86230767fa61b18d5c2-Abstract-Conference.html",
+      "https://openreview.net/forum?id=T6T0JUgGFQ"
+    ],
+    "proceedings_abstract_sha256": "2334162138e64b8be3008271ac76e2d16aae642282dd25b04c8479b0d46d5a42"
+  },
+  {
+    "provider": "openreview",
+    "external_id": "UWi94bRsgm",
+    "venue": "iclr",
+    "year": 2026,
+    "dblp_key": "conf/iclr/RussinovichCS26",
+    "reason": "The independently retrieved official proceedings abstract is identical to the accepted OpenReview abstract after whitespace/HTML normalization. The distinctive paper title and author metadata were reviewed, including title revisions, mathematical typesetting, and middle-name variants.",
+    "evidence_urls": [
+      "https://proceedings.iclr.cc/paper_files/paper/2026/hash/4acb23d5d9b4bea566799afac0ee3125-Abstract-Conference.html",
+      "https://openreview.net/forum?id=UWi94bRsgm"
+    ],
+    "proceedings_abstract_sha256": "87c853a5e454376a80d37a84467e7c86018a611cc38e99e813a78bd42c6a3c2a"
+  },
+  {
+    "provider": "openreview",
+    "external_id": "BZnnIeeQox",
+    "venue": "iclr",
+    "year": 2026,
+    "dblp_key": "conf/iclr/ShenFHCZ26",
+    "reason": "The independently retrieved official proceedings abstract is identical to the accepted OpenReview abstract after whitespace/HTML normalization. The distinctive paper title and author metadata were reviewed, including title revisions, mathematical typesetting, and middle-name variants.",
+    "evidence_urls": [
+      "https://proceedings.iclr.cc/paper_files/paper/2026/hash/f24272663fafadf87616f488e13f99d0-Abstract-Conference.html",
+      "https://openreview.net/forum?id=BZnnIeeQox"
+    ],
+    "proceedings_abstract_sha256": "db65d8646ff82ca414a98757e65cc2b53261f0e9921aec3321df35cce655a784"
+  },
+  {
+    "provider": "openreview",
+    "external_id": "7WPJ0EgPdW",
+    "venue": "iclr",
+    "year": 2026,
+    "dblp_key": "conf/iclr/ShinKJNM26",
+    "reason": "The independently retrieved official proceedings abstract and accepted OpenReview abstract agree apart from formatting or small revisions (similarity 0.9815). The distinctive paper title and author metadata were reviewed, including title revisions, mathematical typesetting, and middle-name variants.",
+    "evidence_urls": [
+      "https://proceedings.iclr.cc/paper_files/paper/2026/hash/54a468d19bc5727800096d9c7c51a423-Abstract-Conference.html",
+      "https://openreview.net/forum?id=7WPJ0EgPdW"
+    ],
+    "proceedings_abstract_sha256": "d3df86dbc511abd51456f9abaac8c07180fc3ee532bf4637055e628522a2f36a"
+  },
+  {
+    "provider": "openreview",
+    "external_id": "jvPdTOSTVl",
+    "venue": "iclr",
+    "year": 2026,
+    "dblp_key": "conf/iclr/SongCZCBYZ26",
+    "reason": "The independently retrieved official proceedings abstract is identical to the accepted OpenReview abstract after whitespace/HTML normalization. The distinctive paper title and author metadata were reviewed, including title revisions, mathematical typesetting, and middle-name variants.",
+    "evidence_urls": [
+      "https://proceedings.iclr.cc/paper_files/paper/2026/hash/98add7e415ecbff52046bbf256dd3642-Abstract-Conference.html",
+      "https://openreview.net/forum?id=jvPdTOSTVl"
+    ],
+    "proceedings_abstract_sha256": "edff1907164014c5c2a7ece2d468e2c1e404990e7af7f89fa647fec54d682baa"
+  },
+  {
+    "provider": "openreview",
+    "external_id": "7yvz93kBw9",
+    "venue": "iclr",
+    "year": 2026,
+    "dblp_key": "conf/iclr/SongLZLLDQ26",
+    "reason": "The independently retrieved official proceedings abstract is identical to the accepted OpenReview abstract after whitespace/HTML normalization. The distinctive paper title and author metadata were reviewed, including title revisions, mathematical typesetting, and middle-name variants.",
+    "evidence_urls": [
+      "https://proceedings.iclr.cc/paper_files/paper/2026/hash/ca2963d1cfb25e93362e86fb427a9524-Abstract-Conference.html",
+      "https://openreview.net/forum?id=7yvz93kBw9"
+    ],
+    "proceedings_abstract_sha256": "c995ea6159b1a65d8986a479c0313eb4f09f782d91407b37984196ba4081a651"
+  },
+  {
+    "provider": "openreview",
+    "external_id": "J5XUzUW8o3",
+    "venue": "iclr",
+    "year": 2026,
+    "dblp_key": "conf/iclr/SuCJZWLZ26",
+    "reason": "The independently retrieved official proceedings abstract and accepted OpenReview abstract agree apart from formatting or small revisions (similarity 0.9976). The distinctive paper title and author metadata were reviewed, including title revisions, mathematical typesetting, and middle-name variants.",
+    "evidence_urls": [
+      "https://proceedings.iclr.cc/paper_files/paper/2026/hash/2aad9aaf0e14591f7b7d4770752eec89-Abstract-Conference.html",
+      "https://openreview.net/forum?id=J5XUzUW8o3"
+    ],
+    "proceedings_abstract_sha256": "4c0a1c74acb621e10d8e6bb3b3dfd97ff402a86bd77aa24550711b286bc91bd4"
+  },
+  {
+    "provider": "openreview",
+    "external_id": "MiV3WXDYJb",
+    "venue": "iclr",
+    "year": 2026,
+    "dblp_key": "conf/iclr/TangXMWRZ26",
+    "reason": "The independently retrieved official proceedings abstract and accepted OpenReview abstract agree apart from formatting or small revisions (similarity 0.9996). The distinctive paper title and author metadata were reviewed, including title revisions, mathematical typesetting, and middle-name variants.",
+    "evidence_urls": [
+      "https://proceedings.iclr.cc/paper_files/paper/2026/hash/648631aac2e6d9f139f4b309b8a4d08a-Abstract-Conference.html",
+      "https://openreview.net/forum?id=MiV3WXDYJb"
+    ],
+    "proceedings_abstract_sha256": "6c72c4b8cbedcd017875ffc2b5d6d84acb832365a7053171c3590ecd0a78e14f"
+  },
+  {
+    "provider": "openreview",
+    "external_id": "f8z2bzOLK2",
+    "venue": "iclr",
+    "year": 2026,
+    "dblp_key": "conf/iclr/TherienJKORB26",
+    "reason": "The independently retrieved official proceedings abstract is identical to the accepted OpenReview abstract after whitespace/HTML normalization. The distinctive paper title and author metadata were reviewed, including title revisions, mathematical typesetting, and middle-name variants.",
+    "evidence_urls": [
+      "https://proceedings.iclr.cc/paper_files/paper/2026/hash/66fdfe692a360dfbad1fba32f64694da-Abstract-Conference.html",
+      "https://openreview.net/forum?id=f8z2bzOLK2"
+    ],
+    "proceedings_abstract_sha256": "edd9efab0ab0625213d2bf69eacdc5f345e19bbd73172fcdf97898061e85a80d"
+  },
+  {
+    "provider": "openreview",
+    "external_id": "ceIBRhJpUr",
+    "venue": "iclr",
+    "year": 2026,
+    "dblp_key": "conf/iclr/Tian26",
+    "reason": "The independently retrieved official proceedings abstract is identical to the accepted OpenReview abstract after whitespace/HTML normalization. The distinctive paper title and author metadata were reviewed, including title revisions, mathematical typesetting, and middle-name variants.",
+    "evidence_urls": [
+      "https://proceedings.iclr.cc/paper_files/paper/2026/hash/7ce5da35e01cfa8d303c2dc71e61a470-Abstract-Conference.html",
+      "https://openreview.net/forum?id=ceIBRhJpUr"
+    ],
+    "proceedings_abstract_sha256": "bd32ac931dd5ef4fc206ce768e0813331b0cf0995ff2533ab21ffcf32e57cb1d"
+  },
+  {
+    "provider": "openreview",
+    "external_id": "pEJAja73dk",
+    "venue": "iclr",
+    "year": 2026,
+    "dblp_key": "conf/iclr/WangCWMLLW26",
+    "reason": "The independently retrieved official proceedings abstract is identical to the accepted OpenReview abstract after whitespace/HTML normalization. The distinctive paper title and author metadata were reviewed, including title revisions, mathematical typesetting, and middle-name variants.",
+    "evidence_urls": [
+      "https://proceedings.iclr.cc/paper_files/paper/2026/hash/4b8001fc75f0532827472ea5a16af9ca-Abstract-Conference.html",
+      "https://openreview.net/forum?id=pEJAja73dk"
+    ],
+    "proceedings_abstract_sha256": "f5da56770cb8cb61529262c2d42e895c76218dd0d2800b5a18f6cf95848cf7f1"
+  },
+  {
+    "provider": "openreview",
+    "external_id": "084SvT55yk",
+    "venue": "iclr",
+    "year": 2026,
+    "dblp_key": "conf/iclr/WangLMYC26",
+    "reason": "The independently retrieved official proceedings abstract and accepted OpenReview abstract agree apart from formatting or small revisions (similarity 0.9805). The distinctive paper title and author metadata were reviewed, including title revisions, mathematical typesetting, and middle-name variants.",
+    "evidence_urls": [
+      "https://proceedings.iclr.cc/paper_files/paper/2026/hash/3d681cc4487b97c08e5aa67224dd74f2-Abstract-Conference.html",
+      "https://openreview.net/forum?id=084SvT55yk"
+    ],
+    "proceedings_abstract_sha256": "02febecb21e88b879a7cdc6b43a389484334059511ac19d5f1591d884cab5ed7"
+  },
+  {
+    "provider": "openreview",
+    "external_id": "T0EiEuhOOL",
+    "venue": "iclr",
+    "year": 2026,
+    "dblp_key": "conf/iclr/WangPNLCOZS26",
+    "reason": "The independently retrieved official proceedings abstract is identical to the accepted OpenReview abstract after whitespace/HTML normalization. The distinctive paper title and author metadata were reviewed, including title revisions, mathematical typesetting, and middle-name variants.",
+    "evidence_urls": [
+      "https://proceedings.iclr.cc/paper_files/paper/2026/hash/821d20219c2f14850af1b5220f0ed13f-Abstract-Conference.html",
+      "https://openreview.net/forum?id=T0EiEuhOOL"
+    ],
+    "proceedings_abstract_sha256": "ae4ce05158c7072dc96c107d0e69f164b720eafd68a523384f78e45c7839e271"
+  },
+  {
+    "provider": "openreview",
+    "external_id": "HBOLN5m3qg",
+    "venue": "iclr",
+    "year": 2026,
+    "dblp_key": "conf/iclr/WangXLLLHZ26",
+    "reason": "The independently retrieved official proceedings abstract is identical to the accepted OpenReview abstract after whitespace/HTML normalization. The distinctive paper title and author metadata were reviewed, including title revisions, mathematical typesetting, and middle-name variants.",
+    "evidence_urls": [
+      "https://proceedings.iclr.cc/paper_files/paper/2026/hash/63b6f5737c100ee1d8c902fb00cd5c29-Abstract-Conference.html",
+      "https://openreview.net/forum?id=HBOLN5m3qg"
+    ],
+    "proceedings_abstract_sha256": "413d01e975cc7ed76bd33f3c6de4ffb407da6ccd85d18bf002a8b23f21da3465"
+  },
+  {
+    "provider": "openreview",
+    "external_id": "0FhrtdKLtD",
+    "venue": "iclr",
+    "year": 2026,
+    "dblp_key": "conf/iclr/WangYZZWWZCLKXW26",
+    "reason": "The independently retrieved official proceedings abstract and accepted OpenReview abstract agree apart from formatting or small revisions (similarity 0.9737). The distinctive paper title and author metadata were reviewed, including title revisions, mathematical typesetting, and middle-name variants.",
+    "evidence_urls": [
+      "https://proceedings.iclr.cc/paper_files/paper/2026/hash/858de961874816f894285ec02e50c7fe-Abstract-Conference.html",
+      "https://openreview.net/forum?id=0FhrtdKLtD"
+    ],
+    "proceedings_abstract_sha256": "904cad866e0ffd54ceaa0426c1b90ef25bd5648c17d449bef57698374b9d23a3"
+  },
+  {
+    "provider": "openreview",
+    "external_id": "P3R3S6S5Km",
+    "venue": "iclr",
+    "year": 2026,
+    "dblp_key": "conf/iclr/WangZDEESSDK26",
+    "reason": "The independently retrieved official proceedings abstract is identical to the accepted OpenReview abstract after whitespace/HTML normalization. The distinctive paper title and author metadata were reviewed, including title revisions, mathematical typesetting, and middle-name variants.",
+    "evidence_urls": [
+      "https://proceedings.iclr.cc/paper_files/paper/2026/hash/776d8402bf75caee1f9e88c95a04651f-Abstract-Conference.html",
+      "https://openreview.net/forum?id=P3R3S6S5Km"
+    ],
+    "proceedings_abstract_sha256": "ab5aa9dda104df8c17adc299abc85fef2c61bd235112c2a38367ac4a656aa82f"
+  },
+  {
+    "provider": "openreview",
+    "external_id": "qumy27hMDY",
+    "venue": "iclr",
+    "year": 2026,
+    "dblp_key": "conf/iclr/WangZYDWHGLG26",
+    "reason": "The independently retrieved official proceedings abstract is identical to the accepted OpenReview abstract after whitespace/HTML normalization. The distinctive paper title and author metadata were reviewed, including title revisions, mathematical typesetting, and middle-name variants.",
+    "evidence_urls": [
+      "https://proceedings.iclr.cc/paper_files/paper/2026/hash/b88318174aad2cc174a4e05ab6bfad80-Abstract-Conference.html",
+      "https://openreview.net/forum?id=qumy27hMDY"
+    ],
+    "proceedings_abstract_sha256": "457f8040b64a674c8b6e75a0d759fba49995e202cf7e8a57a4df8df83011d136"
+  },
+  {
+    "provider": "openreview",
+    "external_id": "DTQIjngDta",
+    "venue": "iclr",
+    "year": 2026,
+    "dblp_key": "conf/iclr/WangZZCZLCPSH26",
+    "reason": "The independently retrieved official proceedings abstract is identical to the accepted OpenReview abstract after whitespace/HTML normalization. The distinctive paper title and author metadata were reviewed, including title revisions, mathematical typesetting, and middle-name variants.",
+    "evidence_urls": [
+      "https://proceedings.iclr.cc/paper_files/paper/2026/hash/11a09e0aaa74867c6b0719c639fc09f8-Abstract-Conference.html",
+      "https://openreview.net/forum?id=DTQIjngDta"
+    ],
+    "proceedings_abstract_sha256": "2862907a73ecf397d3418dc15ba4219b60a29db2863c799003fd8a3c0f8d849a"
+  },
+  {
+    "provider": "openreview",
+    "external_id": "eXidGkRUFt",
+    "venue": "iclr",
+    "year": 2026,
+    "dblp_key": "conf/iclr/WuLDGJFWZ26",
+    "reason": "The independently retrieved official proceedings abstract and accepted OpenReview abstract agree apart from formatting or small revisions (similarity 0.9939). The distinctive paper title and author metadata were reviewed, including title revisions, mathematical typesetting, and middle-name variants.",
+    "evidence_urls": [
+      "https://proceedings.iclr.cc/paper_files/paper/2026/hash/58acaf7b9aecc9604c7a6aac2eb81035-Abstract-Conference.html",
+      "https://openreview.net/forum?id=eXidGkRUFt"
+    ],
+    "proceedings_abstract_sha256": "c6f791839fb598da74cd36006bb1ec881140cbab8084d985d9842f5caba0d4f0"
+  },
+  {
+    "provider": "openreview",
+    "external_id": "2ciXKn2UlS",
+    "venue": "iclr",
+    "year": 2026,
+    "dblp_key": "conf/iclr/XiaXA26",
+    "reason": "The independently retrieved official proceedings abstract is identical to the accepted OpenReview abstract after whitespace/HTML normalization. The distinctive paper title and author metadata were reviewed, including title revisions, mathematical typesetting, and middle-name variants.",
+    "evidence_urls": [
+      "https://proceedings.iclr.cc/paper_files/paper/2026/hash/ac895e51849bfc99ae25e054fd4c2eda-Abstract-Conference.html",
+      "https://openreview.net/forum?id=2ciXKn2UlS"
+    ],
+    "proceedings_abstract_sha256": "ed32efa2d61238a32391d1b59ff2fbae1d646960e019d1d4f80c3e04af07ffc4"
+  },
+  {
+    "provider": "openreview",
+    "external_id": "8tDIzHFOx6",
+    "venue": "iclr",
+    "year": 2026,
+    "dblp_key": "conf/iclr/XinLWLG26",
+    "reason": "The independently retrieved official proceedings abstract is identical to the accepted OpenReview abstract after whitespace/HTML normalization. The distinctive paper title and author metadata were reviewed, including title revisions, mathematical typesetting, and middle-name variants.",
+    "evidence_urls": [
+      "https://proceedings.iclr.cc/paper_files/paper/2026/hash/a9b50b051cd5f17455458d922e52768b-Abstract-Conference.html",
+      "https://openreview.net/forum?id=8tDIzHFOx6"
+    ],
+    "proceedings_abstract_sha256": "26dbbf7c8326346b4693522419fdab360d8c8308a36d815cba00fe65dcf5a91c"
+  },
+  {
+    "provider": "openreview",
+    "external_id": "bj0ahFM4P0",
+    "venue": "iclr",
+    "year": 2026,
+    "dblp_key": "conf/iclr/XuWYYJHZCQWOW26",
+    "reason": "The independently retrieved official proceedings abstract is identical to the accepted OpenReview abstract after whitespace/HTML normalization. The distinctive paper title and author metadata were reviewed, including title revisions, mathematical typesetting, and middle-name variants.",
+    "evidence_urls": [
+      "https://proceedings.iclr.cc/paper_files/paper/2026/hash/86833e97827ff52d297a9fbde5842a81-Abstract-Conference.html",
+      "https://openreview.net/forum?id=bj0ahFM4P0"
+    ],
+    "proceedings_abstract_sha256": "c94c1595a8951c126bc2f33c1ffae909961c7f9942ca16e1ae00b33130bbb31a"
+  },
+  {
+    "provider": "openreview",
+    "external_id": "haQ0QIor4J",
+    "venue": "iclr",
+    "year": 2026,
+    "dblp_key": "conf/iclr/YangHTWW26",
+    "reason": "The independently retrieved official proceedings abstract and accepted OpenReview abstract agree apart from formatting or small revisions (similarity 0.9974). The distinctive paper title and author metadata were reviewed, including title revisions, mathematical typesetting, and middle-name variants.",
+    "evidence_urls": [
+      "https://proceedings.iclr.cc/paper_files/paper/2026/hash/99e0f8a68823e12cafda5106c74b04bf-Abstract-Conference.html",
+      "https://openreview.net/forum?id=haQ0QIor4J"
+    ],
+    "proceedings_abstract_sha256": "4f23f319820b761a69fc91be7844f52f32af163a0a71012ad5ce15ccd55ca69d"
+  },
+  {
+    "provider": "openreview",
+    "external_id": "CMU8GxwpUL",
+    "venue": "iclr",
+    "year": 2026,
+    "dblp_key": "conf/iclr/YeZLSPG26",
+    "reason": "The independently retrieved official proceedings abstract and accepted OpenReview abstract agree apart from formatting or small revisions (similarity 0.9995). The distinctive paper title and author metadata were reviewed, including title revisions, mathematical typesetting, and middle-name variants.",
+    "evidence_urls": [
+      "https://proceedings.iclr.cc/paper_files/paper/2026/hash/34515e20a0ec8c894c29fbd65d403678-Abstract-Conference.html",
+      "https://openreview.net/forum?id=CMU8GxwpUL"
+    ],
+    "proceedings_abstract_sha256": "85834f1b1961a9c31be5d09785ab2e2fac5e0e090886f1377f585b08aa67edb6"
+  },
+  {
+    "provider": "openreview",
+    "external_id": "I3Ct1eDmVI",
+    "venue": "iclr",
+    "year": 2026,
+    "dblp_key": "conf/iclr/YoshikawaM26",
+    "reason": "The independently retrieved official proceedings abstract is identical to the accepted OpenReview abstract after whitespace/HTML normalization. The distinctive paper title and author metadata were reviewed, including title revisions, mathematical typesetting, and middle-name variants.",
+    "evidence_urls": [
+      "https://proceedings.iclr.cc/paper_files/paper/2026/hash/bfa20cc46a90fff34af616b738c10f9b-Abstract-Conference.html",
+      "https://openreview.net/forum?id=I3Ct1eDmVI"
+    ],
+    "proceedings_abstract_sha256": "69a308b9f823661724ae0f26505dd6b7c3e4bbe528753239662b2423f50d5d5a"
+  },
+  {
+    "provider": "openreview",
+    "external_id": "CicK2lJMUy",
+    "venue": "iclr",
+    "year": 2026,
+    "dblp_key": "conf/iclr/YuZZFWW26",
+    "reason": "The independently retrieved official proceedings abstract is identical to the accepted OpenReview abstract after whitespace/HTML normalization. The distinctive paper title and author metadata were reviewed, including title revisions, mathematical typesetting, and middle-name variants.",
+    "evidence_urls": [
+      "https://proceedings.iclr.cc/paper_files/paper/2026/hash/4b32c2943a02331792877cc6b5205f49-Abstract-Conference.html",
+      "https://openreview.net/forum?id=CicK2lJMUy"
+    ],
+    "proceedings_abstract_sha256": "8771be918078a4f51dad7b6cbf43c4529671ec401e46b61767275bede8db7592"
+  },
+  {
+    "provider": "openreview",
+    "external_id": "qPKTDOJ5Xs",
+    "venue": "iclr",
+    "year": 2026,
+    "dblp_key": "conf/iclr/ZhangL26a",
+    "reason": "The independently retrieved official proceedings abstract is identical to the accepted OpenReview abstract after whitespace/HTML normalization. The distinctive paper title and author metadata were reviewed, including title revisions, mathematical typesetting, and middle-name variants.",
+    "evidence_urls": [
+      "https://proceedings.iclr.cc/paper_files/paper/2026/hash/a5554013b21c814c1f04e8b0178ec551-Abstract-Conference.html",
+      "https://openreview.net/forum?id=qPKTDOJ5Xs"
+    ],
+    "proceedings_abstract_sha256": "bfb6d67127b4027d0971acff8fa19a13a4689382408da3d188036caa17fa5a78"
+  },
+  {
+    "provider": "openreview",
+    "external_id": "ekOwxTn65Y",
+    "venue": "iclr",
+    "year": 2026,
+    "dblp_key": "conf/iclr/ZhangLYCZ26",
+    "reason": "The independently retrieved official proceedings abstract is identical to the accepted OpenReview abstract after whitespace/HTML normalization. The distinctive paper title and author metadata were reviewed, including title revisions, mathematical typesetting, and middle-name variants.",
+    "evidence_urls": [
+      "https://proceedings.iclr.cc/paper_files/paper/2026/hash/5cc19d8570ebe171ffad101fef1e4dde-Abstract-Conference.html",
+      "https://openreview.net/forum?id=ekOwxTn65Y"
+    ],
+    "proceedings_abstract_sha256": "f403d37f4af7c89a07fe26e892a55dc670d2bb98074287d986b0d8bbc4bc0921"
+  },
+  {
+    "provider": "openreview",
+    "external_id": "3CPzUWIoNf",
+    "venue": "iclr",
+    "year": 2026,
+    "dblp_key": "conf/iclr/ZhangNYLHFHKCL26",
+    "reason": "The independently retrieved official proceedings abstract is identical to the accepted OpenReview abstract after whitespace/HTML normalization. The distinctive paper title and author metadata were reviewed, including title revisions, mathematical typesetting, and middle-name variants.",
+    "evidence_urls": [
+      "https://proceedings.iclr.cc/paper_files/paper/2026/hash/dcbdb995a239204228305ab34c5da096-Abstract-Conference.html",
+      "https://openreview.net/forum?id=3CPzUWIoNf"
+    ],
+    "proceedings_abstract_sha256": "8c6af8fcf0397158416ff5948420bd084ef1ef36550797c0a5f31d0cce0caa5b"
+  },
+  {
+    "provider": "openreview",
+    "external_id": "sQ0g6EkpF7",
+    "venue": "iclr",
+    "year": 2026,
+    "dblp_key": "conf/iclr/ZhaoHTTZWZWWY26",
+    "reason": "The independently retrieved official proceedings abstract is identical to the accepted OpenReview abstract after whitespace/HTML normalization. The distinctive paper title and author metadata were reviewed, including title revisions, mathematical typesetting, and middle-name variants.",
+    "evidence_urls": [
+      "https://proceedings.iclr.cc/paper_files/paper/2026/hash/f1cf02ce09757f57c3b93c0db83181e0-Abstract-Conference.html",
+      "https://openreview.net/forum?id=sQ0g6EkpF7"
+    ],
+    "proceedings_abstract_sha256": "5cea3bae7a8e7d4c3feb1fccf46bc354d437ee492213b9c3e6a63ed10faa081a"
+  },
+  {
+    "provider": "openreview",
+    "external_id": "Nfmzp5PBzr",
+    "venue": "iclr",
+    "year": 2026,
+    "dblp_key": "conf/iclr/ZhouWCBZLW26",
+    "reason": "The independently retrieved official proceedings abstract is identical to the accepted OpenReview abstract after whitespace/HTML normalization. The distinctive paper title and author metadata were reviewed, including title revisions, mathematical typesetting, and middle-name variants.",
+    "evidence_urls": [
+      "https://proceedings.iclr.cc/paper_files/paper/2026/hash/3d55170799265c03b37993e02b71b2cc-Abstract-Conference.html",
+      "https://openreview.net/forum?id=Nfmzp5PBzr"
+    ],
+    "proceedings_abstract_sha256": "ec50372e8a2b349a9bdfa2b57f4d46566e5afc947345356d6d48fb52ac4d43c5"
   }
 ]

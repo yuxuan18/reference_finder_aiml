@@ -156,8 +156,8 @@ class EndpointTests(unittest.TestCase):
 
     def test_source_search_accepts_cursor_and_encodes_search(self):
         self.urlopen.return_value = response({"results": []})
-        OpenAlex(self.http).sources("Security & Privacy", cursor="next cursor+")
-        self.assertEqual(self.query(), {"search": ["Security & Privacy"], "cursor": ["next cursor+"], "per_page": ["100"]})
+        OpenAlex(self.http).sources("Learning & Representations", cursor="next cursor+")
+        self.assertEqual(self.query(), {"search": ["Learning & Representations"], "cursor": ["next cursor+"], "per_page": ["100"]})
 
     def test_doi_is_one_escaped_path_component(self):
         self.urlopen.return_value = response({"abstract_inverted_index": {"Found": [0]}})
@@ -173,15 +173,15 @@ class EndpointTests(unittest.TestCase):
     def test_semantic_scholar_bulk_can_filter_venues_without_a_query(self):
         self.urlopen.return_value = response({"data": [], "token": "next/page+="})
         client = SemanticScholar(self.http)
-        first_page = client.works(["CCS", "ACM CCS"], 2026)
+        first_page = client.works(["ICML", "ACM ICML"], 2026)
         query = self.query()
-        self.assertEqual(query["venue"], ["CCS,ACM CCS"])
+        self.assertEqual(query["venue"], ["ICML,ACM ICML"])
         self.assertEqual(query["year"], ["2026"])
         self.assertNotIn("query", query)
         self.assertNotIn("token", query)
         self.assertIn("abstract", query["fields"][0].split(","))
         self.urlopen.return_value = response({"data": []})
-        client.works(["CCS"], 2026, token=first_page["token"])
+        client.works(["ICML"], 2026, token=first_page["token"])
         self.assertEqual(self.query()["token"], ["next/page+="])
 
     def test_semantic_scholar_batch_keeps_nulls_aligned_with_dois(self):

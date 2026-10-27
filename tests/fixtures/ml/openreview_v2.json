@@ -1,0 +1,9 @@
+{"count": 2, "notes": [
+  {"id": "accepted", "forum": "accepted", "content": {
+    "venueid": {"value": "colmweb.org/COLM/2024/Conference"},
+    "title": {"value": "Learning with Dependent Experts"},
+    "authors": {"value": ["Alice Example"]}, "abstract": {"value": "We study dependent experts."}
+  }},
+  {"id": "title-only", "content": {"venueid": {"value": "colmweb.org/COLM/2024/Conference"},
+    "title": {"value": "A Language Model"}, "authors": {"value": ["Bob Example"]}}}
+]}

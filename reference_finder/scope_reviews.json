@@ -1,0 +1,74 @@
+[
+  {
+    "provider": "dblp",
+    "external_id": "conf/icml/SafaviB19",
+    "venue": "icml",
+    "year": 2019,
+    "action": "exclude",
+    "section": "Retracted paper",
+    "reason": "The publisher explicitly retracted this paper and removed its proceedings record. Preserved in the raw corpus but excluded from the active reference corpus.",
+    "evidence_urls": [
+      "https://github.com/mlresearch/v97/commit/09976799406d1ea89a156aec303531696935f42b"
+    ]
+  },
+  {
+    "provider": "dblp",
+    "external_id": "conf/iclr/Zhou0S25",
+    "venue": "iclr",
+    "year": 2025,
+    "action": "exclude",
+    "section": "Withdrawn submission",
+    "reason": "The official OpenReview note identifies this as ICLR.cc/2025/Conference/Withdrawn_Submission. DBLP membership is preserved as historical evidence.",
+    "evidence_urls": [
+      "https://openreview.net/forum?id=EeqlkPpaV8",
+      "https://api2.openreview.net/notes?id=EeqlkPpaV8&details=directReplies"
+    ]
+  },
+  {
+    "provider": "dblp",
+    "external_id": "conf/aaai/LohiaBRA24",
+    "venue": "aaai",
+    "year": 2024,
+    "action": "exclude",
+    "section": "IAAI-24 Deployed Highly Innovative Applications of AI",
+    "reason": "The official AAAI-24 poster program lists this paper as IAAI34 in the separate IAAI track, not the AAAI research tracks. Its deleted OJS page cannot supply current section metadata.",
+    "evidence_urls": [
+      "https://aaai.org/wp-content/uploads/2024/02/AAAI-24-Thursday-Poster-Sessions.pdf"
+    ]
+  },
+  {
+    "provider": "dblp",
+    "external_id": "conf/icml/Wei20",
+    "venue": "icml",
+    "year": 2020,
+    "action": "annotate",
+    "reason": "The publisher removed this entry at the request of the Program and General Chairs. The historical abstract was recovered from the publisher’s pinned pre-removal metadata. Publication status is retained for review; removal alone is not treated as a confirmed retraction.",
+    "evidence_urls": [
+      "https://github.com/mlresearch/v119/commit/70d9b04ac1761bc6e7052f2c8c15925d0c96a519",
+      "https://raw.githubusercontent.com/mlresearch/v119/c0b7ef6237086a7c7d4907cf58bd2f06c5c63786/_posts/2020-11-21-wei20a.md"
+    ]
+  },
+  {
+    "provider": "dblp",
+    "external_id": "conf/icml/MajumdarSPTBS22",
+    "venue": "icml",
+    "year": 2022,
+    "action": "annotate",
+    "reason": "The publisher removed this proceedings entry; the deletion commit does not state a reason. The historical abstract was recovered from the publisher’s pinned pre-removal metadata. Publication status is retained for review; removal alone is not treated as a confirmed retraction.",
+    "evidence_urls": [
+      "https://github.com/mlresearch/v162/commit/8eb9d3188433231c0c55ec6dd4dc3a96b8c52bc3",
+      "https://raw.githubusercontent.com/mlresearch/v162/fbaeac76e6463615433e0902627649b474c69f2a/_posts/2022-06-28-majumdar22b.md"
+    ]
+  },
+  {
+    "provider": "dblp",
+    "external_id": "conf/aaai/MandalGP20",
+    "venue": "aaai",
+    "year": 2020,
+    "action": "annotate",
+    "reason": "The publisher HTML has no abstract. Recovered the abstract from the first page of the published PDF and visually verified the column boundaries and full text.",
+    "evidence_urls": [
+      "https://ojs.aaai.org/index.php/AAAI/article/download/5591/5447"
+    ]
+  }
+]

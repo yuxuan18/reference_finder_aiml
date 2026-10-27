@@ -9,7 +9,9 @@ from datetime import datetime, timezone
 from pathlib import Path
 from urllib.parse import unquote
 
-ABSTRACT_PRIORITY = {"openalex": 1, "semantic_scholar": 2, "usenix": 3, "iacr": 3}
+OFFICIAL_PROVIDERS = {"dblp", "openreview", "pmlr", "neurips", "aaai", "iclr", "colm"}
+ABSTRACT_PRIORITY = {"openalex": 1, "semantic_scholar": 2,
+                     **{provider: 3 for provider in OFFICIAL_PROVIDERS}}
 SCHEMA_VERSION = 2
 
 
@@ -71,7 +73,7 @@ def review_metadata(record):
 
 
 def paper_from_record(provider, record):
-    if provider in {"dblp", "usenix", "iacr", "ccs"}:
+    if provider in OFFICIAL_PROVIDERS:
         return {
             "external_id": record["external_id"], "doi": normalize_doi(record.get("doi")),
             "title": record.get("title") or "", "year": record.get("publication_year", record.get("year")), "date": None,
@@ -162,6 +164,12 @@ class Database:
                 PRIMARY KEY(provider,external_id,venue,year)
             );
             CREATE INDEX IF NOT EXISTS roster_entries_paper ON roster_entries(paper_id);
+            CREATE TABLE IF NOT EXISTS scope_exclusions (
+                paper_id INTEGER NOT NULL REFERENCES papers(id) ON DELETE CASCADE,
+                venue TEXT NOT NULL, year INTEGER NOT NULL, section TEXT NOT NULL,
+                evidence_url TEXT NOT NULL, reason TEXT NOT NULL, reviewed_at TEXT NOT NULL,
+                PRIMARY KEY(paper_id,venue,year)
+            );
         """
         # executescript commits an existing transaction. Execute each static
         # statement instead so schema creation, row conversion, and the version
@@ -175,6 +183,15 @@ class Database:
                 self._discard_raw_responses()
                 if self.conn.execute("PRAGMA foreign_key_check").fetchone():
                     raise ValueError("Collection schema migration found broken paper references")
+            self.conn.execute("""CREATE VIEW IF NOT EXISTS active_paper_venues AS
+                SELECT v.* FROM paper_venues v WHERE NOT EXISTS (
+                    SELECT 1 FROM scope_exclusions x WHERE x.paper_id=v.paper_id AND x.venue=v.venue AND x.year=v.year)""")
+            self.conn.execute("""CREATE VIEW IF NOT EXISTS active_roster_entries AS
+                SELECT r.* FROM roster_entries r WHERE NOT EXISTS (
+                    SELECT 1 FROM scope_exclusions x WHERE x.paper_id=r.paper_id AND x.venue=r.venue AND x.year=r.year)""")
+            self.conn.execute("""CREATE VIEW IF NOT EXISTS active_corpus_papers AS
+                SELECT p.* FROM papers p WHERE NOT EXISTS (SELECT 1 FROM scope_exclusions x WHERE x.paper_id=p.id)
+                OR EXISTS (SELECT 1 FROM active_paper_venues v WHERE v.paper_id=p.id)""")
             self.conn.execute("PRAGMA user_version=2")
 
     def _discard_raw_responses(self):
@@ -244,6 +261,8 @@ class Database:
         self.conn.execute("UPDATE roster_entries SET paper_id=? WHERE paper_id=?", (keep, remove))
         self.conn.execute("""INSERT OR IGNORE INTO paper_venues
             SELECT ?, venue, year, provider FROM paper_venues WHERE paper_id=?""", (keep, remove))
+        self.conn.execute("""INSERT OR IGNORE INTO scope_exclusions
+            SELECT ?,venue,year,section,evidence_url,reason,reviewed_at FROM scope_exclusions WHERE paper_id=?""", (keep, remove))
         self.conn.execute("DELETE FROM papers WHERE id=?", (remove,))
         if not target["doi"] and old["doi"]:
             self.conn.execute("UPDATE papers SET doi=? WHERE id=?", (old["doi"], keep))
@@ -263,7 +282,7 @@ class Database:
             if match:
                 matches.add(match[0])
         if not matches and title_key and venue:
-            # Conservative fallback for papers without DOIs (common at USENIX).
+            # Conservative fallback for papers without DOIs (common in AI/ML proceedings).
             rows = self.conn.execute("""SELECT DISTINCT p.id, p.doi, p.authors_json FROM papers p
                 JOIN paper_venues v ON v.paper_id=p.id WHERE normalized_title=? AND v.year=? AND v.venue=?""",
                 (title_key, year, venue)).fetchall()
@@ -312,7 +331,7 @@ class Database:
 
     def missing_for(self, provider, venues, start, end, limit=100):
         placeholders = ",".join("?" for _ in venues)
-        return self.conn.execute(f"""SELECT DISTINCT p.id,p.doi FROM papers p JOIN paper_venues v ON p.id=v.paper_id
+        return self.conn.execute(f"""SELECT DISTINCT p.id,p.doi FROM papers p JOIN active_paper_venues v ON p.id=v.paper_id
             WHERE p.abstract IS NULL AND p.doi IS NOT NULL AND v.venue IN ({placeholders}) AND v.year BETWEEN ? AND ?
             AND NOT EXISTS (SELECT 1 FROM enrichment_attempts a WHERE a.provider=? AND a.doi=p.doi)
             ORDER BY p.id LIMIT ?""", (*venues, start, end, provider, limit)).fetchall()
@@ -333,4 +352,4 @@ class Database:
         return self.conn.execute("""SELECT COUNT(DISTINCT p.id) AS papers,
             COUNT(DISTINCT CASE WHEN abstract IS NOT NULL THEN p.id END) AS abstracts,
             COUNT(DISTINCT CASE WHEN abstract IS NULL AND doi IS NULL THEN p.id END) AS missing_without_doi
-            FROM papers p JOIN paper_venues v ON p.id=v.paper_id WHERE v.venue=? AND v.year=?""", (venue, year)).fetchone()
+            FROM papers p JOIN active_paper_venues v ON p.id=v.paper_id WHERE v.venue=? AND v.year=?""", (venue, year)).fetchone()

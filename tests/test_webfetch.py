@@ -1,5 +1,6 @@
 """Offline contracts for the public-source fetcher's cache and request budget."""
 import hashlib
+import gzip
 import io
 import json
 from email.message import Message
@@ -13,7 +14,7 @@ from reference_finder.api import Budget, RequestLimit
 from reference_finder.webfetch import FetchError, USER_AGENT, WebFetcher
 
 
-URL = "https://www.usenix.org/conference/usenixsecurity25/technical-sessions"
+URL = "https://proceedings.iclr.cc/paper_files/paper/2025"
 SPARQL_URL = "https://sparql.dblp.org/sparql?query=test&format=json"
 HTML = "<html><body>A public proceedings list.</body></html>"
 
@@ -78,8 +79,8 @@ class WebFetcherTests(unittest.TestCase):
 
     def test_url_allowlist_rejects_other_hosts_and_insecure_http_before_request(self):
         fetch = self.fetcher()
-        for url in ("http://www.usenix.org/example", "https://example.org/", "file:///tmp/example",
-                    "https://www.usenix.org.attacker.example/", "https://dblp.org/db/conf/ccs/"):
+        for url in ("http://proceedings.iclr.cc/example", "https://example.org/", "file:///tmp/example",
+                    "https://proceedings.iclr.cc.attacker.example/", "https://dblp.org/db/conf/icml/"):
             with self.subTest(url=url), self.assertRaises(FetchError):
                 fetch(url)
         self.urlopen.assert_not_called()
@@ -138,7 +139,7 @@ class WebFetcherTests(unittest.TestCase):
         fetch = WebFetcher(cache_dir=self.cache, interval=1.5)
         fetch(URL)
         fetch(URL + "?view=all")
-        fetch("https://www.iacr.org/cryptodb/data/byconf.php")
+        fetch("https://proceedings.mlr.press/")
         fetch(URL)
         self.assertEqual([call.args[0] for call in self.sleep.call_args_list], [0, 1.5, 0])
         self.assertEqual(self.urlopen.call_count, 3)
@@ -195,7 +196,7 @@ class WebFetcherTests(unittest.TestCase):
         self.assertFalse(self.cache_path().with_suffix(".tmp").exists())
 
     def test_wrong_url_cache_entry_cannot_supply_another_sources_body(self):
-        self.cache_path().write_text(json.dumps({"url": "https://www.iacr.org/", "body": "Different source"}))
+        self.cache_path().write_text(json.dumps({"url": "https://proceedings.mlr.press/", "body": "Different source"}))
         self.urlopen.return_value = response()
         self.assertEqual(self.fetcher()(URL), HTML)
         self.assertEqual(self.urlopen.call_count, 1)
@@ -230,6 +231,36 @@ class WebFetcherTests(unittest.TestCase):
         self.urlopen.return_value = response(good)
         self.assertEqual(self.fetcher()(SPARQL_URL), good)
         self.assertEqual(self.urlopen.call_count, 1)
+
+    def test_new_html_hosts_and_gzip_responses(self):
+        for url in ("https://proceedings.mlr.press/", "https://proceedings.neurips.cc/",
+                    "https://papers.nips.cc/paper/2017", "https://ojs.aaai.org/index.php/AAAI/issue/archive"):
+            with self.subTest(url=url):
+                compressed = io.BytesIO(gzip.compress(HTML.encode()))
+                compressed.headers = response().headers
+                self.urlopen.return_value = compressed
+                self.assertEqual(self.fetcher()(url), HTML)
+
+    def test_invalid_new_html_never_poison_cache(self):
+        url = "https://proceedings.mlr.press/"
+        self.urlopen.return_value = response("<html><body>Truncated")
+        with self.assertRaisesRegex(FetchError, "truncated"):
+            self.fetcher()(url)
+        self.assertFalse(self.cache_path(url).exists())
+
+    def test_openreview_requires_valid_notes_and_valid_count_when_present(self):
+        url = "https://api2.openreview.net/notes?limit=100"
+        for raw in ("{}", '{"notes":[],"count":true}', '{"notes":[],"count":-1}', "<html>error</html>"):
+            self.urlopen.return_value = response(raw)
+            with self.subTest(raw=raw), self.assertRaises(FetchError):
+                self.fetcher()(url)
+            self.assertFalse(self.cache_path(url).exists())
+        raw = '{"notes":[],"count":0}'
+        self.urlopen.return_value = response(raw)
+        self.assertEqual(self.fetcher()(url), raw)
+        self.assertEqual(self.urlopen.call_args.args[0].get_header("Accept"), "application/json")
+        self.urlopen.return_value = response('{"notes":[]}')
+        self.assertEqual(self.fetcher()(url + "&offset=1"), '{"notes":[]}')
 
 
 if __name__ == "__main__":

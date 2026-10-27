@@ -1,0 +1,7 @@
+{"count": 3, "notes": [
+  {"id": "accepted", "content": {"title": "Learning with Dependent Experts", "authors": ["Alice Example"], "abstract": "We study dependent experts."},
+    "details": {"directReplies": [{"invitation": "ICLR.cc/2023/Conference/Paper1/-/Decision", "content": {"decision": "Accept (Poster)"}}]}},
+  {"id": "rejected", "content": {"title": "A Rejected Paper", "authors": ["Bob Example"]},
+    "details": {"directReplies": [{"invitation": "ICLR.cc/2023/Conference/Paper2/-/Decision", "content": {"decision": "Reject"}}]}},
+  {"id": "withdrawn", "content": {"venueid": "ICLR.cc/2023/Conference/Withdrawn_Submission", "title": "Withdrawn", "authors": []}}
+]}

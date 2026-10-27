@@ -6,6 +6,7 @@ from pathlib import Path
 from urllib.parse import urlsplit, urlunsplit
 
 from .storage import normalize_doi, normalize_title, now, review_metadata
+from .paper_identity import paper_identity
 
 
 class RosterStore:
@@ -19,6 +20,11 @@ class RosterStore:
         reviews = json.loads(reviews_path.read_text()) if reviews_path.exists() else []
         self.reviews = {(r["provider"], r["external_id"], r["venue"], r["year"]): r for r in reviews}
         self.dblp_ids = {}
+        self.paper_identities = {}
+        for row in db.conn.execute("SELECT provider,external_id,venue,year,url FROM roster_entries"):
+            identity = paper_identity(row["url"])
+            if identity:
+                self.paper_identities.setdefault((row["venue"], row["year"], identity), set()).add((row["provider"], row["external_id"]))
         for row in db.conn.execute("SELECT external_id,dblp_key FROM source_records WHERE provider='semantic_scholar'"):
             key = row["dblp_key"]
             if key:
@@ -49,6 +55,19 @@ class RosterStore:
                           db.execute("SELECT doi FROM papers WHERE id=?", (pid,)).fetchone()[0] in (None, doi)}
         if len(candidates) == 1:
             return candidates.pop()
+        identity = paper_identity(record.get("url"))
+        if identity:
+            # Resolve provider identities at lookup time: merges can delete
+            # local IDs, and SQLite can reuse those IDs for unrelated papers.
+            sources = self.paper_identities.get((venue, year, identity), set())
+            compatible = set()
+            for source, external_id in sources:
+                row = db.execute("""SELECT p.id,p.doi FROM source_records s JOIN papers p ON p.id=s.paper_id
+                    WHERE s.provider=? AND s.external_id=?""", (source, external_id)).fetchone()
+                if row and (not doi or not row["doi"] or row["doi"] == doi):
+                    compatible.add(row["id"])
+            if len(compatible) == 1:
+                return compatible.pop()
         url = record.get("url")
         if url:
             parsed = urlsplit(url)
@@ -115,6 +134,9 @@ class RosterStore:
                                                        "reason": self.alias_reasons.get(alias_key, "Reviewed identity")})
                 existing = self._match(provider, record, venue, year)
                 paper_id = self.db.upsert(provider, record, venue, year, known_paper_id=existing)
+                identity = paper_identity(record.get("url"))
+                if identity:
+                    self.paper_identities.setdefault((venue, year, identity), set()).add((provider, record["external_id"]))
                 if provider == "dblp" and record.get("publication_year"):
                     self.db.conn.execute("UPDATE papers SET publication_year=? WHERE id=?", (record["publication_year"], paper_id))
                 self.db.conn.execute("""INSERT INTO roster_entries VALUES (?,?,?,?,?,?,?,?,?,?,?)
@@ -135,9 +157,10 @@ class RosterStore:
     def coverage(self, venue, year):
         row = dict(self.db.conn.execute("""SELECT COUNT(DISTINCT p.id) AS listed,
             COUNT(DISTINCT CASE WHEN p.abstract IS NOT NULL THEN p.id END) AS abstracts
-            FROM roster_entries r JOIN papers p ON p.id=r.paper_id WHERE r.venue=? AND r.year=?""", (venue, year)).fetchone())
+            FROM active_roster_entries r JOIN papers p ON p.id=r.paper_id WHERE r.venue=? AND r.year=?""", (venue, year)).fetchone())
+        row["excluded"] = self.db.conn.execute("SELECT COUNT(*) FROM scope_exclusions WHERE venue=? AND year=?", (venue, year)).fetchone()[0]
         row["runs"] = [dict(r) for r in self.db.conn.execute("SELECT * FROM roster_runs WHERE venue=? AND year=? ORDER BY provider", (venue, year))]
-        row["unverified_api"] = self.db.conn.execute("""SELECT COUNT(DISTINCT v.paper_id) FROM paper_venues v
+        row["unverified_api"] = self.db.conn.execute("""SELECT COUNT(DISTINCT v.paper_id) FROM active_paper_venues v
             WHERE v.venue=? AND v.year=? AND v.provider IN ('openalex','semantic_scholar')
             AND NOT EXISTS (SELECT 1 FROM roster_entries r WHERE r.paper_id=v.paper_id AND r.venue=v.venue AND r.year=v.year)""", (venue, year)).fetchone()[0]
         return row
@@ -146,7 +169,7 @@ class RosterStore:
         marks = ",".join("?" for _ in venues)
         rows = self.db.conn.execute(f"""SELECT p.*,r.venue,r.year AS event_year,
             GROUP_CONCAT(DISTINCT r.provider) AS roster_sources
-            FROM roster_entries r JOIN papers p ON p.id=r.paper_id
+            FROM active_roster_entries r JOIN papers p ON p.id=r.paper_id
             WHERE r.venue IN ({marks}) AND r.year BETWEEN ? AND ?
             GROUP BY r.venue,r.year,p.id ORDER BY r.venue,r.year,p.title""", (*venues, start, end)).fetchall()
         for row in rows:

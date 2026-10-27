@@ -27,7 +27,7 @@ class CorpusReportTests(unittest.TestCase):
 
     def export(self):
         with contextlib.redirect_stdout(io.StringIO()):
-            return export_corpus(self.store, [VENUES["crypto"]], 2025, 2025, self.output)
+            return export_corpus(self.store, [VENUES["icml"]], 2025, 2025, self.output)
 
     def read_csv(self, name):
         with (self.output / name).open(encoding="utf-8", newline="") as handle:
@@ -35,12 +35,12 @@ class CorpusReportTests(unittest.TestCase):
 
     def test_roster_totals_deduplicate_sources_and_exclude_api_only_records(self):
         self.db.upsert("semantic_scholar", api_record(
-            title="An API-only candidate", abstract="Not proceedings verified"), "crypto", 2025)
-        self.store.save("dblp", "crypto", 2025, snapshot(
+            title="An API-only candidate", abstract="Not proceedings verified"), "icml", 2025)
+        self.store.save("dblp", "icml", 2025, snapshot(
             roster_record("dblp/one", title="First paper", doi="10.1007/one"),
             roster_record("dblp/two", title="Second paper", doi="10.1007/two")))
-        self.store.save("iacr", "crypto", 2025, snapshot(roster_record(
-            "iacr-one", title="First paper", doi="10.1007/one", abstract="First abstract.")))
+        self.store.save("pmlr", "icml", 2025, snapshot(roster_record(
+            "pmlr-one", title="First paper", doi="10.1007/one", abstract="First abstract.")))
         coverage = self.export()
         papers = self.read_csv("papers.csv")
         counts = self.read_csv("coverage.csv")[0]
@@ -52,15 +52,15 @@ class CorpusReportTests(unittest.TestCase):
         self.assertEqual(counts["api_only_unverified"], "1")
         self.assertEqual(coverage[0]["listed"], 2)
         first = next(p for p in papers if p["title"] == "First paper")
-        self.assertEqual(set(first["roster_sources"].split(",")), {"dblp", "iacr"})
-        self.assertEqual(first["abstract_source"], "iacr")
+        self.assertEqual(set(first["roster_sources"].split(",")), {"dblp", "pmlr"})
+        self.assertEqual(first["abstract_source"], "pmlr")
 
     def test_csv_preserves_full_text_proceedings_title_and_evidence(self):
         abstract = 'First paragraph, with "quotes".\nSecond paragraph: αβ.'
-        self.store.save("iacr", "crypto", 2025, snapshot(roster_record(
+        self.store.save("pmlr", "icml", 2025, snapshot(roster_record(
             title='A title, with "quotes" & Unicode α', authors=["Ada Researcher", "Zoë Scientist"],
             abstract=abstract, doi="10.1007/paper")))
-        self.db.upsert("semantic_scholar", api_record(title="An API preprint title", externalIds={"DOI": "10.1007/paper"}), "crypto", 2025)
+        self.db.upsert("semantic_scholar", api_record(title="An API preprint title", externalIds={"DOI": "10.1007/paper"}), "icml", 2025)
         self.export()
         paper = self.read_csv("papers.csv")[0]
         self.assertEqual(paper["title"], 'A title, with "quotes" & Unicode α')
@@ -69,11 +69,11 @@ class CorpusReportTests(unittest.TestCase):
         self.assertIn("https://proceedings.example/paper/", paper["evidence_urls"])
         metadata = json.loads((self.output / "coverage.json").read_text(encoding="utf-8"))
         self.assertTrue(metadata["generated_at"])
-        self.assertEqual(metadata["coverage"][0]["runs"][0]["provider"], "iacr")
+        self.assertEqual(metadata["coverage"][0]["runs"][0]["provider"], "pmlr")
 
     def test_html_payload_escapes_script_terminators_and_source_labels(self):
         title = '</script><img src=x onerror="alert(1)"> α & β'
-        self.store.save("iacr", "crypto", 2025, snapshot(roster_record(
+        self.store.save("pmlr", "icml", 2025, snapshot(roster_record(
             title=title, url="javascript:alert(1)", abstract="Available")))
         malicious_provider = '<img src=x onerror="alert(2)">'
         self.db.conn.execute("UPDATE roster_runs SET provider=?", (malicious_provider,))
@@ -94,7 +94,7 @@ class CorpusReportTests(unittest.TestCase):
         record = roster_record(title="A bibliography discrepancy")
         record["roster_review"] = {"note": "Absent from the current official contents; not a confirmed withdrawal.",
                                   "evidence_urls": ["https://proceedings.example/contents.pdf"]}
-        self.store.save("dblp", "crypto", 2025, snapshot(record))
+        self.store.save("dblp", "icml", 2025, snapshot(record))
         self.export()
         self.assertIn("not a confirmed withdrawal", self.read_csv("papers.csv")[0]["review_notes"])
         page = (self.output / "index.html").read_text()

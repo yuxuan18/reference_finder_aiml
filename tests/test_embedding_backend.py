@@ -52,7 +52,7 @@ class ChunkTests(unittest.TestCase):
         self.assertEqual(chunks, [{"text": text, "token_count": len(text) + 11}])
 
     def test_long_original_text_is_preserved_including_whitespace_unicode_and_tail(self):
-        text = "  Title: café 🙂\n" + "αβ graph security\t" * 80 + "\nTAIL 漢字"
+        text = "  Title: café 🙂\n" + "αβ graph learning\t" * 80 + "\nTAIL 漢字"
         chunks = chunk_text(self.tokenizer, text, "passage: ", 100, 0)
         self.assertGreater(len(chunks), 10)
         self.assertEqual("".join(chunk["text"] for chunk in chunks), text)

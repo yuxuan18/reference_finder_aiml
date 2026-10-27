@@ -15,6 +15,9 @@ def report(db, venues, start, end):
     print(f"{'Venue':<17} {'Year':>4} {'Papers':>8} {'Abstracts':>10} {'No abstract':>11} {'No abstract/no DOI':>18}")
     for venue in venues:
         for year in years:
+            if year < venue.first_year:
+                print(f"{venue.key:<17} {year:>4} not applicable; conference not yet established")
+                continue
             row = db.coverage(venue.key, year)
             print(f"{venue.key:<17} {year:>4} {row['papers']:>8} {row['abstracts']:>10} "
                   f"{row['papers'] - row['abstracts']:>11} {row['missing_without_doi']:>18}")
@@ -25,9 +28,9 @@ def report(db, venues, start, end):
     def finished(stage, venue, **kwargs):
         return checkpoints.get(job_key(stage, venue, **kwargs), False)
 
-    s2_total = len(venues) * len(years)
+    s2_total = sum(year >= venue.first_year for venue in venues for year in years)
     s2_done = sum(finished("s2-discover", venue.key, year=year)
-                  for venue in venues for year in years)
+                  for venue in venues for year in years if year >= venue.first_year)
     source_total = source_done = works_total = works_done = 0
     pending_source_venues = []
     no_source_venues = []
@@ -43,9 +46,9 @@ def report(db, venues, start, end):
             pending_source_venues.append(venue.key)
         elif not sources:
             no_source_venues.append(venue.key)
-        works_total += len(sources) * len(years)
+        works_total += len(sources) * sum(year >= venue.first_year for year in years)
         works_done += sum(finished("oa-discover", venue.key, year=year, source=source["source_id"])
-                          for source in sources for year in years)
+                          for source in sources for year in years if year >= venue.first_year)
 
     print(f"\nSemantic Scholar discovery: {s2_done}/{s2_total} conference-years finished; "
           f"{s2_total - s2_done} unfinished or not run under current import rules.")

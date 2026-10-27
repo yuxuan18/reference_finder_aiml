@@ -1,89 +1,187 @@
-# Reference Finder
+# AI/ML Reference Finder
 
-**Find papers related to the research you are writing.** Reference Finder builds
-a searchable collection of papers from leading security and cryptography
-conferences over the past ten years. It gathers paper lists from conference
-websites and proceedings, retrieves available abstracts through OpenAlex,
-Semantic Scholar, and official conference pages, and uses
-[`Qwen3-Embedding-4B`](https://huggingface.co/Qwen/Qwen3-Embedding-4B) to turn each
-paper's title and abstract into a numerical representation of its meaning.
-Provide your own title and abstract to find the most similar papers, helping you
-discover related work even when authors use different terminology.
+Find papers related to a title, abstract, or research question across **ICLR,
+ICML, NeurIPS, AAAI, and COLM**. The repository includes a searchable paper
+corpus and a matching OpenAI embedding index, so you can start searching
+without collecting papers or generating their embeddings again.
 
-The configured collection covers **eight conferences**: CCS, USENIX Security,
-IEEE S&P, CRYPTO, EuroS&P, AsiaCCS, EUROCRYPT, and ASIACRYPT. The default collection
-window is the **current year plus the preceding nine years**: **2017–2026** when
-run in 2026. Published source lists and abstract availability determine coverage;
-current-year proceedings may still be incomplete. Missing abstracts are marked
-explicitly, and those papers can still be searched by title.
+The bundled snapshot contains **81,066 papers with abstracts** from the
+2017–2026 collection window. Its index uses **`text-embedding-3-large`, 3,072
+dimensions**, with vectors stored locally in SQLite. Current-year proceedings
+coverage is provisional; these counts describe the collected corpus.
 
-## Find related papers with ChatGPT
+## Quick start
 
-Download [papers.sqlite3.xz](snapshots/papers.sqlite3.xz) and upload it to ChatGPT alongside the paper abstract you are currently working on.
-Then ask ChatGPT to find the closest papers to your paper and this should work pretty well.
+Install [Git LFS](https://git-lfs.com/) and [uv](https://docs.astral.sh/uv/), then:
 
-## Go deeper with embedding search
-
-For a more in-depth search, use Qwen3-Embedding-4B on your computer to compare
-your title and abstract with the saved embeddings for the collection. You get a
-ranked list of similar papers with scores and links; the paper embeddings are
-already included, so you only need to run the search.
-
-You need Git and Python 3.9–3.12. The first search downloads the model and may take
-a while; subsequent searches reuse it. After setup, save your paper's title, a
-blank line, and its abstract in a UTF-8 plain-text file named `target.txt` in the
-`reference_finder` folder.
-
-## Mac instructions
-
-These instructions use an Apple Silicon Mac. Open Terminal and run the setup
-commands below; if you already cloned the repository, open its folder and start
-at `python3 -m venv`. Skip each unpack command if its output file already exists.
-
-```sh
-git clone https://github.com/arifiorino/reference_finder.git
-cd reference_finder
-python3 -m venv .venv-qwen
-.venv-qwen/bin/python -m pip install -r requirements-client.txt
-.venv-qwen/bin/python package_database.py unpack --archive snapshots/papers.sqlite3.xz --output data/papers.sqlite3
-.venv-qwen/bin/python package_database.py unpack --archive snapshots/embeddings.sqlite3.xz --output data/embeddings.sqlite3
+```bash
+git lfs install
+git clone https://github.com/yuxuan18/reference_finder_aiml.git
+cd reference_finder_aiml
+git lfs pull
+uv sync --extra openai
 ```
 
-Create `target.txt` as described above, then search:
+Restore the two verified database snapshots. The commands refuse to overwrite
+existing files:
 
-```sh
-.venv-qwen/bin/python embed_papers.py search \
-  --db data/papers.sqlite3 --index data/embeddings.sqlite3 \
-  --query-file target.txt --device mps --top-k 50
+```bash
+uv run package_database.py unpack \
+  --archive snapshots/ai-ml-papers.sqlite3.xz \
+  --output data/ai-ml-papers.sqlite3
+uv run package_database.py unpack \
+  --archive snapshots/ai-ml-openai-embeddings.sqlite3.xz \
+  --output data/ai-ml-openai-embeddings.sqlite3
 ```
 
-For another paper, update `target.txt` and rerun only the search command. Change
-`--top-k 50` to choose how many results to show.
+Create `.env` from `.env.example` and set `OPENAI_API_KEY`. Credentials and
+personal query files are ignored by Git. Project commands load `.env`
+automatically; exported environment variables take precedence.
 
-## Windows PC instructions
+Search with just a title or a short research question:
 
-These instructions work without a dedicated GPU; 32 GB of RAM is recommended.
-Open PowerShell and run the setup commands below. They select 64-bit Python 3.11;
-replace `-3.11` if you use another supported version. If you already cloned the
-repository, open its folder and start at `py -3.11 -m venv`. Skip each unpack
-command if its output file already exists.
-
-```powershell
-git clone https://github.com/arifiorino/reference_finder.git
-cd reference_finder
-py -3.11 -m venv .venv-qwen
-.\.venv-qwen\Scripts\python.exe -m pip install torch==2.7.1 --index-url https://download.pytorch.org/whl/cpu
-.\.venv-qwen\Scripts\python.exe -m pip install -r requirements-client.txt
-.\.venv-qwen\Scripts\python.exe package_database.py unpack --archive snapshots/papers.sqlite3.xz --output data/papers.sqlite3
-.\.venv-qwen\Scripts\python.exe package_database.py unpack --archive snapshots/embeddings.sqlite3.xz --output data/embeddings.sqlite3
+```bash
+uv run --extra openai embed_papers.py search \
+  --db data/ai-ml-papers.sqlite3 \
+  --index data/ai-ml-openai-embeddings.sqlite3 \
+  --query "Efficient reasoning in large language models" \
+  --top-k 50
 ```
 
-Create `target.txt` as described above, then search:
+For a longer query, save your title and optional abstract in `target.txt` and
+replace `--query "..."` with `--query-file target.txt`. Add `--json` to save
+ranked results with abstracts and citation metadata.
 
-```powershell
-.\.venv-qwen\Scripts\python.exe -X utf8 embed_papers.py search --db data/papers.sqlite3 --index data/embeddings.sqlite3 --query-file target.txt --device cpu --top-k 50
+Each search embeds only your query through OpenAI, then ranks the stored paper
+vectors locally by cosine similarity. It automatically uses the model and
+dimensions recorded in the index. No GPU or local model download is needed for
+OpenAI search. Review the returned papers before citing them.
+
+Check that a paper/index pair is complete and current without an API call:
+
+```bash
+uv run embed_papers.py status \
+  --db data/ai-ml-papers.sqlite3 \
+  --index data/ai-ml-openai-embeddings.sqlite3
 ```
 
-For another paper, update `target.txt` and rerun only the search command. Change
-`--top-k 50` to choose how many results to show. Searches on a CPU will take longer
-than on a GPU.
+`snapshots/manifest.json` records archive hashes, corpus coverage, embedding
+settings, and snapshot validation. Keep the two databases together: paper IDs
+and text hashes link the vectors to the correct paper text.
+
+## Collect or update papers
+
+The default window is the current year and the preceding nine years. COLM
+starts in 2024. You can select only the five supported conferences:
+
+```bash
+uv run build_corpus.py \
+  --db data/ai-ml-papers.sqlite3 \
+  --output data/ai-ml-corpus \
+  --venues iclr icml neurips aaai colm
+```
+
+| Conference | Official roster and abstract sources |
+| --- | --- |
+| ICLR | ICLR proceedings and OpenReview |
+| ICML | Proceedings of Machine Learning Research (PMLR) |
+| NeurIPS | NeurIPS proceedings, including its published main research tracks |
+| AAAI | AAAI proceedings, with main and special research tracks selected by section |
+| COLM | Accepted-paper lists and OpenReview |
+
+DBLP supplies an independent roster for the first four conferences, but no
+abstracts. OpenAlex and Semantic Scholar can provide additional abstract
+metadata. Workshops and confirmed ancillary programs are excluded from the
+active corpus. Known withdrawals and retractions retain their source records
+but are excluded from active search. Uncertain publisher removals carry review
+notes instead of being treated as confirmed retractions.
+
+Add `--start-year 2024 --end-year 2025` for a smaller range, or `--sources pmlr`
+with `--venues icml` for a particular source. Successful source scans are
+skipped on reruns, and downloaded pages are cached. `--max-requests 100` bounds
+requests; `--refresh` revisits source lists. Unavailable or incomplete source
+coverage is reported explicitly and does not mean a conference had zero papers.
+
+OpenReview may require `OPENREVIEW_USERNAME` and `OPENREVIEW_PASSWORD`, or
+`OPENREVIEW_TOKEN`, in `.env`. The collector reports access failures rather
+than bypassing verification. Optional `OPENALEX_API_KEY` and
+`SEMANTIC_SCHOLAR_API_KEY` configure the enrichment services.
+
+Repair missing abstracts and apply reviewed duplicate/scope decisions:
+
+```bash
+uv run recover_abstracts.py \
+  --db data/ai-ml-papers.sqlite3 --output data/ai-ml-corpus
+```
+
+This backs up the database, preserves source evidence and completed source
+scans, and writes a recovery audit. `--dry-run` previews without applying paper
+changes. Reviewed identity links, publication-status decisions, and verified
+source text live in `reference_finder/roster_aliases.json`, `scope_reviews.json`,
+and `abstract_snapshots.json`.
+
+Regenerate the HTML inventory, paper CSV, coverage reports, and exclusion
+ledger without collecting again:
+
+```bash
+uv run build_corpus.py --db data/ai-ml-papers.sqlite3 \
+  --output data/ai-ml-corpus --report-only
+```
+
+## Build or refresh embeddings
+
+The bundled OpenAI index is already complete. Run a build after adding papers
+or changing their text; completed, unchanged papers are reused.
+
+Estimate pending token usage locally before making embedding requests:
+
+```bash
+uv run --extra openai embed_papers.py estimate \
+  --db data/ai-ml-papers.sqlite3 \
+  --index data/ai-ml-openai-embeddings.sqlite3
+```
+
+Build or resume the index:
+
+```bash
+uv run --extra openai embed_papers.py build \
+  --db data/ai-ml-papers.sqlite3 \
+  --index data/ai-ml-openai-embeddings.sqlite3 \
+  --model text-embedding-3-large --batch-size 128
+```
+
+Use `--limit 100` for a pilot. OpenAI builds and searches make API calls;
+`estimate` and `status` do not. Different models or dimensions require separate
+indexes. A local Qwen backend is also available. See
+[embedding details](docs/embeddings.md) for local/GPU setup, dimensions,
+chunking, storage, and resume behavior.
+
+## Data and development
+
+Large compressed SQLite snapshots are tracked with **Git LFS**. Working
+`data/` files, caches, backups, credentials, and personal queries stay local.
+The snapshots contain the AI/ML corpus and matching vectors; reports can be
+regenerated from the restored paper database.
+
+To package updated databases, choose new archive paths, verify them, and update
+`snapshots/manifest.json` before committing the archives:
+
+```bash
+uv run package_database.py pack --db data/ai-ml-papers.sqlite3 \
+  --output snapshots/ai-ml-papers-next.sqlite3.xz
+uv run package_database.py pack --db data/ai-ml-openai-embeddings.sqlite3 \
+  --output snapshots/ai-ml-openai-embeddings-next.sqlite3.xz --page-size 1024
+```
+
+The project uses Python 3.12 with uv. Collection, snapshot handling, and API
+search can also be installed through their `requirements-*.txt` files in a
+separate Python environment.
+
+Run the offline test suite:
+
+```bash
+uv run --extra openai python -m unittest discover -s tests
+```
+
+Tests mock external services and do not require paid API calls. Optional local
+model runtime tests run when their dependencies are installed.

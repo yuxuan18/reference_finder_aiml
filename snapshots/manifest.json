@@ -1,131 +1,114 @@
 {
-  "updated_at": "2026-10-11T17:07:19.252107+00:00",
-  "layout": "linked-papers-v1",
+  "project": "reference_finder_aiml",
+  "updated_at": "2026-10-27T20:50:04.961482+00:00",
+  "scope": {
+    "venues": [
+      "iclr",
+      "icml",
+      "neurips",
+      "aaai",
+      "colm"
+    ],
+    "start_year": 2017,
+    "end_year": 2026,
+    "current_year_provisional": true
+  },
+  "corpus": {
+    "active_papers": 81066,
+    "abstracts": 81066,
+    "stored_paper_records": 83809,
+    "excluded_memberships": 2743,
+    "coverage_by_venue": [
+      {
+        "venue": "aaai",
+        "papers": 19232,
+        "abstracts": 19232
+      },
+      {
+        "venue": "colm",
+        "papers": 1573,
+        "abstracts": 1573
+      },
+      {
+        "venue": "iclr",
+        "papers": 16571,
+        "abstracts": 16571
+      },
+      {
+        "venue": "icml",
+        "papers": 19650,
+        "abstracts": 19650
+      },
+      {
+        "venue": "neurips",
+        "papers": 24040,
+        "abstracts": 24040
+      }
+    ]
+  },
+  "index": {
+    "papers": 81066,
+    "abstracts": 81066,
+    "embedded": 81066,
+    "embedded_title_only": 0,
+    "chunks": 81066,
+    "stored_chunks": 81066,
+    "stale": 0,
+    "missing_papers": 0,
+    "pending": 0,
+    "title_only": 0,
+    "config": {
+      "aggregation": "max-chunk",
+      "api": "openai-v1-embeddings",
+      "dimension": 3072,
+      "document_prompt": "",
+      "format_version": 3,
+      "max_tokens": 8191,
+      "model_id": "text-embedding-3-large",
+      "normalization": "l2",
+      "overlap": 64,
+      "provider": "openai",
+      "query_prompt": "",
+      "revision": "openai-api-model-id-v1",
+      "storage_layout": "linked-papers-v1",
+      "text_format": "title-newline-newline-abstract-v1",
+      "tokenizer": "cl100k_base",
+      "vector_format": "float16-le"
+    }
+  },
   "compression": {
     "format": "xz",
     "preset": 9,
     "lossless": true
   },
-  "validation": {
-    "paper_table_values_preserved": true,
-    "vector_bytes_preserved": true,
-    "restored_values_verified": true,
-    "vector_index_contains_no_paper_text": true,
-    "search_checks": [
-      {
-        "query": "Zero-knowledge certification that a private social network graph contains no botnet, using formal definitions of coordinated malicious communities while revealing neither users nor edges.",
-        "identical_top_50_including_scores_and_metadata": true
-      },
-      {
-        "query": "Side-channel attacks against trusted execution environments and practical countermeasures that protect secret-dependent memory accesses.",
-        "identical_top_50_including_scores_and_metadata": true
-      },
-      {
-        "query": "Efficient post-quantum digital signatures using lattice cryptography, with provable security and practical implementation benchmarks.",
-        "identical_top_50_including_scores_and_metadata": true
-      },
-      {
-        "query": "Detecting coordinated inauthentic behavior and botnet communities on social media from the structure of interaction networks.",
-        "identical_top_50_including_scores_and_metadata": true
-      }
-    ],
-    "id_text_hash_digest_format": "SHA-256 of compact JSON [[paper_id, encoded_text_sha256], ...], ordered by paper_id",
-    "paper_page_size_comparison": [
-      {
-        "page_size": 512,
-        "bytes": 44231168
-      },
-      {
-        "page_size": 1024,
-        "bytes": 41615360
-      },
-      {
-        "page_size": 2048,
-        "bytes": 42723328
-      },
-      {
-        "page_size": 4096,
-        "bytes": 44515328
-      }
-    ]
-  },
-  "files": [
-    {
-      "archive": "papers.sqlite3.xz",
-      "restore_path": "data/papers.sqlite3",
-      "purpose": "paper titles, abstracts, citations, and collection progress",
-      "sqlite_bytes": 41615360,
-      "archive_bytes": 6883284,
-      "sqlite_sha256": "12b036bf0fe088d0ba7852a01c5d6f474e087b80dc3762bd5bec981182dfaa4d",
-      "archive_sha256": "db8e58631efd767c8fa6ecfc2949964aa1f4368c23199610e1d4c9c85f6a011b",
-      "page_size": 1024,
-      "integrity_check": "ok",
-      "tables": {
-        "checkpoints": 198,
-        "enrichment_attempts": 21255,
-        "openalex_sources": 9,
-        "paper_venues": 30556,
-        "papers": 12425,
-        "roster_entries": 16765,
-        "roster_runs": 121,
-        "source_records": 31859
-      },
-      "paper_id_text_hash_sha256": "76c87f94f3cd78aa6ace0ee920af0804546fc61aff169652907d82c90c242ee7",
-      "schema_version": 2,
-      "coverage": {
-        "papers": 12425,
-        "abstracts": 11323,
-        "title_only": 1102
-      },
-      "contains_embeddings": false
+  "archives": {
+    "papers": {
+      "file": "snapshots/ai-ml-papers.sqlite3.xz",
+      "restore_to": "data/ai-ml-papers.sqlite3",
+      "archive_bytes": 43306088,
+      "snapshot_bytes": 293593088,
+      "page_size": 4096,
+      "snapshot_sha256": "472c43abf845e1702fcb534123b195b9facf3d93d74fef75e1cea12f22b12028",
+      "archive_sha256": "b0e0fa5f32dfc7d019c457f88d7d01da16492ae6cb8139d906522b1e840f642e",
+      "integrity_check": "ok"
     },
-    {
-      "archive": "embeddings.sqlite3.xz",
-      "restore_path": "data/embeddings.sqlite3",
-      "purpose": "vectors linked to papers by ID and encoded-text hash; no title, abstract, or chunk text",
-      "sqlite_bytes": 66353152,
-      "archive_bytes": 53975080,
-      "sqlite_sha256": "b23a2f9055f6227894485f1f65a5452bf69a4963ccd5f57b75f1dc1c80965e77",
-      "archive_sha256": "d9da2c5841a901cf264b0852ea7e9b54fabad649abf5701f3be3ecc7874cbc35",
+    "embeddings": {
+      "file": "snapshots/ai-ml-openai-embeddings.sqlite3.xz",
+      "restore_to": "data/ai-ml-openai-embeddings.sqlite3",
+      "archive_bytes": 454959876,
+      "snapshot_bytes": 516005888,
       "page_size": 1024,
-      "integrity_check": "ok",
-      "tables": {
-        "chunks": 12425,
-        "embedding_meta": 1,
-        "paper_state": 12425
-      },
-      "paper_id_text_hash_sha256": "76c87f94f3cd78aa6ace0ee920af0804546fc61aff169652907d82c90c242ee7",
-      "coverage": {
-        "papers": 12425,
-        "abstracts": 11323,
-        "embedded": 12425,
-        "pending": 0,
-        "chunks": 12425,
-        "stale": 0,
-        "missing_papers": 0
-      },
-      "model_config": {
-        "aggregation": "max-chunk",
-        "dimension": 2560,
-        "document_prompt": "",
-        "format_version": 3,
-        "max_tokens": 2048,
-        "model_id": "Qwen/Qwen3-Embedding-4B",
-        "normalization": "l2",
-        "overlap": 64,
-        "query_prompt": "Instruct: Given a web search query, retrieve relevant passages that answer the query\nQuery:",
-        "revision": "5cf2132abc99cad020ac570b19d031efec650f2b",
-        "storage_layout": "linked-papers-v1",
-        "text_format": "title-newline-newline-abstract-v1",
-        "vector_format": "float16-le"
-      },
-      "contains_paper_text": false,
-      "vector_sha256": "d1649e705b698fe6ff9600e5ee5cdd2d770c46389f6a9160d8091cc37ced17f7",
-      "link": {
-        "database": "papers.sqlite3",
-        "key": "paper_state.paper_id = papers.id",
-        "validation": "source_hash = SHA-256 of stripped title, blank line, and stripped abstract"
-      }
+      "snapshot_sha256": "013da3dffa4dc1c5bba67069b8d9f3773d0bffbb4ec2d03e4bc2bde561b25992",
+      "archive_sha256": "0da9a2e5ba0d00015fd6993f86dc873d8a2a6182a5989ecd4cd2c10ab9142c2e",
+      "integrity_check": "ok"
     }
-  ]
+  },
+  "validation": {
+    "restored_paper_metadata_and_text_equal": true,
+    "restored_vector_bytes_equal": true,
+    "vector_digest_sha256": "375f1b2a7ad1e41394a666fa460fea83f7d1d5bfc797e7bba66bb48f27ffe7b6",
+    "matching_index_complete": true,
+    "foreign_key_check": "ok",
+    "embedding_api_calls": 0
+  }
 }

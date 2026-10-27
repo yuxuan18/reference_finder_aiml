@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Download indexed security/cryptography conference abstracts into SQLite."""
+"""Download indexed conference abstracts into SQLite (AI/ML venues by default)."""
 from __future__ import annotations
 
 import argparse
@@ -13,7 +13,7 @@ from reference_finder.api import APIError, Budget, HTTP, OpenAlex, RequestLimit,
 from reference_finder.importer import Importer
 from reference_finder.reporting import report
 from reference_finder.storage import Database
-from reference_finder.venues import VENUES
+from reference_finder.venues import DEFAULT_VENUES, VENUES
 
 
 def parser():
@@ -22,7 +22,7 @@ def parser():
     p.add_argument("--db", default="data/papers.sqlite3", help="SQLite database path")
     p.add_argument("--start-year", type=int, default=current_year - 9, help="First publication year, inclusive")
     p.add_argument("--end-year", type=int, default=current_year, help="Last publication year, inclusive")
-    p.add_argument("--venues", nargs="+", choices=list(VENUES), default=list(VENUES), help="Conference keys")
+    p.add_argument("--venues", nargs="+", choices=list(VENUES), default=list(DEFAULT_VENUES), help="Conference keys")
     p.add_argument("--providers", nargs="+", choices=["openalex", "semantic-scholar"], default=["openalex", "semantic-scholar"])
     p.add_argument("--phase", choices=["all", "discover", "enrich"], default="all")
     p.add_argument("--refresh", action="store_true", help="Recheck selected venue/years and missing abstracts; keep existing papers")
@@ -47,6 +47,14 @@ def main(argv=None):
     if args.refresh and args.report_only:
         p.error("--refresh cannot be used with --report-only")
     logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s", datefmt="%H:%M:%S")
+    if not args.report_only:
+        from reference_finder.config import load_environment
+        try:
+            load_environment()
+        except ImportError as exc:
+            if exc.name == "dotenv":
+                p.error("Install collection dependencies: uv add -r requirements-webscraping.txt (or python3 -m pip install -r requirements-webscraping.txt)")
+            raise
     venues = [VENUES[key] for key in dict.fromkeys(args.venues)]
     db = Database(args.db)
     budget = Budget(args.max_requests)

@@ -15,12 +15,12 @@ YEAR = 2025
 def s2_paper(number=1, **overrides):
     record = {
         "paperId": "%040x" % number,
-        "title": "A security result %s" % number,
+        "title": "A learning result %s" % number,
         "year": YEAR,
-        "venue": "CCS '25",
+        "venue": "ICML '25",
         "publicationVenue": {
             "id": "9ca72042-7524-46ee-b8e8-df443d922a5d",
-            "name": "ACM SIGSAC Conference on Computer and Communications Security",
+            "name": "International Conference on Machine Learning",
         },
         "externalIds": {"DOI": "10.1145/1000000.%s" % number},
         "abstract": None,
@@ -34,7 +34,7 @@ def s2_paper(number=1, **overrides):
 def oa_paper(number=1, **overrides):
     record = {
         "id": "https://openalex.org/W%s" % (1000000000 + number),
-        "display_name": "A security result %s" % number,
+        "display_name": "A learning result %s" % number,
         "publication_year": YEAR,
         "doi": "https://doi.org/10.1145/1000000.%s" % number,
         "abstract_inverted_index": None,
@@ -54,7 +54,7 @@ class ImporterTests(unittest.TestCase):
     def setUp(self):
         self.db = Database(":memory:")
         self.addCleanup(self.db.conn.close)
-        self.venue = VENUES["ccs"]
+        self.venue = VENUES["icml"]
         self.s2 = Mock()
         self.oa = Mock()
         self.importer = Importer(self.db, [self.venue], YEAR, YEAR, self.oa, self.s2)
@@ -65,10 +65,25 @@ class ImporterTests(unittest.TestCase):
     def seed_source(self):
         with self.db.conn:
             self.db.conn.execute("INSERT INTO openalex_sources VALUES (?,?,?)", (
-                self.venue.key, SOURCE_ID, "ACM SIGSAC Conference on Computer and Communications Security"
+                self.venue.key, SOURCE_ID, "International Conference on Machine Learning"
             ))
             for query in self.venue.openalex_queries:
                 self.db.save_checkpoint(job_key("oa-sources", self.venue.key, query=query), None, True, 1, 1)
+
+    def test_colm_skips_api_discovery_before_2024(self):
+        venue = VENUES["colm"]
+        self.s2.works.return_value = {"data": []}
+        importer = Importer(self.db, [venue], 2017, 2024, None, self.s2)
+        importer.discover_s2()
+        self.s2.works.assert_called_once_with(venue.semantic_scholar_names, 2024, None)
+
+    def test_ml_venue_discovery_accepts_conference_labels(self):
+        for number, key in enumerate(("iclr", "icml", "neurips", "aaai", "colm"), 1):
+            venue = VENUES[key]
+            self.s2.works.return_value = {"data": [s2_paper(number, venue=venue.semantic_scholar_names[0], publicationVenue={})]}
+            Importer(self.db, [venue], YEAR, YEAR, None, self.s2).discover_s2()
+            self.assertEqual(self.db.coverage(key, YEAR)["papers"], 1)
+
 
     def test_s2_multiple_pages_deduplicate_and_keep_missing_abstract(self):
         self.s2.works.side_effect = [
@@ -84,11 +99,11 @@ class ImporterTests(unittest.TestCase):
         self.assertEqual(len(rows), 2)
         self.assertIsNone(rows[0]["abstract"])
         self.assertEqual(rows[1]["abstract"], "A complete abstract.")
-        state = self.db.checkpoint(job_key("s2-discover", "ccs", year=YEAR))
+        state = self.db.checkpoint(job_key("s2-discover", "icml", year=YEAR))
         self.assertTrue(state["done"])
         self.assertEqual(state["fetched"], 3)
-        self.assertEqual(self.db.coverage("ccs", YEAR)["papers"], 2)
-        self.assertEqual(self.db.coverage("ccs", YEAR)["abstracts"], 1)
+        self.assertEqual(self.db.coverage("icml", YEAR)["papers"], 2)
+        self.assertEqual(self.db.coverage("icml", YEAR)["abstracts"], 1)
         self.importer.discover_s2()
         self.assertEqual(self.s2.works.call_count, 2)
 
@@ -98,7 +113,7 @@ class ImporterTests(unittest.TestCase):
         ]
         with self.assertRaises(RequestLimit):
             self.importer.discover_s2()
-        job = job_key("s2-discover", "ccs", year=YEAR)
+        job = job_key("s2-discover", "icml", year=YEAR)
         self.assertEqual(self.db.checkpoint(job)["cursor"], "resume-here")
         self.assertFalse(self.db.checkpoint(job)["done"])
         self.s2.reset_mock()
@@ -115,7 +130,7 @@ class ImporterTests(unittest.TestCase):
         ]
         with self.assertRaises(APIError):
             self.importer.discover_s2()
-        state = self.db.checkpoint(job_key("s2-discover", "ccs", year=YEAR))
+        state = self.db.checkpoint(job_key("s2-discover", "icml", year=YEAR))
         self.assertEqual(state["cursor"], "resume-here")
         self.assertEqual(state["fetched"], 1)
         self.assertFalse(state["done"])
@@ -127,7 +142,7 @@ class ImporterTests(unittest.TestCase):
         ]
         with self.assertRaisesRegex(APIError, "no data array"):
             self.importer.discover_s2()
-        state = self.db.checkpoint(job_key("s2-discover", "ccs", year=YEAR))
+        state = self.db.checkpoint(job_key("s2-discover", "icml", year=YEAR))
         self.assertEqual(state["cursor"], "resume-here")
         self.assertFalse(state["done"])
         self.assertEqual(state["fetched"], 1)
@@ -148,22 +163,22 @@ class ImporterTests(unittest.TestCase):
         with self.assertRaises(KeyError):
             self.importer.discover_s2()
         self.assertEqual(len(self.papers()), 0)
-        self.assertIsNone(self.db.checkpoint(job_key("s2-discover", "ccs", year=YEAR)))
+        self.assertIsNone(self.db.checkpoint(job_key("s2-discover", "icml", year=YEAR)))
 
     def test_s2_filters_workshops_wrong_years_and_volumes(self):
         self.s2.works.return_value = {"data": [
             s2_paper(1),
-            s2_paper(2, venue="CCS Workshop on Privacy"),
-            s2_paper(3, title="Proceedings of the 2025 ACM SIGSAC Conference on Computer and Communications Security"),
+            s2_paper(2, venue="ICML Workshop on Privacy"),
+            s2_paper(3, title="Proceedings of the 2025 International Conference on Machine Learning"),
             s2_paper(4, publicationTypes=["Book"]),
             s2_paper(5, title="Preface"),
             s2_paper(6, year=YEAR - 1),
             s2_paper(7, venue="Control and Communication Systems", publicationVenue={
-                "name": "Control and Communication Systems", "alternate_names": ["CCS"]
+                "name": "Control and Communication Systems", "alternate_names": ["ICML"]
             }),
             # Real providers sometimes supply only the canonical venue name.
             s2_paper(8, venue="", publicationVenue={
-                "id": "canonical-venue-id", "name": "ACM SIGSAC Conference on Computer and Communications Security"
+                "id": "canonical-venue-id", "name": "International Conference on Machine Learning"
             }),
         ]}
         self.importer.discover_s2()
@@ -171,11 +186,11 @@ class ImporterTests(unittest.TestCase):
 
     def test_openalex_sources_paginate_and_use_labels_and_aliases(self):
         alias_source = {"id": SOURCE_ID, "display_name": "Conference proceedings", "alternate_titles": [
-            "ACM SIGSAC Conference on Computer and Communications Security"
+            "International Conference on Machine Learning"
         ]}
-        second_source = {"id": "https://openalex.org/S4306460213", "display_name": "CCS '24"}
-        workshop_source = {"id": "https://openalex.org/S4306460214", "display_name": "CCS Workshops",
-                           "alternate_titles": ["ACM SIGSAC Conference on Computer and Communications Security"]}
+        second_source = {"id": "https://openalex.org/S4306460213", "display_name": "ICML '24"}
+        workshop_source = {"id": "https://openalex.org/S4306460214", "display_name": "ICML Workshops",
+                           "alternate_titles": ["International Conference on Machine Learning"]}
         self.oa.sources.side_effect = [
             oa_page([alias_source, workshop_source], "second-source-page"),
             oa_page([second_source]),
@@ -190,11 +205,11 @@ class ImporterTests(unittest.TestCase):
         self.importer.discover_sources(self.venue)
         self.assertEqual(self.oa.sources.call_count, 3)
 
-    def test_book_mislabeled_as_ccs_conference_is_excluded(self):
-        # Real S2 shape: a WPES proceedings volume is indexed under CCS and
+    def test_book_mislabeled_as_icml_conference_is_excluded(self):
+        # Real S2 shape: a workshop proceedings volume is indexed under ICML and
         # simultaneously classified as Book, JournalArticle, and Conference.
         self.s2.works.return_value = {"data": [s2_paper(
-            title="WPES '24: 23rd Workshop on Privacy in the Electronic Society (WPES)",
+            title="MLWS '24: 23rd Workshop on Representation Learning (MLWS)",
             publicationTypes=["Book", "JournalArticle", "Conference"],
         )]}
         self.importer.discover_s2()
@@ -202,7 +217,7 @@ class ImporterTests(unittest.TestCase):
 
     def test_actual_conference_papers_with_mixed_book_tags_are_kept(self):
         self.s2.works.return_value = {"data": [
-            s2_paper(1, title="ImportSnare: A New Class of Dependency Confusion Attacks",
+            s2_paper(1, title="Learning Representations from Limited Labels",
                      publicationTypes=["JournalArticle", "Book", "Conference"]),
             s2_paper(2, publicationTypes=["Book", "Conference"]),
             s2_paper(3, publicationTypes=["Book", "JournalArticle"]),
@@ -212,18 +227,18 @@ class ImporterTests(unittest.TestCase):
 
     def test_old_filter_checkpoint_does_not_skip_corrected_discovery(self):
         import json
-        legacy = json.dumps({"version": 1, "stage": "s2-discover", "venue": "ccs", "year": YEAR}, sort_keys=True)
+        legacy = json.dumps({"version": 1, "stage": "s2-discover", "venue": "icml", "year": YEAR}, sort_keys=True)
         with self.db.conn:
             self.db.save_checkpoint(legacy, None, True, 347, 1)
         self.s2.works.return_value = {"data": [s2_paper(1, publicationTypes=["Book", "Conference"])]}
         self.importer.discover_s2()
         self.s2.works.assert_called_once()
         self.assertEqual(len(self.papers()), 1)
-        self.assertTrue(self.db.checkpoint(job_key("s2-discover", "ccs", year=YEAR))["done"])
+        self.assertTrue(self.db.checkpoint(job_key("s2-discover", "icml", year=YEAR))["done"])
 
     def test_openalex_source_failure_resumes_its_own_cursor(self):
         self.oa.sources.side_effect = [
-            oa_page([{"id": SOURCE_ID, "display_name": "CCS"}], "source-resume"), APIError("temporary failure")
+            oa_page([{"id": SOURCE_ID, "display_name": "ICML"}], "source-resume"), APIError("temporary failure")
         ]
         with self.assertRaises(APIError):
             self.importer.discover_sources(self.venue)
@@ -238,7 +253,7 @@ class ImporterTests(unittest.TestCase):
         self.oa.works.side_effect = [oa_page([oa_paper(1)], "works-resume"), RequestLimit("test budget")]
         with self.assertRaises(RequestLimit):
             self.importer.discover_oa()
-        job = job_key("oa-discover", "ccs", year=YEAR, source=SOURCE_ID)
+        job = job_key("oa-discover", "icml", year=YEAR, source=SOURCE_ID)
         self.assertEqual(self.db.checkpoint(job)["cursor"], "works-resume")
         self.assertFalse(self.db.checkpoint(job)["done"])
         self.oa.reset_mock()
@@ -259,7 +274,7 @@ class ImporterTests(unittest.TestCase):
         self.oa.works.side_effect = [oa_page([oa_paper(1)], "works-resume"), {"error": "bad response"}]
         with self.assertRaisesRegex(APIError, "no works array"):
             self.importer.discover_oa()
-        state = self.db.checkpoint(job_key("oa-discover", "ccs", year=YEAR, source=SOURCE_ID))
+        state = self.db.checkpoint(job_key("oa-discover", "icml", year=YEAR, source=SOURCE_ID))
         self.assertEqual(state["cursor"], "works-resume")
         self.assertEqual(state["fetched"], 1)
         self.assertFalse(state["done"])
@@ -268,7 +283,7 @@ class ImporterTests(unittest.TestCase):
         self.seed_source()
         self.oa.works.return_value = oa_page([
             oa_paper(1), oa_paper(2, type="book"), oa_paper(3, type="paratext"),
-            oa_paper(4, display_name="Advances in Cryptology – CRYPTO 2025: Part I"),
+            oa_paper(4, display_name="Proceedings of ICML 2025: Part I"),
             oa_paper(5, display_name="Table of contents"), oa_paper(6, publication_year=YEAR - 1),
         ])
         self.importer.discover_oa()
@@ -276,13 +291,13 @@ class ImporterTests(unittest.TestCase):
 
     def test_null_s2_doi_backfill_is_remembered_until_refresh(self):
         with self.db.conn:
-            self.db.upsert("openalex", oa_paper(), "ccs", YEAR)
+            self.db.upsert("openalex", oa_paper(), "icml", YEAR)
         self.s2.dois.return_value = [None]
         self.importer.enrich_s2()
         self.importer.enrich_s2()
         self.s2.dois.assert_called_once_with(["10.1145/1000000.1"])
         self.assertIsNone(self.papers()[0]["abstract"])
-        self.db.refresh(["ccs"], YEAR, YEAR)
+        self.db.refresh(["icml"], YEAR, YEAR)
         self.s2.dois.return_value = [s2_paper(abstract="Recovered abstract")]
         self.importer.enrich_s2()
         self.assertEqual(self.s2.dois.call_count, 2)
@@ -292,12 +307,12 @@ class ImporterTests(unittest.TestCase):
 
     def test_null_openalex_doi_backfill_is_remembered_until_refresh(self):
         with self.db.conn:
-            self.db.upsert("semantic_scholar", s2_paper(), "ccs", YEAR)
+            self.db.upsert("semantic_scholar", s2_paper(), "icml", YEAR)
         self.oa.doi.return_value = None
         self.importer.enrich_oa()
         self.importer.enrich_oa()
         self.oa.doi.assert_called_once_with("10.1145/1000000.1")
-        self.db.refresh(["ccs"], YEAR, YEAR)
+        self.db.refresh(["icml"], YEAR, YEAR)
         self.oa.doi.return_value = oa_paper(abstract_inverted_index={"Recovered": [0], "abstract": [1]})
         self.importer.enrich_oa()
         self.assertEqual(self.oa.doi.call_count, 2)
@@ -306,21 +321,21 @@ class ImporterTests(unittest.TestCase):
 
     def test_s2_batch_mismatch_does_not_mark_attempts(self):
         with self.db.conn:
-            self.db.upsert("openalex", oa_paper(), "ccs", YEAR)
+            self.db.upsert("openalex", oa_paper(), "icml", YEAR)
         self.s2.dois.return_value = []
         with self.assertRaisesRegex(APIError, "length mismatch"):
             self.importer.enrich_s2()
-        self.assertEqual(len(self.db.missing_for("semantic_scholar", ["ccs"], YEAR, YEAR)), 1)
+        self.assertEqual(len(self.db.missing_for("semantic_scholar", ["icml"], YEAR, YEAR)), 1)
 
     def test_s2_wrong_doi_rolls_back_entire_backfill_batch(self):
         with self.db.conn:
-            self.db.upsert("openalex", oa_paper(1), "ccs", YEAR)
-            self.db.upsert("openalex", oa_paper(2), "ccs", YEAR)
+            self.db.upsert("openalex", oa_paper(1), "icml", YEAR)
+            self.db.upsert("openalex", oa_paper(2), "icml", YEAR)
         self.s2.dois.return_value = [s2_paper(1, abstract="Uncommitted"), s2_paper(3, abstract="Wrong DOI")]
         with self.assertRaisesRegex(APIError, "different DOI"):
             self.importer.enrich_s2()
         self.assertTrue(all(row["abstract"] is None for row in self.papers()))
-        self.assertEqual(len(self.db.missing_for("semantic_scholar", ["ccs"], YEAR, YEAR)), 2)
+        self.assertEqual(len(self.db.missing_for("semantic_scholar", ["icml"], YEAR, YEAR)), 2)
 
     def test_all_requested_years_include_empty_years(self):
         self.s2.works.side_effect = lambda names, year, token: {
@@ -330,8 +345,8 @@ class ImporterTests(unittest.TestCase):
         importer.discover_s2()
         self.assertEqual([args.args[1] for args in self.s2.works.call_args_list], list(range(2017, 2027)))
         for year in range(2017, 2027):
-            self.assertTrue(self.db.checkpoint(job_key("s2-discover", "ccs", year=year))["done"])
-            self.assertEqual(self.db.coverage("ccs", year)["papers"], int(year == 2026))
+            self.assertTrue(self.db.checkpoint(job_key("s2-discover", "icml", year=year))["done"])
+            self.assertEqual(self.db.coverage("icml", year)["papers"], int(year == 2026))
 
     def test_provider_failure_still_allows_other_provider_to_import(self):
         self.seed_source()
@@ -341,7 +356,7 @@ class ImporterTests(unittest.TestCase):
             errors = self.importer.run()
         self.assertEqual(errors, ["Semantic Scholar unavailable"])
         self.assertEqual(self.papers()[0]["abstract"], "Found")
-        self.assertIsNone(self.db.checkpoint(job_key("s2-discover", "ccs", year=YEAR)))
+        self.assertIsNone(self.db.checkpoint(job_key("s2-discover", "icml", year=YEAR)))
         self.s2.dois.assert_not_called()
 
 

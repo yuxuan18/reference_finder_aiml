@@ -1,186 +1,103 @@
-# Generate embeddings on a GPU and search locally
+# AI/ML embeddings and search
 
-The project uses **two databases**:
+Paper text and vectors are kept in separate SQLite databases:
 
-| File | Contents | Used independently? |
-| --- | --- | --- |
-| `data/papers.sqlite3` | Titles, abstracts, citation metadata, collection progress | Yes: browsing, ChatGPT uploads, or GPU input |
-| `data/embeddings.sqlite3` | FP16 vectors, paper IDs, text hashes, model settings | Search also needs the matching paper database |
+| File | Contents |
+| --- | --- |
+| `data/ai-ml-papers.sqlite3` | Titles, abstracts, citation metadata, proceedings evidence and collection progress |
+| `data/ai-ml-openai-embeddings.sqlite3` | OpenAI vectors, paper IDs, text hashes and model settings |
 
-The vector database never stores titles, abstracts, or chunk text. Paper IDs link
-vectors to records; hashes check that the title and abstract still match the
-input used to generate each embedding. Paths are supplied by the caller, so both
-files can move between machines. There is no third corpus database.
+The vector database contains no paper text. Search checks IDs and text hashes
+against the paper database and omits stale or missing matches. The bundled
+index contains all 81,066 active papers and uses `text-embedding-3-large` with
+3,072 dimensions and FP16 vector storage.
 
-Server and client use `Qwen/Qwen3-Embedding-4B` with the same saved checkpoint and
-query formatting. Python 3.9–3.12, including 3.9.6, is supported. See the
-[README](../README.md#search-the-databases) for Mac and Windows setup.
+## OpenAI setup
 
-## Sync code through Git
-
-Push committed changes from your Mac:
-
-```sh
-git push origin main
+```bash
+uv sync --extra openai
 ```
 
-On an existing GPU server checkout:
+Set `OPENAI_API_KEY` in `.env`. API mode sends paper titles/abstracts during a
+build and the query during search to OpenAI; ranking uses the locally stored
+vectors. For a standalone environment without uv or Torch, install
+`requirements-api-embeddings.txt` and replace `uv run --extra openai` with
+`python` in the examples.
 
-```sh
-cd ~/reference_finder
-git pull --ff-only origin main
+```bash
+uv run --extra openai embed_papers.py search \
+  --db data/ai-ml-papers.sqlite3 \
+  --index data/ai-ml-openai-embeddings.sqlite3 \
+  --query "Learning from limited labels" --top-k 50
 ```
 
-For a first installation:
+Use `--query-file target.txt` for a title plus abstract, and `--json` for
+structured results. Both title-only and abstract queries are embedded using
+the model and dimensions stored in the index. No local model is loaded.
 
-```sh
-git clone git@github.com:arifiorino/reference_finder.git ~/reference_finder
-cd ~/reference_finder
+## Estimate, build and resume
+
+```bash
+uv run --extra openai embed_papers.py estimate \
+  --db data/ai-ml-papers.sqlite3 \
+  --index data/ai-ml-openai-embeddings.sqlite3
+uv run --extra openai embed_papers.py build \
+  --db data/ai-ml-papers.sqlite3 \
+  --index data/ai-ml-openai-embeddings.sqlite3 \
+  --model text-embedding-3-large --batch-size 128
+uv run embed_papers.py status \
+  --db data/ai-ml-papers.sqlite3 \
+  --index data/ai-ml-openai-embeddings.sqlite3
 ```
 
-Git transfers code and committed archives in `snapshots/`. Working databases
-under `data/` are ignored, so changes made to them do not travel with a push or
-pull. Pull code updates between embedding jobs.
+`estimate` counts actual chunk tokens locally. With `--index`, it estimates only
+pending or changed papers. Its standard input-price defaults were checked on
+2026-10-27; use `--price-per-million` for updated/account-specific pricing.
+See [OpenAI's model documentation](https://developers.openai.com/api/docs/models/text-embedding-3-large).
+A tokenizer vocabulary may download on first use, but estimation makes no
+embedding API calls. `build`, `search`, and an OpenAI `benchmark` make paid
+requests.
 
-## Install the GPU environment
+Add `--limit 100` for a pilot, then rerun without it to finish. The index commits
+completed batches; interruptions resume saved progress. SDK retries handle
+transient errors, although an uncommitted batch may need to be requested again.
+Changed title/abstract text is re-embedded, while metadata-only edits reuse its
+vectors. The paper database is read-only during embedding generation.
 
-If you have a working CUDA environment, activate it and install the server
-requirements. For a new environment:
+OpenAI's large model defaults to 3072 dimensions and its small model to 1536.
+Specify `--dimensions` when creating a new index to request fewer. Documents
+are chunked without truncation using `cl100k_base`, with an 8191-token chunk
+limit by default. Requests are split at the 2048-input and 300,000-total-token
+limits. Returned indices, dimensions and vector values are checked before
+storage. See the [embedding API reference](https://developers.openai.com/api/reference/resources/embeddings/methods/create).
 
-```sh
-python3 -m venv .venv-server
-source .venv-server/bin/activate
-python -m pip install -r requirements-server.txt
-python -c 'import torch; print(torch.__version__); print("CUDA available:", torch.cuda.is_available())'
+Queries and documents must use the same provider, model, dimensions and chunk
+settings. The CLI rejects incompatible resumes. OpenAI exposes a model ID,
+rather than an immutable weights commit; service-side model changes cannot be
+frozen like a local Hugging Face revision.
+
+## Optional local model
+
+Install `requirements-client.txt` for a Mac/local environment or
+`requirements-server.txt` for an existing CUDA environment. The local backend
+uses `Qwen/Qwen3-Embedding-4B`. Keep its vectors separate from the OpenAI index:
+
+```bash
+python embed_papers.py build --db data/ai-ml-papers.sqlite3 \
+  --index data/ai-ml-qwen-embeddings.sqlite3 \
+  --model Qwen/Qwen3-Embedding-4B --device mps --batch-size 1 --limit 100
+python embed_papers.py search --db data/ai-ml-papers.sqlite3 \
+  --index data/ai-ml-qwen-embeddings.sqlite3 \
+  --query-file target.txt --device mps --top-k 50
 ```
 
-Use a CUDA build of PyTorch compatible with the server and Python version. Server
-requirements allow PyTorch 2.6 or later in the 2.x series and retain an already
-compatible installation. The client pins PyTorch 2.7.1. Both share Transformers
-4.57.6, Sentence Transformers 5.1.2, and NumPy 1.26.4. Collection dependencies are
-separate in `requirements-webscraping.txt`.
+Use `--device cuda` on a CUDA GPU or `--device cpu` on a CPU. Device selection
+is automatic when omitted. Automatic inference precision is FP16 on Apple MPS,
+BF16 when supported on CUDA, and FP32 on CPU. Increase the batch size only as
+memory permits. The first local run downloads model weights; its revision and
+prompts are saved in the index.
 
-## Send paper data to the server
-
-For the supplied paper set, restore the paper archive on the server once:
-
-```sh
-python package_database.py unpack --archive snapshots/papers.sqlite3.xz --output data/papers.sqlite3
-```
-
-If you have newer papers on your Mac, package just that database and send it:
-
-```sh
-python3 package_database.py pack --db data/papers.sqlite3 --output data/papers-transfer.sqlite3.xz
-scp data/papers-transfer.sqlite3.xz USER@GPU_HOST:~/reference_finder/data/
-```
-
-Restore the transferred archive on the server. Use a new temporary output path
-if `data/papers.sqlite3` already exists, verify the incoming database, then replace
-the old copy while database users are stopped. Packing includes committed WAL
-contents, so it is safer than copying an open SQLite main file directly.
-
-There is no corpus export. `build_corpus.py` and `download_abstracts.py` both write
-to `data/papers.sqlite3` by default. The paper file contains no embeddings and
-can also be uploaded by itself to a compatible ChatGPT session.
-
-## Benchmark, build, and resume
-
-A benchmark measures inference without saving vectors:
-
-```sh
-python embed_papers.py benchmark --db data/papers.sqlite3 --device cuda --dtype bfloat16 --batch-size 16 --limit 500
-```
-
-Build the separate vectors file:
-
-```sh
-python embed_papers.py build --db data/papers.sqlite3 --index data/embeddings.sqlite3 --device cuda --dtype bfloat16 --batch-size 16
-python embed_papers.py status --db data/papers.sqlite3 --index data/embeddings.sqlite3
-```
-
-The paper database is read-only during embedding generation. Interrupted builds
-resume committed batches. Add `--limit 500` for a pilot, then rerun without it to
-finish. Changed titles or abstracts require new embeddings; unchanged text and
-metadata-only edits reuse saved vectors. Search excludes stale or missing paper
-matches rather than associating a vector with the wrong text.
-
-The index pins the model revision, prompts, dimensions, chunk settings, and
-vector storage format. Incompatible resumes are rejected. Check `pending` before
-transferring a completed build. If you use the supplied completed vectors, restore
-`snapshots/embeddings.sqlite3.xz` and skip generation.
-
-A batch size of 16 is a starting point. Increase it if the benchmark benefits and
-memory permits. Automatic model precision uses BF16 on the H100, FP16 on Apple
-MPS, and FP32 on CPU. H100 throughput has not been measured as part of this
-update; benchmark it on your server.
-
-## Bring only the embeddings back
-
-After the server build finishes:
-
-```sh
-python package_database.py pack --db data/embeddings.sqlite3 --output data/embeddings-transfer.sqlite3.xz --page-size 1024
-```
-
-On the Mac, download and restore that archive:
-
-```sh
-scp USER@GPU_HOST:~/reference_finder/data/embeddings-transfer.sqlite3.xz data/embeddings-transfer.sqlite3.xz
-python3 package_database.py unpack --archive data/embeddings-transfer.sqlite3.xz --output data/embeddings-incoming.sqlite3
-python3 embed_papers.py status --db data/papers.sqlite3 --index data/embeddings-incoming.sqlite3
-```
-
-After verification, stop searches and replace the previous `data/embeddings.sqlite3`
-with the incoming file. Choose a fresh temporary filename if one already exists.
-The matching paper database is already on the Mac, so it does not need to travel
-back. If the papers changed independently, send the updated paper database to
-the server and build its missing or changed vectors before relying on coverage.
-
-To distribute updates through Git instead, replace the appropriate committed
-archive and update `snapshots/manifest.json` from the packaging/status output.
-Commit and push those files, then pull and restore explicitly on the other
-machine. A Git pull does not replace working databases in `data/`.
-
-## Search on the client
-
-Put your title and abstract in `target.txt`. On an Apple Silicon Mac:
-
-```sh
-.venv-qwen/bin/python embed_papers.py search --db data/papers.sqlite3 --index data/embeddings.sqlite3 --query-file target.txt --device mps --dtype float16 --top-k 50
-```
-
-In Windows PowerShell without a GPU:
-
-```powershell
-.\.venv-qwen\Scripts\python.exe -X utf8 embed_papers.py search --db data/papers.sqlite3 --index data/embeddings.sqlite3 --query-file target.txt --device cpu --dtype float32 --top-k 50
-```
-
-FP16 model weights require roughly 8 GB before inference overhead. CPU FP32
-weights need roughly 16 GB; allow additional RAM for the OS and inference. FP16
-vector storage does not reduce model weight memory. The first query downloads
-the model; subsequent runs reuse the cache. BF16 server inference and FP16 client
-inference share an embedding space with small numerical differences expected.
-
-Add `--json` for titles, abstracts, citations, and scores. `--abstracts-only`
-excludes title-only records. Queries must fit the saved context, including the
-prompt; shorten an overlong query or use several focused queries.
-
-## Storage and scores
-
-Each 2,560-dimensional FP16 Qwen vector uses 5,120 bytes. Search promotes saved
-vectors to FP32 and renormalizes them for cosine scoring. `--storage-dtype`
-controls saved vector precision; `--dtype` controls model inference. XZ is
-lossless packaging for the saved database.
-
-Long papers use overlapping chunks (default 2,048 tokens and 64-token overlap).
-Only vectors, chunk indices, and token counts are saved in the embedding file.
-The score is the highest chunk cosine similarity; results retrieve the canonical
-title and abstract from the paper database. The result is a candidate to read,
-not a probability of relevance or proof of an identical research contribution.
-
-The supplied legacy vectors can be migrated with
-[`strip_embedding_text.py`](../strip_embedding_text.py) without model inference.
-Old self-contained index formats remain readable, but new builds use the linked
-layout. Full Qwen inference has been checked on Mac MPS; Windows and H100
-execution have not been tested here.
+For a GPU server, copy a verified paper archive from `package_database.py pack`,
+restore it on the server, build the Qwen index, then package and bring back only
+the vector database. Keep the same paper snapshot and model settings on both
+machines. The [README](../README.md) explains LFS snapshot restoration.

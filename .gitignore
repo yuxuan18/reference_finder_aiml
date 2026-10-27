@@ -15,3 +15,9 @@ data/
 *.sqlite3-shm
 *.sqlite3-wal
 *.sqlite3-journal
+
+# Personal search inputs and results
+/target.txt
+/related-papers.json
+/dist/
+/build/

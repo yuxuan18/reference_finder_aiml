@@ -1,0 +1,5 @@
+# OpenAI embedding generation and local vector search; no Torch/model weights.
+openai>=1.30,<3
+tiktoken>=0.7,<1
+numpy==1.26.4
+python-dotenv>=1.0,<2
